@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tinoco Hybrids | Hybrid Battery Repair in Tijuana</title>
-  <meta name="description" content="Hybrid battery repair, cell replacement, and diagnostics in Tijuana, Mexico. Call or WhatsApp Tinoco Hybrids." />
+  <title>Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana</title>
+  <meta name="description" content="Hybrid vehicle mechanic in Tijuana: diagnostics, repairs, hybrid battery service, and performance issues. Call or WhatsApp Tinoco Hybrids." />
 
-  <meta property="og:title" content="Tinoco Hybrids | Hybrid Battery Repair in Tijuana" />
-  <meta property="og:description" content="Hybrid battery repair, cell replacement, and diagnostics in Tijuana, Mexico." />
+  <meta property="og:title" content="Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana" />
+  <meta property="og:description" content="Hybrid vehicle diagnostics and repairs in Tijuana. Call or WhatsApp." />
   <meta property="og:type" content="website" />
+
+  <!-- Use the uploaded logo as the tab icon -->
+  <link rel="icon" href="tinoco_logo_512.png" />
 
   <style>
     :root{
@@ -21,7 +24,7 @@
       --border:rgba(255,255,255,.08);
       --shadow: 0 12px 30px rgba(0,0,0,.35);
       --radius:18px;
-      --max: 1020px;
+      --max: 1100px;
     }
     *{box-sizing:border-box}
     body{
@@ -42,19 +45,16 @@
     .brand{
       display:flex; align-items:center; gap:12px;
       font-weight:750; letter-spacing:.2px;
+      min-width: 220px;
     }
-    .logo{
-      width:42px; height:42px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(255,122,24,.95), rgba(45,224,165,.75));
+    .brand img{
+      width:52px; height:52px;
+      border-radius:14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      padding:6px;
       box-shadow: 0 10px 22px rgba(0,0,0,.35);
-      position:relative;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:10px 12px;
-      border-radius:10px;
-      border:2px solid rgba(0,0,0,.22);
-      transform: rotate(10deg);
+      object-fit: contain;
     }
     .lang{
       display:flex; gap:8px; align-items:center;
@@ -79,14 +79,13 @@
 
     .hero{
       display:grid;
-      grid-template-columns: 1.35fr .65fr;
+      grid-template-columns: 1.25fr .75fr;
       gap:18px;
       align-items:stretch;
       margin-top:6px;
     }
-    @media (max-width: 860px){
-      .hero{grid-template-columns:1fr;}
-    }
+    @media (max-width: 860px){ .hero{grid-template-columns:1fr;} }
+
     .card{
       background: rgba(17,24,35,.85);
       border: 1px solid var(--border);
@@ -101,29 +100,15 @@
       margin: 0 0 10px;
       letter-spacing: -.6px;
     }
-    @media (max-width: 520px){
-      .headline{font-size: 34px;}
-    }
-    .sub{
-      margin:0 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-    }
+    @media (max-width: 520px){ .headline{font-size: 34px;} }
+    .sub{margin:0 0 18px; color: var(--muted); font-size: 16px;}
 
-    .ctaRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 8px;
-    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 8px;}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 14px; border-radius: 14px;
       border: 1px solid var(--border);
-      text-decoration:none;
-      font-weight:750;
+      text-decoration:none; font-weight:750;
       background: rgba(255,255,255,.04);
       transition: transform .06s ease, background .12s ease, border-color .12s ease;
       min-width: 160px;
@@ -139,36 +124,14 @@
       border-color: rgba(45,224,165,.35);
       color: #0b0f14;
     }
-    .pillRow{
-      display:flex; flex-wrap:wrap; gap:8px;
-      margin-top: 14px;
-    }
-    .pill{
-      font-size: 13px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      padding: 8px 10px;
-      border-radius: 999px;
-    }
 
-    .sideGrid{display:grid; gap:12px;}
-    .infoItem{
-      display:flex; gap:12px; align-items:flex-start;
-      padding: 14px;
-      border-radius: 16px;
+    .pillRow{display:flex; flex-wrap:wrap; gap:8px; margin-top: 14px;}
+    .pill{
+      font-size: 13px; color: var(--muted);
       border: 1px solid var(--border);
       background: rgba(255,255,255,.03);
+      padding: 8px 10px; border-radius: 999px;
     }
-    .icon{
-      width:36px; height:36px; border-radius:12px;
-      display:grid; place-items:center;
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--border);
-      flex: 0 0 auto;
-    }
-    .infoItem b{display:block; margin-bottom:2px;}
-    .infoItem span{color: var(--muted); font-size: 14px;}
 
     .grid{
       display:grid;
@@ -176,24 +139,48 @@
       gap:18px;
       margin-top:18px;
     }
-    @media (max-width: 860px){
-      .grid{grid-template-columns:1fr;}
-    }
+    @media (max-width: 860px){ .grid{grid-template-columns:1fr;} }
 
     h2{margin: 0 0 10px; letter-spacing:-.2px; font-size: 20px;}
-    ul{margin:10px 0 0; padding-left:18px; color: var(--muted);}
-    li{margin:6px 0;}
-    .small{color:var(--muted); font-size:13px; margin-top:10px;}
-    .footer{margin-top: 24px; color: var(--muted); font-size: 13px; text-align:center; opacity:.9;}
+    .muted{color:var(--muted)}
     .line{height:1px; background: var(--border); margin: 14px 0;}
-    .note{font-size: 14px; color: var(--muted); margin: 10px 0 0;}
-    .mapBox{
+    .small{color:var(--muted); font-size:13px; margin-top:10px;}
+
+    .cards3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 920px){ .cards3{grid-template-columns:1fr;} }
+
+    .mini{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .mini b{display:block; margin-bottom:6px;}
+    .mini p{margin:0; color:var(--muted); font-size:14px;}
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 920px){ .gallery{grid-template-columns:1fr 1fr;} }
+    .ph{
+      height: 140px;
       border-radius: 16px;
       border: 1px solid var(--border);
-      overflow:hidden;
       background: rgba(255,255,255,.03);
+      display:grid; place-items:center;
+      color: rgba(167,180,198,.85);
+      font-size: 13px;
     }
-    .mapPlaceholder{padding:16px; color: var(--muted); font-size: 14px;}
+
+    .footer{margin-top: 24px; color: var(--muted); font-size: 13px; text-align:center; opacity:.9;}
     .inlineLink{color: #cfe7ff; text-decoration: none; border-bottom:1px dotted rgba(207,231,255,.35);}
     .inlineLink:hover{border-bottom-color: rgba(207,231,255,.65);}
   </style>
@@ -203,10 +190,14 @@
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img src="tinoco_logo_512.png" alt="Tinoco Hybrids logo" />
         <div>
           <div style="font-size:16px;">Tinoco Hybrids</div>
-          <div style="font-size:12px; color:var(--muted); font-weight:650;">Tijuana • Hybrid Battery Specialists</div>
+          <div style="font-size:12px; color:var(--muted); font-weight:650;"
+               data-en="Hybrid Vehicle Mechanic • Tijuana"
+               data-es="Mecánico de Vehículos Híbridos • Tijuana">
+            Hybrid Vehicle Mechanic • Tijuana
+          </div>
         </div>
       </div>
 
@@ -218,14 +209,16 @@
 
     <section class="hero">
       <div class="card">
-        <h1 class="headline" data-en="Hybrid Battery Repair in Tijuana" data-es="Reparación de Baterías Híbridas en Tijuana">
-          Hybrid Battery Repair in Tijuana
+        <h1 class="headline"
+            data-en="Hybrid Vehicle Mechanic in Tijuana"
+            data-es="Mecánico de Vehículos Híbridos en Tijuana">
+          Hybrid Vehicle Mechanic in Tijuana
         </h1>
 
         <p class="sub"
-           data-en="Fast diagnostics, honest work, and reliable hybrid battery solutions for Prius & other hybrids."
-           data-es="Diagnóstico rápido, trabajo honesto y soluciones confiables para baterías híbridas (Prius y más).">
-          Fast diagnostics, honest work, and reliable hybrid battery solutions for Prius & other hybrids.
+           data-en="Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations."
+           data-es="Diagnóstico y reparación para Prius y muchos otros híbridos. Servicio rápido y recomendaciones honestas.">
+          Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations.
         </p>
 
         <div class="ctaRow">
@@ -235,130 +228,126 @@
         </div>
 
         <div class="pillRow">
-          <div class="pill" data-en="Prius Battery • Cell Replacement" data-es="Batería Prius • Cambio de Celdas">Prius Battery • Cell Replacement</div>
           <div class="pill" data-en="Hybrid Diagnostics" data-es="Diagnóstico Híbrido">Hybrid Diagnostics</div>
-          <div class="pill" data-en="Quick Turnaround" data-es="Entrega Rápida">Quick Turnaround</div>
-          <div class="pill" data-en="Fair Pricing" data-es="Precio Justo">Fair Pricing</div>
+          <div class="pill" data-en="Prius + Other Hybrids" data-es="Prius + Otros Híbridos">Prius + Other Hybrids</div>
+          <div class="pill" data-en="Battery Service Available" data-es="Servicio de Batería Disponible">Battery Service Available</div>
+          <div class="pill" data-en="Border-Friendly" data-es="Atención a Clientes de la Frontera">Border-Friendly</div>
         </div>
 
         <div class="line"></div>
 
-        <div class="note"
-          data-en="Tip: Save this page to your home screen so you can call or WhatsApp in one tap."
-          data-es="Tip: Guarda esta página en tu pantalla principal para llamar o mandar WhatsApp con un toque.">
-          Tip: Save this page to your home screen so you can call or WhatsApp in one tap.
+        <div class="cards3">
+          <div class="mini">
+            <b data-en="Check Engine / Hybrid Lights" data-es="Luces de Check / Híbrido">Check Engine / Hybrid Lights</b>
+            <p data-en="Scan, diagnose, and fix the real issue." data-es="Escaneo, diagnóstico y solución del problema real.">Scan, diagnose, and fix the real issue.</p>
+          </div>
+          <div class="mini">
+            <b data-en="Hybrid System Performance" data-es="Rendimiento del Sistema Híbrido">Hybrid System Performance</b>
+            <p data-en="Loss of power, strange behavior, battery readings." data-es="Pérdida de potencia, fallas raras, lecturas de batería.">Loss of power, strange behavior, battery readings.</p>
+          </div>
+          <div class="mini">
+            <b data-en="Maintenance & Repairs" data-es="Mantenimiento y Reparaciones">Maintenance & Repairs</b>
+            <p data-en="Brakes, cooling, sensors, electrical issues." data-es="Frenos, enfriamiento, sensores, problemas eléctricos.">Brakes, cooling, sensors, electrical issues.</p>
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="sideGrid">
-          <div class="infoItem">
-            <div class="icon">📍</div>
-            <div>
-              <b data-en="Location" data-es="Ubicación">Location</b>
-              <span data-en="Tijuana, Baja California, Mexico" data-es="Tijuana, Baja California, México">Tijuana, Baja California, Mexico</span>
-              <div class="small" data-en="(We’ll add the exact address next.)" data-es="(Agregaremos la dirección exacta después.)">(We’ll add the exact address next.)</div>
-            </div>
-          </div>
-
-          <div class="infoItem">
-            <div class="icon">🕒</div>
-            <div>
-              <b data-en="Hours" data-es="Horario">Hours</b>
-              <span data-en="Mon–Sat: 9:00am–6:00pm (Example)" data-es="Lun–Sáb: 9:00am–6:00pm (Ejemplo)">Mon–Sat: 9:00am–6:00pm (Example)</span>
-            </div>
-          </div>
-
-          <div class="infoItem">
-            <div class="icon">⭐</div>
-            <div>
-              <b data-en="Reviews" data-es="Reseñas">Reviews</b>
-              <span data-en="Trusted locally — Google reviews available." data-es="Con confianza local — reseñas en Google.">Trusted locally — Google reviews available.</span>
-            </div>
-          </div>
-
-          <div class="infoItem">
-            <div class="icon">🔧</div>
-            <div>
-              <b data-en="Services" data-es="Servicios">Services</b>
-              <span data-en="Hybrid battery rebuilds, cell replacement, diagnostics." data-es="Reconstrucción, cambio de celdas, diagnóstico.">Hybrid battery rebuilds, cell replacement, diagnostics.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="card">
-        <h2 data-en="Services" data-es="Servicios">Services</h2>
-        <ul>
-          <li data-en="Hybrid battery cell replacement (Prius and other hybrids)" data-es="Cambio de celdas de batería híbrida (Prius y otros híbridos)">Hybrid battery cell replacement (Prius and other hybrids)</li>
-          <li data-en="Hybrid battery rebuilds and balancing" data-es="Reconstrucción y balanceo de batería híbrida">Hybrid battery rebuilds and balancing</li>
-          <li data-en="Hybrid system diagnostics (warning lights, performance issues)" data-es="Diagnóstico del sistema híbrido (luces, fallas, rendimiento)">Hybrid system diagnostics (warning lights, performance issues)</li>
-          <li data-en="General hybrid repair support" data-es="Soporte general para reparación híbrida">General hybrid repair support</li>
-        </ul>
-
-        <p class="small"
-           data-en="If you’re coming from San Diego, message on WhatsApp first and we’ll coordinate."
-           data-es="Si vienes de San Diego, manda WhatsApp primero y coordinamos.">
-          If you’re coming from San Diego, message on WhatsApp first and we’ll coordinate.
+        <h2 data-en="Popular Services" data-es="Servicios Populares">Popular Services</h2>
+        <p class="muted" style="margin:0 0 10px;"
+           data-en="We can tune this list to match exactly what he offers."
+           data-es="Podemos ajustar esta lista según lo que él ofrezca exactamente.">
+          We can tune this list to match exactly what he offers.
         </p>
-      </div>
 
-      <div class="card">
-        <h2 data-en="Why choose Tinoco Hybrids?" data-es="¿Por qué Tinoco Hybrids?">Why choose Tinoco Hybrids?</h2>
-        <ul>
-          <li data-en="Hybrid-focused experience" data-es="Experiencia enfocada en híbridos">Hybrid-focused experience</li>
-          <li data-en="Clear diagnostics + honest recommendations" data-es="Diagnóstico claro + recomendaciones honestas">Clear diagnostics + honest recommendations</li>
-          <li data-en="Fair pricing vs. U.S. repairs" data-es="Precio justo vs. reparaciones en EE.UU.">Fair pricing vs. U.S. repairs</li>
-          <li data-en="Fast turnaround (when parts are available)" data-es="Entrega rápida (según disponibilidad de piezas)">Fast turnaround (when parts are available)</li>
+        <ul class="muted" style="margin:10px 0 0; padding-left:18px;">
+          <li data-en="Hybrid diagnostics (warning lights / performance issues)" data-es="Diagnóstico híbrido (luces / problemas de rendimiento)">Hybrid diagnostics (warning lights / performance issues)</li>
+          <li data-en="Hybrid battery service (cell replacement / rebuilds if needed)" data-es="Servicio de batería híbrida (celdas / reconstrucción si se necesita)">Hybrid battery service (cell replacement / rebuilds if needed)</li>
+          <li data-en="Inverter / cooling system checks" data-es="Revisión de inversor / sistema de enfriamiento">Inverter / cooling system checks</li>
+          <li data-en="Electrical & sensor troubleshooting" data-es="Diagnóstico eléctrico y sensores">Electrical & sensor troubleshooting</li>
+          <li data-en="Prius-focused repairs + other hybrids" data-es="Reparaciones enfocadas en Prius + otros híbridos">Prius-focused repairs + other hybrids</li>
         </ul>
-      </div>
-    </section>
 
-    <section class="grid">
-      <div class="card">
-        <h2 data-en="Contact" data-es="Contacto">Contact</h2>
-        <p style="margin:0; color:var(--muted);">
+        <div class="line"></div>
+
+        <p class="muted" style="margin:0;">
           <b data-en="Phone / WhatsApp:" data-es="Teléfono / WhatsApp:">Phone / WhatsApp:</b>
           <a class="inlineLink" href="tel:+526642705566">+52 664 270 5566</a>
         </p>
-        <p style="margin:10px 0 0; color:var(--muted);">
-          <b data-en="WhatsApp link:" data-es="Link de WhatsApp:">WhatsApp link:</b>
-          <a class="inlineLink" href="https://wa.me/526642705566" target="_blank" rel="noopener">wa.me/526642705566</a>
-        </p>
-
-        <div class="line"></div>
 
         <p class="small"
-           data-en="Want this page in Spanish by default? We can set that once we confirm what most customers prefer."
-           data-es="¿Quieres esta página en español por defecto? Lo dejamos así cuando confirmemos qué usan más los clientes.">
-          Want this page in Spanish by default? We can set that once we confirm what most customers prefer.
+           data-en="Next: add the exact address + hours so the Directions button works."
+           data-es="Siguiente: agrega la dirección exacta y horario para que funcione Cómo llegar.">
+          Next: add the exact address + hours so the Directions button works.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2 data-en="Why customers choose this shop" data-es="Por qué eligen este taller">Why customers choose this shop</h2>
+        <ul class="muted" style="margin:10px 0 0; padding-left:18px;">
+          <li data-en="Honest diagnostics + clear explanation" data-es="Diagnóstico honesto + explicación clara">Honest diagnostics + clear explanation</li>
+          <li data-en="Hybrid-focused experience" data-es="Experiencia enfocada en híbridos">Hybrid-focused experience</li>
+          <li data-en="Fair pricing vs. U.S. repairs" data-es="Precio justo vs. reparaciones en EE.UU.">Fair pricing vs. U.S. repairs</li>
+          <li data-en="Fast turnaround (depends on parts)" data-es="Entrega rápida (según piezas)">Fast turnaround (depends on parts)</li>
+        </ul>
+        <p class="small"
+           data-en="We can add a short warranty/guarantee line if he offers one."
+           data-es="Podemos agregar una línea de garantía si él la ofrece.">
+          We can add a short warranty/guarantee line if he offers one.
         </p>
       </div>
 
       <div class="card">
-        <h2 data-en="Location & Map" data-es="Ubicación y Mapa">Location & Map</h2>
-
-        <div class="mapBox">
-          <div class="mapPlaceholder">
-            <div data-en="We’ll add an embedded Google Map once we paste the exact address/link."
-                 data-es="Agregaremos el mapa incrustado cuando peguemos la dirección/link exacto.">
-              We’ll add an embedded Google Map once we paste the exact address/link.
-            </div>
-            <div style="margin-top:10px;">
-              <a class="inlineLink" href="#" id="mapsLink" target="_blank" rel="noopener"
-                 data-en="Open in Google Maps" data-es="Abrir en Google Maps">
-                Open in Google Maps
-              </a>
-            </div>
-          </div>
+        <h2 data-en="Photos / Gallery" data-es="Fotos / Galería">Photos / Gallery</h2>
+        <p class="muted" style="margin:0;"
+           data-en="Drop in 6–9 photos (shop, cars, work) and this will look like a real professional shop site."
+           data-es="Agrega 6–9 fotos (taller, autos, trabajo) y esto se verá como un sitio profesional.">
+          Drop in 6–9 photos (shop, cars, work) and this will look like a real professional shop site.
+        </p>
+        <div class="gallery">
+          <div class="ph" data-en="Photo 1" data-es="Foto 1">Photo 1</div>
+          <div class="ph" data-en="Photo 2" data-es="Foto 2">Photo 2</div>
+          <div class="ph" data-en="Photo 3" data-es="Foto 3">Photo 3</div>
+          <div class="ph" data-en="Photo 4" data-es="Foto 4">Photo 4</div>
+          <div class="ph" data-en="Photo 5" data-es="Foto 5">Photo 5</div>
+          <div class="ph" data-en="Photo 6" data-es="Foto 6">Photo 6</div>
         </div>
+      </div>
+    </section>
 
+    <section class="grid">
+      <div class="card">
+        <h2 data-en="Location & Map" data-es="Ubicación y Mapa">Location & Map</h2>
+        <p class="muted" style="margin:0 0 8px;"
+           data-en="Paste the Google Maps share link and we’ll wire the buttons + embed the map."
+           data-es="Pega el link de Google Maps y conectamos los botones + mapa incrustado.">
+          Paste the Google Maps share link and we’ll wire the buttons + embed the map.
+        </p>
+        <p class="muted" style="margin:0;">
+          <a class="inlineLink" href="#" id="mapsLink" target="_blank" rel="noopener"
+             data-en="Open in Google Maps" data-es="Abrir en Google Maps">
+            Open in Google Maps
+          </a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 data-en="Hours" data-es="Horario">Hours</h2>
+        <p class="muted" style="margin:0;"
+           data-en="Set the real hours here. Example:"
+           data-es="Pon el horario real aquí. Ejemplo:">
+          Set the real hours here. Example:
+        </p>
+        <ul class="muted" style="margin:10px 0 0; padding-left:18px;">
+          <li data-en="Mon–Sat: 9:00am–6:00pm" data-es="Lun–Sáb: 9:00am–6:00pm">Mon–Sat: 9:00am–6:00pm</li>
+          <li data-en="Sun: Closed" data-es="Dom: Cerrado">Sun: Closed</li>
+        </ul>
         <p class="small"
-           data-en="Next: paste the exact Google Business address + map link."
-           data-es="Siguiente: pegamos la dirección exacta de Google Business + link del mapa.">
-          Next: paste the exact Google Business address + map link.
+           data-en="Once we have the real hours + address, this site is basically done."
+           data-es="Con horario real + dirección, el sitio queda listo.">
+          Once we have the real hours + address, this site is basically done.
         </p>
       </div>
     </section>
@@ -376,7 +365,7 @@
     const btnEs = document.getElementById('btn-es');
 
     function setLang(lang){
-      document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+      document.documentElement.lang = (lang === 'es') ? 'es' : 'en';
       btnEn.classList.toggle('active', lang === 'en');
       btnEs.classList.toggle('active', lang === 'es');
 
@@ -389,7 +378,7 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Replace this once you have the Google Maps share link
+    // TODO: paste the real Google Maps share link here (from Google Business)
     const googleMapsLink = "#";
     document.getElementById('mapsLink').href = googleMapsLink;
     document.getElementById('directionsLink').href = googleMapsLink;
