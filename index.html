@@ -1,699 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana</title>
-  <meta name="description" content="Hybrid vehicle mechanic in Tijuana, B.C. Diagnostics, hybrid system repair, inverter/cooling, brakes, sensors, and maintenance. Call or WhatsApp Tinoco Hybrids." />
-
-  <!-- Social preview (optional) -->
-  <meta property="og:title" content="Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana" />
-  <meta property="og:description" content="Diagnostics & repairs for Prius and other hybrids. Fast service, honest recommendations." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Tinoco Hybrids — Hybrid vehicle mechanic in Tijuana. Diagnostics, repairs, and maintenance for Prius and other hybrids. Call or WhatsApp today.">
 
   <style>
     :root{
-      /* Brand + psychology: strong contrast + “electric” accent */
-      --bg0:#05070b;
-      --bg1:#0a0f19;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --stroke: rgba(255,255,255,.10);
-      --text:#eaf0ff;
-      --muted: rgba(234,240,255,.72);
+      --bg:#05070c;
+      --card:#0c1220;
+      --text:#f1f5ff;
+      --muted:#b8c2e0;
 
-      /* Accent colors (memorable: electric green + warm orange CTA) */
-      --accent:#38f3a5;     /* electric green */
-      --accent2:#00d4ff;    /* cyan glow */
-      --cta:#ff8a1f;        /* orange */
-      --danger:#ff4d6d;
+      --green:#38f3a5;
+      --cyan:#00d4ff;
+      --orange:#ff8a1f;
 
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --radius: 18px;
+      --border:rgba(255,255,255,.12);
+      --radius:22px;
+      --shadow:0 25px 70px rgba(0,0,0,.6);
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:
-        radial-gradient(900px 600px at 20% 10%, rgba(0,212,255,.16), transparent 60%),
-        radial-gradient(800px 500px at 85% 25%, rgba(56,243,165,.14), transparent 55%),
-        radial-gradient(900px 700px at 40% 90%, rgba(255,138,31,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
+        radial-gradient(800px 600px at 15% 10%, rgba(0,212,255,.18), transparent 60%),
+        radial-gradient(800px 600px at 85% 20%, rgba(56,243,165,.16), transparent 60%),
+        radial-gradient(900px 700px at 50% 90%, rgba(255,138,31,.12), transparent 60%),
+        var(--bg);
     }
 
-    /* Subtle animated background glow (NOT hypnotic, just premium motion) */
-    .ambient{
-      position:fixed; inset:-200px;
-      pointer-events:none;
-      background:
-        radial-gradient(500px 500px at 10% 20%, rgba(0,212,255,.12), transparent 60%),
-        radial-gradient(600px 600px at 90% 30%, rgba(56,243,165,.10), transparent 65%),
-        radial-gradient(700px 700px at 50% 90%, rgba(255,138,31,.10), transparent 65%);
-      filter: blur(28px);
-      opacity:.9;
-      animation: floatGlow 12s ease-in-out infinite;
-      transform: translateZ(0);
-    }
-    @keyframes floatGlow{
-      0%,100%{ transform: translate3d(0,0,0) scale(1); }
-      50%{ transform: translate3d(0,-14px,0) scale(1.02); }
-    }
-
-    .wrap{
-      width:min(1100px, 92vw);
-      margin: 34px auto 80px;
-      position:relative;
+    .container{
+      max-width:1150px;
+      margin:40px auto 90px;
+      padding:0 20px;
     }
 
     header{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
-      margin-bottom: 18px;
+      gap:20px;
+      margin-bottom:30px;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:14px;
-      min-width: 260px;
+      gap:18px;
     }
 
     .logo{
-      width:78px;
-      height:78px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.05);
-      border:1px solid var(--stroke);
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
+      width:110px;
+      height:110px;
+      border-radius:20px;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:var(--shadow);
+      animation:float 5s ease-in-out infinite;
     }
     .logo img{
-      width: 92%;
-      height: 92%;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-      transform: translateZ(0);
+      width:95%;
+      height:95%;
+      object-fit:contain;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
     }
 
     .brand h1{
-      font-size: 20px;
       margin:0;
-      letter-spacing:.2px;
+      font-size:28px;
+      letter-spacing:.3px;
     }
     .brand p{
-      margin:4px 0 0;
+      margin:6px 0 0;
       color:var(--muted);
-      font-size: 13px;
+      font-size:15px;
     }
 
-    .lang{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .pill{
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
+    .lang button{
+      background:transparent;
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:700;
       cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      user-select:none;
+      margin-left:8px;
     }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
-    .pill.active{
-      background: linear-gradient(90deg, rgba(56,243,165,.18), rgba(0,212,255,.18));
-      border-color: rgba(56,243,165,.35);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items:start;
-    }
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
-      header{ flex-direction:column; align-items:flex-start; }
-      .brand{ width:100%; }
+    .lang button.active{
+      background:linear-gradient(90deg,rgba(56,243,165,.25),rgba(0,212,255,.25));
+      border-color:rgba(56,243,165,.5);
     }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      position:relative;
-      overflow:hidden;
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:30px;
+      margin-bottom:22px;
     }
 
-    /* Top hero glow */
-    .card.hero:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(900px 220px at 20% 0%, rgba(56,243,165,.20), transparent 60%),
-                  radial-gradient(700px 250px at 80% 0%, rgba(0,212,255,.18), transparent 60%);
-      opacity:.75;
-      pointer-events:none;
+    .hero h2{
+      font-size:52px;
+      line-height:1.05;
+      margin:0 0 14px;
     }
-
-    .heroInner{
-      position:relative;
-      padding: 26px 26px 22px;
-    }
-
-    .headline{
-      font-size: clamp(34px, 4.2vw, 54px);
-      line-height: 1.05;
-      margin: 0 0 10px;
-      letter-spacing: -.6px;
-    }
-    .subhead{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.5;
-      max-width: 70ch;
+    .hero p{
+      color:var(--muted);
+      font-size:18px;
+      max-width:750px;
     }
 
     .ctaRow{
       display:flex;
+      gap:16px;
       flex-wrap:wrap;
-      gap:12px;
-      margin-top: 14px;
+      margin-top:22px;
     }
+
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      border-radius: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
+      padding:16px 22px;
+      border-radius:16px;
+      font-size:17px;
+      font-weight:800;
       text-decoration:none;
-      font-weight: 600;
-      font-size: 15px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
-      min-width: 170px;
+      color:#000;
+      box-shadow:0 12px 30px rgba(0,0,0,.4);
+      transition:transform .15s ease, box-shadow .15s ease;
     }
     .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.20);
-      box-shadow: 0 14px 36px rgba(0,0,0,.45);
-    }
-    .btn.cta{
-      background: linear-gradient(90deg, rgba(255,138,31,.22), rgba(255,138,31,.12));
-      border-color: rgba(255,138,31,.40);
-    }
-    .btn.whatsapp{
-      background: linear-gradient(90deg, rgba(56,243,165,.22), rgba(56,243,165,.10));
-      border-color: rgba(56,243,165,.40);
-    }
-    .btn.dir{
-      background: linear-gradient(90deg, rgba(0,212,255,.20), rgba(0,212,255,.10));
-      border-color: rgba(0,212,255,.40);
+      transform:translateY(-2px);
+      box-shadow:0 18px 44px rgba(0,0,0,.55);
     }
 
-    .badgeRow{
+    .call{background:linear-gradient(90deg,var(--orange),#ffc27a)}
+    .whatsapp{background:linear-gradient(90deg,var(--green),#8bffd4)}
+    .maps{background:linear-gradient(90deg,var(--cyan),#9be7ff)}
+
+    .badges{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top: 16px;
+      gap:12px;
+      margin-top:22px;
     }
     .badge{
-      font-size: 12px;
-      color: rgba(234,240,255,.82);
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.10);
-      padding: 8px 10px;
-      border-radius: 999px;
+      border:1px solid var(--border);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:14px;
+      color:var(--muted);
+      background:rgba(255,255,255,.04);
     }
 
-    .miniCards{
+    .grid{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-    @media (max-width: 700px){
-      .miniCards{ grid-template-columns: 1fr; }
-      .btn{ width:100%; }
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+      margin-top:26px;
     }
 
-    .mini{
-      background: rgba(0,0,0,.16);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      padding: 14px;
-      min-height: 92px;
-      transition: transform .18s ease, border-color .18s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .mini:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.18);
-    }
     .mini h3{
       margin:0 0 6px;
-      font-size: 14px;
-      letter-spacing:.2px;
+      font-size:18px;
     }
     .mini p{
       margin:0;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.4;
+      color:var(--muted);
+      font-size:15px;
     }
 
-    /* Right column cards */
-    .side{
-      padding: 18px;
-    }
-    .side h2{
-      margin:0 0 10px;
-      font-size: 16px;
-      letter-spacing:.2px;
-    }
-    .side ul{
-      margin: 10px 0 14px 18px;
-      color: rgba(234,240,255,.84);
-      line-height: 1.55;
-      font-size: 13.5px;
-    }
-    .meta{
-      border-top: 1px solid rgba(255,255,255,.10);
-      margin-top: 12px;
-      padding-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .lower{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-    @media (max-width: 920px){
-      .lower{ grid-template-columns:1fr; }
-    }
-
-    .section{
-      padding: 18px;
-    }
-    .section h2{
-      margin:0 0 10px;
-      font-size: 16px;
-      letter-spacing:.2px;
-    }
-    .section p, .section li{
-      color: rgba(234,240,255,.82);
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-
-    .galleryGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-    @media (max-width: 700px){
-      .galleryGrid{ grid-template-columns: repeat(2, 1fr); }
-    }
-    .ph{
-      background: rgba(255,255,255,.04);
-      border: 1px dashed rgba(255,255,255,.16);
-      border-radius: 14px;
-      height: 92px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: rgba(234,240,255,.55);
-      font-size: 12px;
+    ul{
+      padding-left:20px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
     }
 
     footer{
-      margin-top: 22px;
-      color: rgba(234,240,255,.55);
-      font-size: 12px;
+      margin-top:40px;
       text-align:center;
+      color:var(--muted);
+      font-size:14px;
     }
 
-    /* Gentle entrance animation */
-    .reveal{
-      opacity: 0;
-      transform: translateY(8px);
-      animation: reveal .65s ease forwards;
-    }
-    .reveal.d1{ animation-delay:.05s; }
-    .reveal.d2{ animation-delay:.12s; }
-    .reveal.d3{ animation-delay:.20s; }
-    .reveal.d4{ animation-delay:.28s; }
-    @keyframes reveal{
-      to{ opacity:1; transform: translateY(0); }
-    }
-
-    /* Small “spark” animation by logo */
-    .spark{
-      width: 10px; height: 10px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 0 rgba(56,243,165,.55);
-      animation: pulse 1.8s ease-in-out infinite;
-      display:inline-block;
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-    @keyframes pulse{
-      0%,100%{ box-shadow: 0 0 0 0 rgba(56,243,165,.0); opacity:.9; }
-      50%{ box-shadow: 0 0 0 10px rgba(56,243,165,.12); opacity:1; }
+    @media(max-width:700px){
+      .hero h2{font-size:40px}
+      .logo{width:90px;height:90px}
     }
   </style>
 </head>
 
 <body>
-  <div class="ambient"></div>
+<div class="container">
 
-  <div class="wrap">
-    <header class="reveal d1">
-      <div class="brand">
-        <div class="logo" aria-label="Tinoco Hybrids logo">
-          <!-- Make sure this filename EXACTLY matches your repo file -->
-          <img src="./tinoco_logo_transparent.png" alt="Tinoco Hybrids logo">
-        </div>
-        <div>
-          <h1>
-            Tinoco Hybrids <span class="spark" aria-hidden="true"></span>
-          </h1>
-          <p id="tagline">Hybrid Vehicle Mechanic • Tijuana, B.C.</p>
-        </div>
+  <header>
+    <div class="brand">
+      <div class="logo">
+        <img src="tinoco_logo_transparent.png" alt="Tinoco Hybrids Logo">
       </div>
+      <div>
+        <h1>Tinoco Hybrids</h1>
+        <p id="tagline">Hybrid Vehicle Mechanic • Tijuana, B.C.</p>
+      </div>
+    </div>
 
-      <div class="lang">
-        <button class="pill active" id="btnEN" type="button">EN</button>
-        <button class="pill" id="btnES" type="button">ES</button>
-      </div>
-    </header>
+    <div class="lang">
+      <button class="active" id="en">EN</button>
+      <button id="es">ES</button>
+    </div>
+  </header>
+
+  <section class="card hero">
+    <h2 id="headline">Hybrid Vehicle Mechanic in Tijuana</h2>
+    <p id="subhead">
+      Professional diagnostics and repairs for Prius and other hybrid vehicles.
+      Honest explanations. No guesswork.
+    </p>
+
+    <div class="ctaRow">
+      <a class="btn call" href="tel:+526642705566">📞 Call Now</a>
+      <a class="btn whatsapp" href="https://wa.me/526642705566" target="_blank">💬 WhatsApp</a>
+      <a class="btn maps" href="https://www.google.com/maps" target="_blank">📍 Directions</a>
+    </div>
+
+    <div class="badges">
+      <span class="badge">Hybrid Diagnostics</span>
+      <span class="badge">Prius + Other Hybrids</span>
+      <span class="badge">Border-Friendly</span>
+      <span class="badge">Clear Explanations</span>
+    </div>
 
     <div class="grid">
-      <!-- HERO -->
-      <section class="card hero reveal d2">
-        <div class="heroInner">
-          <h2 class="headline" id="headline">Hybrid Vehicle Mechanic in Tijuana</h2>
-          <p class="subhead" id="subhead">
-            Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations,
-            and clear explanations—so you know exactly what your car needs.
-          </p>
-
-          <div class="ctaRow">
-            <!-- PHONE -->
-            <a class="btn cta" id="callBtn" href="tel:+526642705566">📞 <span id="callText">Call Now</span></a>
-
-            <!-- WHATSAPP -->
-            <a class="btn whatsapp" id="waBtn" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 <span id="waText">WhatsApp</span></a>
-
-            <!-- DIRECTIONS: replace with your Google Maps share link when ready -->
-            <a class="btn dir" id="dirBtn" href="https://www.google.com/maps" target="_blank" rel="noopener">📍 <span id="dirText">Get Directions</span></a>
-          </div>
-
-          <div class="badgeRow">
-            <span class="badge" id="b1">Hybrid Diagnostics</span>
-            <span class="badge" id="b2">Prius + Other Hybrids</span>
-            <span class="badge" id="b3">Border-Friendly</span>
-            <span class="badge" id="b4">Clear Explanations</span>
-          </div>
-
-          <div class="miniCards">
-            <div class="mini">
-              <h3 id="m1t">Check Engine / Hybrid Lights</h3>
-              <p id="m1d">Scan, diagnose, and fix the real issue — not guesswork.</p>
-            </div>
-            <div class="mini">
-              <h3 id="m2t">Hybrid System Performance</h3>
-              <p id="m2d">Loss of power, strange behavior, warning lights, sensor faults.</p>
-            </div>
-            <div class="mini">
-              <h3 id="m3t">Maintenance & Repairs</h3>
-              <p id="m3d">Brakes, cooling, sensors, electrical troubleshooting, drivability.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <aside class="card reveal d3">
-        <div class="side">
-          <h2 id="svcTitle">Popular Services</h2>
-          <div class="meta" style="border-top:none; padding-top:0; margin-top:0;">
-            <div id="svcIntro" style="color:var(--muted);">
-              We can tune this list to match exactly what he offers.
-            </div>
-          </div>
-
-          <ul id="svcList">
-            <li>Hybrid diagnostics (warning lights / performance issues)</li>
-            <li>Hybrid electrical & sensor troubleshooting</li>
-            <li>Inverter / cooling system checks</li>
-            <li>Maintenance and repair for Prius & other hybrids</li>
-            <li>Battery service available if needed (only when appropriate)</li>
-          </ul>
-
-          <div class="meta">
-            <div><strong id="phoneLabel">Phone / WhatsApp:</strong> +52 664 270 5566</div>
-            <div id="addrNote" style="margin-top:6px;">
-              Next: add the exact address + hours so the Directions button is perfect.
-            </div>
-          </div>
-        </div>
-      </aside>
+      <div class="mini">
+        <h3>Warning Lights</h3>
+        <p>Check Engine & Hybrid System diagnostics.</p>
+      </div>
+      <div class="mini">
+        <h3>Performance Issues</h3>
+        <p>Power loss, strange behavior, system faults.</p>
+      </div>
+      <div class="mini">
+        <h3>Maintenance & Repair</h3>
+        <p>Brakes, cooling, sensors, electrical systems.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="lower">
-      <section class="card section reveal d3">
-        <h2 id="whyTitle">Why customers choose this shop</h2>
-        <ul id="whyList">
-          <li>Honest diagnostics + clear explanation of options</li>
-          <li>Hybrid-focused experience</li>
-          <li>Fair pricing vs. U.S. repairs</li>
-          <li>Fast turnaround (depends on parts)</li>
-        </ul>
-        <p id="whyNote" style="color:var(--muted); margin-top:10px;">
-          If he offers warranty/guarantee terms, we can add a short line here.
-        </p>
-      </section>
+  <section class="card">
+    <h2>Popular Services</h2>
+    <ul>
+      <li>Hybrid system diagnostics</li>
+      <li>Electrical & sensor troubleshooting</li>
+      <li>Inverter & cooling system checks</li>
+      <li>Maintenance and repair for hybrid vehicles</li>
+      <li>Battery service only when truly needed</li>
+    </ul>
+  </section>
 
-      <section class="card section reveal d4">
-        <h2 id="galTitle">Photos / Gallery</h2>
-        <p id="galNote" style="color:var(--muted); margin-top:0;">
-          Upload 6–9 photos (shop, cars, work) and this section will look like a real professional shop site.
-        </p>
-        <div class="galleryGrid" aria-label="Gallery placeholders">
-          <div class="ph">Photo 1</div>
-          <div class="ph">Photo 2</div>
-          <div class="ph">Photo 3</div>
-          <div class="ph">Photo 4</div>
-          <div class="ph">Photo 5</div>
-          <div class="ph">Photo 6</div>
-        </div>
-      </section>
+  <section class="card">
+    <h2>Hours</h2>
+    <ul>
+      <li>Monday – Friday: 9:00am – 5:00pm</li>
+      <li>Saturday: Closed</li>
+      <li>Sunday: Closed</li>
+    </ul>
+  </section>
 
-      <section class="card section reveal d4">
-        <h2 id="locTitle">Location & Map</h2>
-        <p id="locNote" style="color:var(--muted); margin-top:0;">
-          Paste the Google Maps share link and we’ll wire the buttons + embed the map.
-        </p>
-        <a class="btn dir" href="https://www.google.com/maps" target="_blank" rel="noopener" style="margin-top:6px; width:100%;">
-          📍 <span id="locBtn">Open in Google Maps</span>
-        </a>
-      </section>
+  <footer>
+    © <span id="year"></span> Tinoco Hybrids • Tijuana, Mexico
+  </footer>
 
-      <section class="card section reveal d4">
-        <h2 id="hoursTitle">Hours</h2>
-        <p id="hoursNote" style="color:var(--muted); margin-top:0;">
-          Set the real hours here. Example:
-        </p>
-        <ul id="hoursList">
-          <li>Mon–Sat: 9:00am–6:00pm</li>
-          <li>Sun: Closed</li>
-        </ul>
-        <p style="color:var(--muted); margin-top:10px;" id="hoursFooter">
-          Once we have the real hours + address, this site is basically done.
-        </p>
-      </section>
-    </div>
+</div>
 
-    <footer class="reveal d4">
-      © <span id="year"></span> Tinoco Hybrids • Built with GitHub + Netlify
-    </footer>
-  </div>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-  <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Simple EN/ES toggle (keeps it beginner-friendly)
-    const t = {
-      en: {
-        tagline: "Hybrid Vehicle Mechanic • Tijuana, B.C.",
-        headline: "Hybrid Vehicle Mechanic in Tijuana",
-        subhead:
-          "Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations, and clear explanations—so you know exactly what your car needs.",
-        callText: "Call Now",
-        waText: "WhatsApp",
-        dirText: "Get Directions",
-        b1:"Hybrid Diagnostics", b2:"Prius + Other Hybrids", b3:"Border-Friendly", b4:"Clear Explanations",
-        m1t:"Check Engine / Hybrid Lights", m1d:"Scan, diagnose, and fix the real issue — not guesswork.",
-        m2t:"Hybrid System Performance", m2d:"Loss of power, strange behavior, warning lights, sensor faults.",
-        m3t:"Maintenance & Repairs", m3d:"Brakes, cooling, sensors, electrical troubleshooting, drivability.",
-        svcTitle:"Popular Services",
-        svcIntro:"We can tune this list to match exactly what he offers.",
-        phoneLabel:"Phone / WhatsApp:",
-        addrNote:"Next: add the exact address + hours so the Directions button is perfect.",
-        whyTitle:"Why customers choose this shop",
-        whyList:[
-          "Honest diagnostics + clear explanation of options",
-          "Hybrid-focused experience",
-          "Fair pricing vs. U.S. repairs",
-          "Fast turnaround (depends on parts)"
-        ],
-        whyNote:"If he offers warranty/guarantee terms, we can add a short line here.",
-        galTitle:"Photos / Gallery",
-        galNote:"Upload 6–9 photos (shop, cars, work) and this section will look like a real professional shop site.",
-        locTitle:"Location & Map",
-        locNote:"Paste the Google Maps share link and we’ll wire the buttons + embed the map.",
-        locBtn:"Open in Google Maps",
-        hoursTitle:"Hours",
-        hoursNote:"Set the real hours here. Example:",
-        hoursList:["Mon–Sat: 9:00am–6:00pm","Sun: Closed"],
-        hoursFooter:"Once we have the real hours + address, this site is basically done."
-      },
-      es: {
-        tagline: "Mecánico de Vehículos Híbridos • Tijuana, B.C.",
-        headline: "Mecánico de Vehículos Híbridos en Tijuana",
-        subhead:
-          "Diagnóstico y reparación de Prius y muchos otros híbridos. Servicio rápido, recomendaciones honestas y explicación clara—para que sepas exactamente qué necesita tu auto.",
-        callText: "Llamar",
-        waText: "WhatsApp",
-        dirText: "Cómo llegar",
-        b1:"Diagnóstico Híbrido", b2:"Prius y otros híbridos", b3:"Cerca de la frontera", b4:"Explicación clara",
-        m1t:"Check Engine / Luces híbridas", m1d:"Escaneo y diagnóstico real — sin adivinar.",
-        m2t:"Rendimiento del sistema híbrido", m2d:"Pérdida de potencia, fallas, alertas, sensores.",
-        m3t:"Mantenimiento y reparación", m3d:"Frenos, enfriamiento, sensores, eléctrica, manejo.",
-        svcTitle:"Servicios populares",
-        svcIntro:"Podemos ajustar esta lista exactamente a lo que él ofrece.",
-        phoneLabel:"Tel / WhatsApp:",
-        addrNote:"Siguiente: agrega dirección exacta + horario para que el botón funcione perfecto.",
-        whyTitle:"Por qué eligen este taller",
-        whyList:[
-          "Diagnóstico honesto + explicación clara",
-          "Experiencia enfocada en híbridos",
-          "Precio justo vs. reparaciones en EE.UU.",
-          "Entrega rápida (depende de refacciones)"
-        ],
-        whyNote:"Si ofrece garantía, podemos agregar una línea aquí.",
-        galTitle:"Fotos / Galería",
-        galNote:"Sube 6–9 fotos (taller, autos, trabajo) y se verá como un sitio profesional.",
-        locTitle:"Ubicación y mapa",
-        locNote:"Pega el enlace para compartir de Google Maps y conectamos botones + mapa.",
-        locBtn:"Abrir en Google Maps",
-        hoursTitle:"Horario",
-        hoursNote:"Pon el horario real aquí. Ejemplo:",
-        hoursList:["Lun–Sáb: 9:00am–6:00pm","Dom: Cerrado"],
-        hoursFooter:"Con horario + dirección real, el sitio queda listo."
-      }
-    };
-
-    function applyLang(lang){
-      const d = t[lang];
-      document.documentElement.lang = lang;
-
-      document.getElementById("tagline").textContent = d.tagline;
-      document.getElementById("headline").textContent = d.headline;
-      document.getElementById("subhead").textContent = d.subhead;
-
-      document.getElementById("callText").textContent = d.callText;
-      document.getElementById("waText").textContent = d.waText;
-      document.getElementById("dirText").textContent = d.dirText;
-
-      document.getElementById("b1").textContent = d.b1;
-      document.getElementById("b2").textContent = d.b2;
-      document.getElementById("b3").textContent = d.b3;
-      document.getElementById("b4").textContent = d.b4;
-
-      document.getElementById("m1t").textContent = d.m1t;
-      document.getElementById("m1d").textContent = d.m1d;
-      document.getElementById("m2t").textContent = d.m2t;
-      document.getElementById("m2d").textContent = d.m2d;
-      document.getElementById("m3t").textContent = d.m3t;
-      document.getElementById("m3d").textContent = d.m3d;
-
-      document.getElementById("svcTitle").textContent = d.svcTitle;
-      document.getElementById("svcIntro").textContent = d.svcIntro;
-      document.getElementById("phoneLabel").textContent = d.phoneLabel;
-      document.getElementById("addrNote").textContent = d.addrNote;
-
-      document.getElementById("whyTitle").textContent = d.whyTitle;
-      const whyList = document.getElementById("whyList");
-      whyList.innerHTML = "";
-      d.whyList.forEach(x=>{
-        const li = document.createElement("li");
-        li.textContent = x;
-        whyList.appendChild(li);
-      });
-      document.getElementById("whyNote").textContent = d.whyNote;
-
-      document.getElementById("galTitle").textContent = d.galTitle;
-      document.getElementById("galNote").textContent = d.galNote;
-
-      document.getElementById("locTitle").textContent = d.locTitle;
-      document.getElementById("locNote").textContent = d.locNote;
-      document.getElementById("locBtn").textContent = d.locBtn;
-
-      document.getElementById("hoursTitle").textContent = d.hoursTitle;
-      document.getElementById("hoursNote").textContent = d.hoursNote;
-      const hoursList = document.getElementById("hoursList");
-      hoursList.innerHTML = "";
-      d.hoursList.forEach(x=>{
-        const li = document.createElement("li");
-        li.textContent = x;
-        hoursList.appendChild(li);
-      });
-      document.getElementById("hoursFooter").textContent = d.hoursFooter;
-    }
-
-    const btnEN = document.getElementById("btnEN");
-    const btnES = document.getElementById("btnES");
-
-    btnEN.addEventListener("click", ()=>{
-      btnEN.classList.add("active");
-      btnES.classList.remove("active");
-      applyLang("en");
-    });
-
-    btnES.addEventListener("click", ()=>{
-      btnES.classList.add("active");
-      btnEN.classList.remove("active");
-      applyLang("es");
-    });
-  </script>
 </body>
 </html>
