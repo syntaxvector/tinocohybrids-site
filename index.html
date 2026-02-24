@@ -3,24 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana</title>
-  <meta name="description" content="Tinoco Hybrids — Hybrid vehicle mechanic in Tijuana. Diagnostics, repair, and maintenance for Prius & other hybrids. Call or WhatsApp for service." />
+  <meta name="description" content="Hybrid vehicle mechanic in Tijuana, B.C. Diagnostics, hybrid system repair, inverter/cooling, brakes, sensors, and maintenance. Call or WhatsApp Tinoco Hybrids." />
+
+  <!-- Social preview (optional) -->
+  <meta property="og:title" content="Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana" />
+  <meta property="og:description" content="Diagnostics & repairs for Prius and other hybrids. Fast service, honest recommendations." />
+  <meta property="og:type" content="website" />
 
   <style>
     :root{
-      --bg0:#0b0f14;
-      --bg1:#0f1620;
-      --card:#121a24cc;
-      --stroke:#243244;
-      --text:#e7edf6;
-      --muted:#9fb1c5;
+      /* Brand + psychology: strong contrast + “electric” accent */
+      --bg0:#05070b;
+      --bg1:#0a0f19;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.10);
+      --text:#eaf0ff;
+      --muted: rgba(234,240,255,.72);
 
-      /* Brand-ish accents (safe defaults; we can tweak to match logo perfectly) */
-      --accent:#f97316;   /* orange */
-      --accent2:#22c55e;  /* green */
+      /* Accent colors (memorable: electric green + warm orange CTA) */
+      --accent:#38f3a5;     /* electric green */
+      --accent2:#00d4ff;    /* cyan glow */
+      --cta:#ff8a1f;        /* orange */
+      --danger:#ff4d6d;
 
-      --shadow: 0 18px 55px rgba(0,0,0,.55);
-      --radius: 16px;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
@@ -30,406 +40,472 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       background:
-        radial-gradient(1100px 700px at 18% 15%, rgba(34,197,94,.18), transparent 55%),
-        radial-gradient(1000px 650px at 85% 20%, rgba(249,115,22,.18), transparent 55%),
-        radial-gradient(900px 700px at 50% 85%, rgba(56,189,248,.10), transparent 60%),
+        radial-gradient(900px 600px at 20% 10%, rgba(0,212,255,.16), transparent 60%),
+        radial-gradient(800px 500px at 85% 25%, rgba(56,243,165,.14), transparent 55%),
+        radial-gradient(900px 700px at 40% 90%, rgba(255,138,31,.10), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
 
-    a{ color:inherit; text-decoration:none; }
-    .container{
-      width:min(1120px, 92vw);
-      margin: 28px auto 70px;
+    /* Subtle animated background glow (NOT hypnotic, just premium motion) */
+    .ambient{
+      position:fixed; inset:-200px;
+      pointer-events:none;
+      background:
+        radial-gradient(500px 500px at 10% 20%, rgba(0,212,255,.12), transparent 60%),
+        radial-gradient(600px 600px at 90% 30%, rgba(56,243,165,.10), transparent 65%),
+        radial-gradient(700px 700px at 50% 90%, rgba(255,138,31,.10), transparent 65%);
+      filter: blur(28px);
+      opacity:.9;
+      animation: floatGlow 12s ease-in-out infinite;
+      transform: translateZ(0);
+    }
+    @keyframes floatGlow{
+      0%,100%{ transform: translate3d(0,0,0) scale(1); }
+      50%{ transform: translate3d(0,-14px,0) scale(1.02); }
     }
 
-    .topbar{
+    .wrap{
+      width:min(1100px, 92vw);
+      margin: 34px auto 80px;
+      position:relative;
+    }
+
+    header{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom:18px;
+      margin-bottom: 18px;
     }
+
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:14px;
       min-width: 260px;
     }
-    .brand img{
-      width:46px;
-      height:46px;
-      border-radius:12px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.02);
-      padding:6px;
-      object-fit:contain;
-    }
-    .brand .name{
-      display:flex;
-      flex-direction:column;
-      line-height:1.1;
-    }
-    .brand .name strong{ font-size:14px; letter-spacing:.2px; }
-    .brand .name span{ font-size:12px; color:var(--muted); margin-top:4px; }
 
-    .lang{
-      display:flex; align-items:center; gap:10px;
-    }
-    .lang .pill{
-      display:flex;
-      background: rgba(255,255,255,.04);
+    .logo{
+      width:78px;
+      height:78px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
       border:1px solid var(--stroke);
-      border-radius:999px;
-      padding:4px;
-      gap:4px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
     }
-    .lang button{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      padding:7px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:600;
-      font-size:12px;
+    .logo img{
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+      transform: translateZ(0);
+    }
+
+    .brand h1{
+      font-size: 20px;
+      margin:0;
       letter-spacing:.2px;
     }
-    .lang button.active{
-      color:var(--text);
-      background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.08);
+    .brand p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size: 13px;
+    }
+
+    .lang{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .pill{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.18); }
+    .pill.active{
+      background: linear-gradient(90deg, rgba(56,243,165,.18), rgba(0,212,255,.18));
+      border-color: rgba(56,243,165,.35);
     }
 
     .grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:18px;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
       align-items:start;
     }
-    @media (max-width: 980px){
+    @media (max-width: 920px){
       .grid{ grid-template-columns: 1fr; }
-      .brand{ min-width:unset; }
+      header{ flex-direction:column; align-items:flex-start; }
+      .brand{ width:100%; }
     }
 
     .card{
-      background: var(--card);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
       border: 1px solid var(--stroke);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding:18px;
       backdrop-filter: blur(10px);
+      position:relative;
+      overflow:hidden;
     }
 
-    .hero{
-      padding:18px;
+    /* Top hero glow */
+    .card.hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(900px 220px at 20% 0%, rgba(56,243,165,.20), transparent 60%),
+                  radial-gradient(700px 250px at 80% 0%, rgba(0,212,255,.18), transparent 60%);
+      opacity:.75;
+      pointer-events:none;
     }
-    .heroHeader{
-      display:flex;
-      align-items:flex-start;
-      gap:14px;
+
+    .heroInner{
+      position:relative;
+      padding: 26px 26px 22px;
     }
-    .heroLogo{
-      width:72px; height:72px;
-      border-radius:16px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.02);
-      padding:10px;
-      object-fit:contain;
-      flex:0 0 auto;
+
+    .headline{
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.05;
+      margin: 0 0 10px;
+      letter-spacing: -.6px;
     }
-    .hero h1{
-      margin:0;
-      font-size:28px;
-      letter-spacing:-.3px;
-      line-height:1.12;
-    }
-    .hero p{
-      margin:10px 0 0;
-      color:var(--muted);
-      line-height:1.5;
-      font-size:14px;
+    .subhead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
       max-width: 70ch;
     }
 
-    .btnRow{
+    .ctaRow{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
+      gap:12px;
+      margin-top: 14px;
     }
     .btn{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
-      padding:11px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--stroke);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      font-weight:700;
-      font-size:13px;
-      letter-spacing:.2px;
-      cursor:pointer;
-      transition: transform .08s ease, background .15s ease, border-color .15s ease;
-      user-select:none;
+      text-decoration:none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+      min-width: 170px;
     }
     .btn:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.20);
+      box-shadow: 0 14px 36px rgba(0,0,0,.45);
     }
-    .btnPrimary{
-      background: color-mix(in srgb, var(--accent) 40%, rgba(255,255,255,.06));
-      border-color: color-mix(in srgb, var(--accent) 55%, rgba(255,255,255,.10));
+    .btn.cta{
+      background: linear-gradient(90deg, rgba(255,138,31,.22), rgba(255,138,31,.12));
+      border-color: rgba(255,138,31,.40);
     }
-    .btnGreen{
-      background: color-mix(in srgb, var(--accent2) 35%, rgba(255,255,255,.06));
-      border-color: color-mix(in srgb, var(--accent2) 55%, rgba(255,255,255,.10));
+    .btn.whatsapp{
+      background: linear-gradient(90deg, rgba(56,243,165,.22), rgba(56,243,165,.10));
+      border-color: rgba(56,243,165,.40);
     }
-    .btnIcon{
-      width:18px; height:18px; display:inline-block;
-      opacity:.95;
+    .btn.dir{
+      background: linear-gradient(90deg, rgba(0,212,255,.20), rgba(0,212,255,.10));
+      border-color: rgba(0,212,255,.40);
     }
 
-    .tags{
-      display:flex; flex-wrap:wrap; gap:8px;
-      margin-top:14px;
+    .badgeRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 16px;
     }
-    .tag{
-      font-size:11px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+    .badge{
+      font-size: 12px;
+      color: rgba(234,240,255,.82);
       background: rgba(255,255,255,.04);
-      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 8px 10px;
+      border-radius: 999px;
     }
 
     .miniCards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-      margin-top:14px;
+      gap: 12px;
+      margin-top: 18px;
     }
-    @media (max-width: 640px){
+    @media (max-width: 700px){
       .miniCards{ grid-template-columns: 1fr; }
+      .btn{ width:100%; }
     }
-    .mini{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      border-radius: 14px;
-      padding:12px;
-    }
-    .mini strong{ display:block; font-size:12.5px; margin-bottom:6px; }
-    .mini span{ display:block; font-size:12px; color:var(--muted); line-height:1.35; }
 
-    .side h3, .section h3{
-      margin:0 0 10px;
-      font-size:14px;
+    .mini{
+      background: rgba(0,0,0,.16);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 92px;
+      transition: transform .18s ease, border-color .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .mini:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+    }
+    .mini h3{
+      margin:0 0 6px;
+      font-size: 14px;
       letter-spacing:.2px;
     }
-    ul{
-      margin:0; padding-left:18px;
+    .mini p{
+      margin:0;
       color: var(--muted);
-      font-size:13px;
-      line-height:1.55;
+      font-size: 12.5px;
+      line-height: 1.4;
     }
-    li{ margin:6px 0; }
 
-    .sectionGrid{
+    /* Right column cards */
+    .side{
+      padding: 18px;
+    }
+    .side h2{
+      margin:0 0 10px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .side ul{
+      margin: 10px 0 14px 18px;
+      color: rgba(234,240,255,.84);
+      line-height: 1.55;
+      font-size: 13.5px;
+    }
+    .meta{
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin-top: 12px;
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .lower{
+      margin-top: 18px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:18px;
-      margin-top:18px;
+      gap: 18px;
     }
-    @media (max-width: 980px){
-      .sectionGrid{ grid-template-columns: 1fr; }
+    @media (max-width: 920px){
+      .lower{ grid-template-columns:1fr; }
+    }
+
+    .section{
+      padding: 18px;
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .section p, .section li{
+      color: rgba(234,240,255,.82);
+      font-size: 13.5px;
+      line-height: 1.6;
     }
 
     .galleryGrid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-      margin-top:10px;
+      gap: 10px;
+      margin-top: 12px;
     }
-    @media (max-width: 640px){
+    @media (max-width: 700px){
       .galleryGrid{ grid-template-columns: repeat(2, 1fr); }
     }
     .ph{
-      aspect-ratio: 1.2 / 1;
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.16);
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      height: 92px;
       display:flex;
       align-items:center;
       justify-content:center;
-      color: rgba(231,237,246,.35);
-      font-weight:700;
-      font-size:12px;
+      color: rgba(234,240,255,.55);
+      font-size: 12px;
     }
 
-    .footer{
-      margin-top:18px;
-      color: rgba(159,177,197,.75);
-      font-size:12px;
+    footer{
+      margin-top: 22px;
+      color: rgba(234,240,255,.55);
+      font-size: 12px;
       text-align:center;
     }
 
-    .mutedNote{
-      color: rgba(159,177,197,.85);
-      font-size:12px;
-      margin-top:10px;
-      line-height:1.45;
+    /* Gentle entrance animation */
+    .reveal{
+      opacity: 0;
+      transform: translateY(8px);
+      animation: reveal .65s ease forwards;
+    }
+    .reveal.d1{ animation-delay:.05s; }
+    .reveal.d2{ animation-delay:.12s; }
+    .reveal.d3{ animation-delay:.20s; }
+    .reveal.d4{ animation-delay:.28s; }
+    @keyframes reveal{
+      to{ opacity:1; transform: translateY(0); }
     }
 
-    .kicker{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-top:10px;
-      color: rgba(159,177,197,.92);
-      font-size:12px;
+    /* Small “spark” animation by logo */
+    .spark{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(56,243,165,.55);
+      animation: pulse 1.8s ease-in-out infinite;
+      display:inline-block;
+      margin-left: 8px;
+      vertical-align: middle;
     }
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      background: var(--accent2);
-      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
-      flex:0 0 auto;
-    }
-
-    .divider{
-      height:1px;
-      background: rgba(255,255,255,.08);
-      margin:14px 0;
+    @keyframes pulse{
+      0%,100%{ box-shadow: 0 0 0 0 rgba(56,243,165,.0); opacity:.9; }
+      50%{ box-shadow: 0 0 0 10px rgba(56,243,165,.12); opacity:1; }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <!-- Top bar -->
-    <div class="topbar">
+  <div class="ambient"></div>
+
+  <div class="wrap">
+    <header class="reveal d1">
       <div class="brand">
-        <!-- Use the transparent logo if you uploaded it; fallback to jpg if needed -->
-        <img src="tinoco_logo_transparent.png" alt="Tinoco Hybrids Logo" onerror="this.onerror=null;this.src='tinoco_logo.jpg';" />
-        <div class="name">
-          <strong id="brandName">Tinoco Hybrids</strong>
-          <span id="brandSub">Hybrid Vehicle Mechanic • Tijuana</span>
+        <div class="logo" aria-label="Tinoco Hybrids logo">
+          <!-- Make sure this filename EXACTLY matches your repo file -->
+          <img src="./tinoco_logo_transparent.png" alt="Tinoco Hybrids logo">
+        </div>
+        <div>
+          <h1>
+            Tinoco Hybrids <span class="spark" aria-hidden="true"></span>
+          </h1>
+          <p id="tagline">Hybrid Vehicle Mechanic • Tijuana, B.C.</p>
         </div>
       </div>
 
       <div class="lang">
-        <div class="pill" aria-label="Language Toggle">
-          <button id="btnEN" class="active" type="button">EN</button>
-          <button id="btnES" type="button">ES</button>
-        </div>
+        <button class="pill active" id="btnEN" type="button">EN</button>
+        <button class="pill" id="btnES" type="button">ES</button>
       </div>
-    </div>
+    </header>
 
-    <!-- Hero + Side -->
     <div class="grid">
-      <div class="card hero">
-        <div class="heroHeader">
-          <img class="heroLogo" src="tinoco_logo_transparent.png" alt="Tinoco Hybrids Logo" onerror="this.onerror=null;this.src='tinoco_logo.jpg';" />
-          <div>
-            <h1 id="heroTitle">Hybrid Vehicle Mechanic in Tijuana</h1>
-            <p id="heroDesc">
-              Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations, and clear explanations.
-            </p>
+      <!-- HERO -->
+      <section class="card hero reveal d2">
+        <div class="heroInner">
+          <h2 class="headline" id="headline">Hybrid Vehicle Mechanic in Tijuana</h2>
+          <p class="subhead" id="subhead">
+            Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations,
+            and clear explanations—so you know exactly what your car needs.
+          </p>
 
-            <div class="btnRow">
-              <a class="btn btnPrimary" id="callBtn" href="tel:+526642705566">
-                <span class="btnIcon">📞</span>
-                <span id="callText">Call Now</span>
-              </a>
+          <div class="ctaRow">
+            <!-- PHONE -->
+            <a class="btn cta" id="callBtn" href="tel:+526642705566">📞 <span id="callText">Call Now</span></a>
 
-              <a class="btn btnGreen" id="waBtn" href="https://wa.me/526642705566" target="_blank" rel="noopener">
-                <span class="btnIcon">💬</span>
-                <span id="waText">WhatsApp</span>
-              </a>
+            <!-- WHATSAPP -->
+            <a class="btn whatsapp" id="waBtn" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 <span id="waText">WhatsApp</span></a>
 
-              <!-- Replace the href with your exact Google Maps directions link when ready -->
-              <a class="btn" id="dirBtn" href="#" target="_blank" rel="noopener">
-                <span class="btnIcon">📍</span>
-                <span id="dirText">Get Directions</span>
-              </a>
+            <!-- DIRECTIONS: replace with your Google Maps share link when ready -->
+            <a class="btn dir" id="dirBtn" href="https://www.google.com/maps" target="_blank" rel="noopener">📍 <span id="dirText">Get Directions</span></a>
+          </div>
+
+          <div class="badgeRow">
+            <span class="badge" id="b1">Hybrid Diagnostics</span>
+            <span class="badge" id="b2">Prius + Other Hybrids</span>
+            <span class="badge" id="b3">Border-Friendly</span>
+            <span class="badge" id="b4">Clear Explanations</span>
+          </div>
+
+          <div class="miniCards">
+            <div class="mini">
+              <h3 id="m1t">Check Engine / Hybrid Lights</h3>
+              <p id="m1d">Scan, diagnose, and fix the real issue — not guesswork.</p>
             </div>
-
-            <div class="tags" aria-label="Highlights">
-              <span class="tag" id="tag1">Hybrid Diagnostics</span>
-              <span class="tag" id="tag2">Prius + Other Hybrids</span>
-              <span class="tag" id="tag3">Battery Service Available</span>
-              <span class="tag" id="tag4">Border-Friendly</span>
+            <div class="mini">
+              <h3 id="m2t">Hybrid System Performance</h3>
+              <p id="m2d">Loss of power, strange behavior, warning lights, sensor faults.</p>
             </div>
-
-            <div class="miniCards">
-              <div class="mini">
-                <strong id="mini1t">Check Engine / Hybrid Lights</strong>
-                <span id="mini1d">Scan, diagnose, and fix the real issue.</span>
-              </div>
-              <div class="mini">
-                <strong id="mini2t">Hybrid System Performance</strong>
-                <span id="mini2d">Loss of power, strange behavior, battery readings.</span>
-              </div>
-              <div class="mini">
-                <strong id="mini3t">Maintenance & Repairs</strong>
-                <span id="mini3d">Brakes, cooling, sensors, electrical issues.</span>
-              </div>
-            </div>
-
-            <div class="kicker">
-              <span class="dot"></span>
-              <span id="kickerText">Message on WhatsApp for quick quotes and scheduling.</span>
+            <div class="mini">
+              <h3 id="m3t">Maintenance & Repairs</h3>
+              <p id="m3d">Brakes, cooling, sensors, electrical troubleshooting, drivability.</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="card side">
-        <h3 id="servicesTitle">Popular Services</h3>
-        <div class="mutedNote" id="servicesNote">
-          We can tune this list to match exactly what he offers.
-        </div>
-        <ul id="servicesList">
-          <li>Hybrid diagnostics (warning lights / performance issues)</li>
-          <li>Hybrid battery service (cell replacement / rebuilds if needed)</li>
-          <li>Inverter / cooling system checks</li>
-          <li>Electrical & sensor troubleshooting</li>
-          <li>Prius-focused repairs + other hybrids</li>
-        </ul>
+      <!-- SERVICES -->
+      <aside class="card reveal d3">
+        <div class="side">
+          <h2 id="svcTitle">Popular Services</h2>
+          <div class="meta" style="border-top:none; padding-top:0; margin-top:0;">
+            <div id="svcIntro" style="color:var(--muted);">
+              We can tune this list to match exactly what he offers.
+            </div>
+          </div>
 
-        <div class="divider"></div>
+          <ul id="svcList">
+            <li>Hybrid diagnostics (warning lights / performance issues)</li>
+            <li>Hybrid electrical & sensor troubleshooting</li>
+            <li>Inverter / cooling system checks</li>
+            <li>Maintenance and repair for Prius & other hybrids</li>
+            <li>Battery service available if needed (only when appropriate)</li>
+          </ul>
 
-        <div class="mutedNote">
-          <strong id="phoneLabel" style="color:var(--text);">Phone / WhatsApp:</strong>
-          <span id="phoneValue" style="color:var(--muted);"> +52 664 270 5566</span>
-          <div class="mutedNote" id="addressNote">
-            Next: add the exact address + hours so the “Directions” button works.
+          <div class="meta">
+            <div><strong id="phoneLabel">Phone / WhatsApp:</strong> +52 664 270 5566</div>
+            <div id="addrNote" style="margin-top:6px;">
+              Next: add the exact address + hours so the Directions button is perfect.
+            </div>
           </div>
         </div>
-      </div>
+      </aside>
     </div>
 
-    <!-- Lower sections -->
-    <div class="sectionGrid">
-      <div class="card section">
-        <h3 id="whyTitle">Why customers choose this shop</h3>
+    <div class="lower">
+      <section class="card section reveal d3">
+        <h2 id="whyTitle">Why customers choose this shop</h2>
         <ul id="whyList">
-          <li>Honest diagnostics + clear explanation</li>
+          <li>Honest diagnostics + clear explanation of options</li>
           <li>Hybrid-focused experience</li>
           <li>Fair pricing vs. U.S. repairs</li>
           <li>Fast turnaround (depends on parts)</li>
         </ul>
-        <div class="mutedNote" id="warrantyNote">
-          We can add a short warranty/guarantee line if he offers one.
-        </div>
-      </div>
+        <p id="whyNote" style="color:var(--muted); margin-top:10px;">
+          If he offers warranty/guarantee terms, we can add a short line here.
+        </p>
+      </section>
 
-      <div class="card section">
-        <h3 id="galleryTitle">Photos / Gallery</h3>
-        <div class="mutedNote" id="galleryNote">
-          Add 6–9 photos (shop, cars, work) and this will look like a real professional shop site.
-        </div>
+      <section class="card section reveal d4">
+        <h2 id="galTitle">Photos / Gallery</h2>
+        <p id="galNote" style="color:var(--muted); margin-top:0;">
+          Upload 6–9 photos (shop, cars, work) and this section will look like a real professional shop site.
+        </p>
         <div class="galleryGrid" aria-label="Gallery placeholders">
           <div class="ph">Photo 1</div>
           <div class="ph">Photo 2</div>
@@ -438,253 +514,186 @@
           <div class="ph">Photo 5</div>
           <div class="ph">Photo 6</div>
         </div>
-      </div>
+      </section>
 
-      <div class="card section">
-        <h3 id="locationTitle">Location & Map</h3>
-        <div class="mutedNote" id="locationNote">
+      <section class="card section reveal d4">
+        <h2 id="locTitle">Location & Map</h2>
+        <p id="locNote" style="color:var(--muted); margin-top:0;">
           Paste the Google Maps share link and we’ll wire the buttons + embed the map.
-        </div>
-        <div class="btnRow" style="margin-top:12px;">
-          <!-- Replace this href with a Google Maps "Share" link for the business -->
-          <a class="btn" id="mapsBtn" href="#" target="_blank" rel="noopener">
-            <span class="btnIcon">🗺️</span>
-            <span id="mapsText">Open in Google Maps</span>
-          </a>
-        </div>
-      </div>
+        </p>
+        <a class="btn dir" href="https://www.google.com/maps" target="_blank" rel="noopener" style="margin-top:6px; width:100%;">
+          📍 <span id="locBtn">Open in Google Maps</span>
+        </a>
+      </section>
 
-      <div class="card section">
-        <h3 id="hoursTitle">Hours</h3>
-        <div class="mutedNote" id="hoursNote">
+      <section class="card section reveal d4">
+        <h2 id="hoursTitle">Hours</h2>
+        <p id="hoursNote" style="color:var(--muted); margin-top:0;">
           Set the real hours here. Example:
-        </div>
+        </p>
         <ul id="hoursList">
           <li>Mon–Sat: 9:00am–6:00pm</li>
           <li>Sun: Closed</li>
         </ul>
-        <div class="mutedNote" id="hoursNote2">
-          Once we have real hours + address, this site is basically done.
-        </div>
-      </div>
+        <p style="color:var(--muted); margin-top:10px;" id="hoursFooter">
+          Once we have the real hours + address, this site is basically done.
+        </p>
+      </section>
     </div>
 
-    <div class="footer" id="footerText">
-      © <span id="year"></span> Tinoco Hybrids • Tijuana, B.C., Mexico
-    </div>
+    <footer class="reveal d4">
+      © <span id="year"></span> Tinoco Hybrids • Built with GitHub + Netlify
+    </footer>
   </div>
 
   <script>
-    // --- Simple EN/ES toggle (no frameworks) ---
-    const copy = {
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple EN/ES toggle (keeps it beginner-friendly)
+    const t = {
       en: {
-        brandSub: "Hybrid Vehicle Mechanic • Tijuana",
-        heroTitle: "Hybrid Vehicle Mechanic in Tijuana",
-        heroDesc: "Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations, and clear explanations.",
+        tagline: "Hybrid Vehicle Mechanic • Tijuana, B.C.",
+        headline: "Hybrid Vehicle Mechanic in Tijuana",
+        subhead:
+          "Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations, and clear explanations—so you know exactly what your car needs.",
         callText: "Call Now",
         waText: "WhatsApp",
         dirText: "Get Directions",
-        tag1: "Hybrid Diagnostics",
-        tag2: "Prius + Other Hybrids",
-        tag3: "Battery Service Available",
-        tag4: "Border-Friendly",
-        mini1t: "Check Engine / Hybrid Lights",
-        mini1d: "Scan, diagnose, and fix the real issue.",
-        mini2t: "Hybrid System Performance",
-        mini2d: "Loss of power, strange behavior, battery readings.",
-        mini3t: "Maintenance & Repairs",
-        mini3d: "Brakes, cooling, sensors, electrical issues.",
-        kickerText: "Message on WhatsApp for quick quotes and scheduling.",
-        servicesTitle: "Popular Services",
-        servicesNote: "We can tune this list to match exactly what he offers.",
-        addressNote: "Next: add the exact address + hours so the “Directions” button works.",
-        whyTitle: "Why customers choose this shop",
-        warrantyNote: "We can add a short warranty/guarantee line if he offers one.",
-        galleryTitle: "Photos / Gallery",
-        galleryNote: "Add 6–9 photos (shop, cars, work) and this will look like a real professional shop site.",
-        locationTitle: "Location & Map",
-        locationNote: "Paste the Google Maps share link and we’ll wire the buttons + embed the map.",
-        mapsText: "Open in Google Maps",
-        hoursTitle: "Hours",
-        hoursNote: "Set the real hours here. Example:",
-        hoursNote2: "Once we have real hours + address, this site is basically done.",
-        footerText: "© {year} Tinoco Hybrids • Tijuana, B.C., Mexico",
-        servicesList: [
-          "Hybrid diagnostics (warning lights / performance issues)",
-          "Hybrid battery service (cell replacement / rebuilds if needed)",
-          "Inverter / cooling system checks",
-          "Electrical & sensor troubleshooting",
-          "Prius-focused repairs + other hybrids"
-        ],
-        whyList: [
-          "Honest diagnostics + clear explanation",
+        b1:"Hybrid Diagnostics", b2:"Prius + Other Hybrids", b3:"Border-Friendly", b4:"Clear Explanations",
+        m1t:"Check Engine / Hybrid Lights", m1d:"Scan, diagnose, and fix the real issue — not guesswork.",
+        m2t:"Hybrid System Performance", m2d:"Loss of power, strange behavior, warning lights, sensor faults.",
+        m3t:"Maintenance & Repairs", m3d:"Brakes, cooling, sensors, electrical troubleshooting, drivability.",
+        svcTitle:"Popular Services",
+        svcIntro:"We can tune this list to match exactly what he offers.",
+        phoneLabel:"Phone / WhatsApp:",
+        addrNote:"Next: add the exact address + hours so the Directions button is perfect.",
+        whyTitle:"Why customers choose this shop",
+        whyList:[
+          "Honest diagnostics + clear explanation of options",
           "Hybrid-focused experience",
           "Fair pricing vs. U.S. repairs",
           "Fast turnaround (depends on parts)"
         ],
-        hoursList: [
-          "Mon–Sat: 9:00am–6:00pm",
-          "Sun: Closed"
-        ],
-        phoneLabel: "Phone / WhatsApp:"
+        whyNote:"If he offers warranty/guarantee terms, we can add a short line here.",
+        galTitle:"Photos / Gallery",
+        galNote:"Upload 6–9 photos (shop, cars, work) and this section will look like a real professional shop site.",
+        locTitle:"Location & Map",
+        locNote:"Paste the Google Maps share link and we’ll wire the buttons + embed the map.",
+        locBtn:"Open in Google Maps",
+        hoursTitle:"Hours",
+        hoursNote:"Set the real hours here. Example:",
+        hoursList:["Mon–Sat: 9:00am–6:00pm","Sun: Closed"],
+        hoursFooter:"Once we have the real hours + address, this site is basically done."
       },
       es: {
-        brandSub: "Mecánico de Vehículos Híbridos • Tijuana",
-        heroTitle: "Mecánico de Vehículos Híbridos en Tijuana",
-        heroDesc: "Diagnóstico y reparación para Prius y muchos otros híbridos. Servicio rápido, recomendaciones honestas y explicación clara.",
+        tagline: "Mecánico de Vehículos Híbridos • Tijuana, B.C.",
+        headline: "Mecánico de Vehículos Híbridos en Tijuana",
+        subhead:
+          "Diagnóstico y reparación de Prius y muchos otros híbridos. Servicio rápido, recomendaciones honestas y explicación clara—para que sepas exactamente qué necesita tu auto.",
         callText: "Llamar",
         waText: "WhatsApp",
         dirText: "Cómo llegar",
-        tag1: "Diagnóstico híbrido",
-        tag2: "Prius + otros híbridos",
-        tag3: "Servicio de batería disponible",
-        tag4: "Fácil para cruzar",
-        mini1t: "Check Engine / Luces híbridas",
-        mini1d: "Escaneo, diagnóstico y solución real.",
-        mini2t: "Rendimiento del sistema híbrido",
-        mini2d: "Falta de potencia, comportamientos raros, lecturas de batería.",
-        mini3t: "Mantenimiento y reparaciones",
-        mini3d: "Frenos, enfriamiento, sensores, eléctrico.",
-        kickerText: "Manda mensaje por WhatsApp para cotización y agenda.",
-        servicesTitle: "Servicios populares",
-        servicesNote: "Podemos ajustar esta lista a lo que él ofrece exactamente.",
-        addressNote: "Siguiente: agrega la dirección exacta + horario para que funcione “Cómo llegar”.",
-        whyTitle: "Por qué eligen este taller",
-        warrantyNote: "Podemos agregar una línea de garantía si él la ofrece.",
-        galleryTitle: "Fotos / Galería",
-        galleryNote: "Agrega 6–9 fotos (taller, autos, trabajo) y esto se verá como un sitio profesional.",
-        locationTitle: "Ubicación y mapa",
-        locationNote: "Pega el enlace de Google Maps y conectamos botones + mapa.",
-        mapsText: "Abrir en Google Maps",
-        hoursTitle: "Horario",
-        hoursNote: "Define el horario real aquí. Ejemplo:",
-        hoursNote2: "Con horario + dirección real, el sitio queda listo.",
-        footerText: "© {year} Tinoco Hybrids • Tijuana, B.C., México",
-        servicesList: [
-          "Diagnóstico híbrido (luces / fallas de rendimiento)",
-          "Servicio de batería híbrida (cambio de celdas / rebuild si se necesita)",
-          "Revisión de inversor / sistema de enfriamiento",
-          "Eléctrico y sensores",
-          "Reparaciones Prius + otros híbridos"
-        ],
-        whyList: [
+        b1:"Diagnóstico Híbrido", b2:"Prius y otros híbridos", b3:"Cerca de la frontera", b4:"Explicación clara",
+        m1t:"Check Engine / Luces híbridas", m1d:"Escaneo y diagnóstico real — sin adivinar.",
+        m2t:"Rendimiento del sistema híbrido", m2d:"Pérdida de potencia, fallas, alertas, sensores.",
+        m3t:"Mantenimiento y reparación", m3d:"Frenos, enfriamiento, sensores, eléctrica, manejo.",
+        svcTitle:"Servicios populares",
+        svcIntro:"Podemos ajustar esta lista exactamente a lo que él ofrece.",
+        phoneLabel:"Tel / WhatsApp:",
+        addrNote:"Siguiente: agrega dirección exacta + horario para que el botón funcione perfecto.",
+        whyTitle:"Por qué eligen este taller",
+        whyList:[
           "Diagnóstico honesto + explicación clara",
           "Experiencia enfocada en híbridos",
           "Precio justo vs. reparaciones en EE.UU.",
-          "Entrega rápida (según refacciones)"
+          "Entrega rápida (depende de refacciones)"
         ],
-        hoursList: [
-          "Lun–Sáb: 9:00am–6:00pm",
-          "Dom: Cerrado"
-        ],
-        phoneLabel: "Teléfono / WhatsApp:"
+        whyNote:"Si ofrece garantía, podemos agregar una línea aquí.",
+        galTitle:"Fotos / Galería",
+        galNote:"Sube 6–9 fotos (taller, autos, trabajo) y se verá como un sitio profesional.",
+        locTitle:"Ubicación y mapa",
+        locNote:"Pega el enlace para compartir de Google Maps y conectamos botones + mapa.",
+        locBtn:"Abrir en Google Maps",
+        hoursTitle:"Horario",
+        hoursNote:"Pon el horario real aquí. Ejemplo:",
+        hoursList:["Lun–Sáb: 9:00am–6:00pm","Dom: Cerrado"],
+        hoursFooter:"Con horario + dirección real, el sitio queda listo."
       }
     };
 
-    const els = {
-      brandSub: document.getElementById("brandSub"),
-      heroTitle: document.getElementById("heroTitle"),
-      heroDesc: document.getElementById("heroDesc"),
-      callText: document.getElementById("callText"),
-      waText: document.getElementById("waText"),
-      dirText: document.getElementById("dirText"),
-      tag1: document.getElementById("tag1"),
-      tag2: document.getElementById("tag2"),
-      tag3: document.getElementById("tag3"),
-      tag4: document.getElementById("tag4"),
-      mini1t: document.getElementById("mini1t"),
-      mini1d: document.getElementById("mini1d"),
-      mini2t: document.getElementById("mini2t"),
-      mini2d: document.getElementById("mini2d"),
-      mini3t: document.getElementById("mini3t"),
-      mini3d: document.getElementById("mini3d"),
-      kickerText: document.getElementById("kickerText"),
-      servicesTitle: document.getElementById("servicesTitle"),
-      servicesNote: document.getElementById("servicesNote"),
-      servicesList: document.getElementById("servicesList"),
-      addressNote: document.getElementById("addressNote"),
-      whyTitle: document.getElementById("whyTitle"),
-      whyList: document.getElementById("whyList"),
-      warrantyNote: document.getElementById("warrantyNote"),
-      galleryTitle: document.getElementById("galleryTitle"),
-      galleryNote: document.getElementById("galleryNote"),
-      locationTitle: document.getElementById("locationTitle"),
-      locationNote: document.getElementById("locationNote"),
-      mapsText: document.getElementById("mapsText"),
-      hoursTitle: document.getElementById("hoursTitle"),
-      hoursNote: document.getElementById("hoursNote"),
-      hoursList: document.getElementById("hoursList"),
-      hoursNote2: document.getElementById("hoursNote2"),
-      footerText: document.getElementById("footerText"),
-      phoneLabel: document.getElementById("phoneLabel"),
-      year: document.getElementById("year"),
-      btnEN: document.getElementById("btnEN"),
-      btnES: document.getElementById("btnES"),
-    };
-
-    function setList(ul, items){
-      ul.innerHTML = "";
-      for (const txt of items){
-        const li = document.createElement("li");
-        li.textContent = txt;
-        ul.appendChild(li);
-      }
-    }
-
-    function setLang(lang){
-      const c = copy[lang];
-      els.brandSub.textContent = c.brandSub;
-      els.heroTitle.textContent = c.heroTitle;
-      els.heroDesc.textContent = c.heroDesc;
-      els.callText.textContent = c.callText;
-      els.waText.textContent = c.waText;
-      els.dirText.textContent = c.dirText;
-      els.tag1.textContent = c.tag1;
-      els.tag2.textContent = c.tag2;
-      els.tag3.textContent = c.tag3;
-      els.tag4.textContent = c.tag4;
-      els.mini1t.textContent = c.mini1t;
-      els.mini1d.textContent = c.mini1d;
-      els.mini2t.textContent = c.mini2t;
-      els.mini2d.textContent = c.mini2d;
-      els.mini3t.textContent = c.mini3t;
-      els.mini3d.textContent = c.mini3d;
-      els.kickerText.textContent = c.kickerText;
-      els.servicesTitle.textContent = c.servicesTitle;
-      els.servicesNote.textContent = c.servicesNote;
-      els.addressNote.textContent = c.addressNote;
-      els.whyTitle.textContent = c.whyTitle;
-      els.warrantyNote.textContent = c.warrantyNote;
-      els.galleryTitle.textContent = c.galleryTitle;
-      els.galleryNote.textContent = c.galleryNote;
-      els.locationTitle.textContent = c.locationTitle;
-      els.locationNote.textContent = c.locationNote;
-      els.mapsText.textContent = c.mapsText;
-      els.hoursTitle.textContent = c.hoursTitle;
-      els.hoursNote.textContent = c.hoursNote;
-      els.hoursNote2.textContent = c.hoursNote2;
-      els.phoneLabel.textContent = c.phoneLabel;
-
-      setList(els.servicesList, c.servicesList);
-      setList(els.whyList, c.whyList);
-      setList(els.hoursList, c.hoursList);
-
-      const year = new Date().getFullYear();
-      els.year.textContent = year;
-      els.footerText.innerHTML = c.footerText.replace("{year}", year);
-
-      els.btnEN.classList.toggle("active", lang === "en");
-      els.btnES.classList.toggle("active", lang === "es");
+    function applyLang(lang){
+      const d = t[lang];
       document.documentElement.lang = lang;
-      localStorage.setItem("tinoco_lang", lang);
+
+      document.getElementById("tagline").textContent = d.tagline;
+      document.getElementById("headline").textContent = d.headline;
+      document.getElementById("subhead").textContent = d.subhead;
+
+      document.getElementById("callText").textContent = d.callText;
+      document.getElementById("waText").textContent = d.waText;
+      document.getElementById("dirText").textContent = d.dirText;
+
+      document.getElementById("b1").textContent = d.b1;
+      document.getElementById("b2").textContent = d.b2;
+      document.getElementById("b3").textContent = d.b3;
+      document.getElementById("b4").textContent = d.b4;
+
+      document.getElementById("m1t").textContent = d.m1t;
+      document.getElementById("m1d").textContent = d.m1d;
+      document.getElementById("m2t").textContent = d.m2t;
+      document.getElementById("m2d").textContent = d.m2d;
+      document.getElementById("m3t").textContent = d.m3t;
+      document.getElementById("m3d").textContent = d.m3d;
+
+      document.getElementById("svcTitle").textContent = d.svcTitle;
+      document.getElementById("svcIntro").textContent = d.svcIntro;
+      document.getElementById("phoneLabel").textContent = d.phoneLabel;
+      document.getElementById("addrNote").textContent = d.addrNote;
+
+      document.getElementById("whyTitle").textContent = d.whyTitle;
+      const whyList = document.getElementById("whyList");
+      whyList.innerHTML = "";
+      d.whyList.forEach(x=>{
+        const li = document.createElement("li");
+        li.textContent = x;
+        whyList.appendChild(li);
+      });
+      document.getElementById("whyNote").textContent = d.whyNote;
+
+      document.getElementById("galTitle").textContent = d.galTitle;
+      document.getElementById("galNote").textContent = d.galNote;
+
+      document.getElementById("locTitle").textContent = d.locTitle;
+      document.getElementById("locNote").textContent = d.locNote;
+      document.getElementById("locBtn").textContent = d.locBtn;
+
+      document.getElementById("hoursTitle").textContent = d.hoursTitle;
+      document.getElementById("hoursNote").textContent = d.hoursNote;
+      const hoursList = document.getElementById("hoursList");
+      hoursList.innerHTML = "";
+      d.hoursList.forEach(x=>{
+        const li = document.createElement("li");
+        li.textContent = x;
+        hoursList.appendChild(li);
+      });
+      document.getElementById("hoursFooter").textContent = d.hoursFooter;
     }
 
-    els.btnEN.addEventListener("click", () => setLang("en"));
-    els.btnES.addEventListener("click", () => setLang("es"));
+    const btnEN = document.getElementById("btnEN");
+    const btnES = document.getElementById("btnES");
 
-    // Set year + default language
-    const saved = localStorage.getItem("tinoco_lang");
-    setLang(saved === "es" ? "es" : "en");
+    btnEN.addEventListener("click", ()=>{
+      btnEN.classList.add("active");
+      btnES.classList.remove("active");
+      applyLang("en");
+    });
+
+    btnES.addEventListener("click", ()=>{
+      btnES.classList.add("active");
+      btnEN.classList.remove("active");
+      applyLang("es");
+    });
   </script>
 </body>
 </html>
