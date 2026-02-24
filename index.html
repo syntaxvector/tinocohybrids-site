@@ -5,30 +5,464 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tinoco Hybrids | Hybrid Battery Repair in Tijuana</title>
   <meta name="description" content="Hybrid battery repair, cell replacement, and diagnostics in Tijuana, Mexico. Call or WhatsApp Tinoco Hybrids." />
+
+  <!-- Social preview -->
+  <meta property="og:title" content="Tinoco Hybrids | Hybrid Battery Repair in Tijuana" />
+  <meta property="og:description" content="Hybrid battery repair, cell replacement, and diagnostics in Tijuana, Mexico." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#111823;
+      --text:#e8eef6;
+      --muted:#a7b4c6;
+      --accent:#ff7a18;
+      --accent2:#2de0a5;
+      --border:rgba(255,255,255,.08);
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max: 1020px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 20% -10%, rgba(255,122,24,.18), transparent 60%),
+                  radial-gradient(700px 400px at 90% 10%, rgba(45,224,165,.12), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 64px;}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:10px 0 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:750; letter-spacing:.2px;
+    }
+    .logo{
+      width:42px; height:42px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(255,122,24,.95), rgba(45,224,165,.75));
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:10px 12px;
+      border-radius:10px;
+      border:2px solid rgba(0,0,0,.22);
+      transform: rotate(10deg);
+    }
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding:6px;
+    }
+    .lang button{
+      cursor:pointer;
+      border:0;
+      padding:8px 10px;
+      border-radius:12px;
+      background:transparent;
+      color:var(--muted);
+      font-weight:650;
+    }
+    .lang button.active{
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:6px;
+    }
+    @media (max-width: 860px){
+      .hero{grid-template-columns:1fr;}
+    }
+    .card{
+      background: rgba(17,24,35,.85);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+    .headline{
+      font-size: 40px;
+      line-height:1.05;
+      margin: 0 0 10px;
+      letter-spacing: -.6px;
+    }
+    @media (max-width: 520px){
+      .headline{font-size: 34px;}
+    }
+    .sub{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 8px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      text-decoration:none;
+      font-weight:750;
+      background: rgba(255,255,255,.04);
+      transition: transform .06s ease, background .12s ease, border-color .12s ease;
+      min-width: 160px;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06);}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(255,122,24,.95), rgba(255,122,24,.65));
+      border-color: rgba(255,122,24,.35);
+      color: #0b0f14;
+    }
+    .btn.wa{
+      background: linear-gradient(135deg, rgba(45,224,165,.95), rgba(45,224,165,.55));
+      border-color: rgba(45,224,165,.35);
+      color: #0b0f14;
+    }
+    .pillRow{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 14px;
+    }
+    .pill{
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .sideGrid{
+      display:grid; gap:12px;
+    }
+    .infoItem{
+      display:flex; gap:12px; align-items:flex-start;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .icon{
+      width:36px; height:36px; border-radius:12px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      flex: 0 0 auto;
+    }
+    .infoItem b{display:block; margin-bottom:2px;}
+    .infoItem span{color: var(--muted); font-size: 14px;}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr;}
+    }
+
+    h2{
+      margin: 0 0 10px;
+      letter-spacing:-.2px;
+      font-size: 20px;
+    }
+    ul{margin:10px 0 0; padding-left:18px; color: var(--muted);}
+    li{margin:6px 0;}
+    .small{color:var(--muted); font-size:13px; margin-top:10px;}
+    .footer{
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align:center;
+      opacity:.9;
+    }
+    .line{
+      height:1px; background: var(--border);
+      margin: 14px 0;
+    }
+    .note{
+      font-size: 14px;
+      color: var(--muted);
+      margin: 10px 0 0;
+    }
+    .mapBox{
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .mapPlaceholder{
+      padding:16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .inlineLink{color: #cfe7ff; text-decoration: none; border-bottom:1px dotted rgba(207,231,255,.35);}
+    .inlineLink:hover{border-bottom-color: rgba(207,231,255,.65);}
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; margin: 40px; line-height: 1.6;">
-  <h1>Tinoco Hybrids</h1>
 
-  <p><strong>Hybrid Battery Repair • Cell Replacement • Diagnostics</strong></p>
-  <p>Tijuana, B.C., Mexico</p>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:16px;">Tinoco Hybrids</div>
+          <div style="font-size:12px; color:var(--muted); font-weight:650;">Tijuana • Hybrid Battery Specialists</div>
+        </div>
+      </div>
 
-  <p>
-    📞 <a href="tel:+526642705566">Call +52 664 270 5566</a><br />
-    💬 <a href="https://wa.me/526642705566">WhatsApp Message</a>
-  </p>
+      <div class="lang" aria-label="Language selector">
+        <button id="btn-en" class="active" type="button">EN</button>
+        <button id="btn-es" type="button">ES</button>
+      </div>
+    </div>
 
-  <hr />
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <h1 class="headline" data-en="Hybrid Battery Repair in Tijuana"
+            data-es="Reparación de Baterías Híbridas en Tijuana">
+          Hybrid Battery Repair in Tijuana
+        </h1>
 
-  <h2>Services</h2>
-  <ul>
-    <li>Hybrid battery cell replacement</li>
-    <li>Hybrid battery rebuilds</li>
-    <li>Hybrid system diagnostics</li>
-    <li>Prius & hybrid repair support</li>
-  </ul>
+        <p class="sub"
+           data-en="Fast diagnostics, honest work, and reliable hybrid battery solutions for Prius & other hybrids."
+           data-es="Diagnóstico rápido, trabajo honesto y soluciones confiables para baterías híbridas (Prius y más).">
+          Fast diagnostics, honest work, and reliable hybrid battery solutions for Prius & other hybrids.
+        </p>
 
-  <p style="margin-top: 40px; color: #666;">
-    Website coming soon.
-  </p>
+        <div class="ctaRow">
+          <!-- Phone -->
+          <a class="btn primary" href="tel:+526642705566">
+            📞 <span data-en="Call Now" data-es="Llamar">Call Now</span>
+          </a>
+
+          <!-- WhatsApp -->
+          <a class="btn wa" href="https://wa.me/526642705566" target="_blank" rel="noopener">
+            💬 <span data-en="WhatsApp" data-es="WhatsApp">WhatsApp</span>
+          </a>
+
+          <!-- Directions (replace the link later with exact Google Maps link) -->
+          <a class="btn" href="#" id="directionsLink" target="_blank" rel="noopener">
+            🧭 <span data-en="Get Directions" data-es="Cómo llegar">Get Directions</span>
+          </a>
+        </div>
+
+        <div class="pillRow">
+          <div class="pill" data-en="Prius Battery • Cell Replacement" data-es="Batería Prius • Cambio de Celdas">Prius Battery • Cell Replacement</div>
+          <div class="pill" data-en="Hybrid Diagnostics" data-es="Diagnóstico Híbrido">Hybrid Diagnostics</div>
+          <div class="pill" data-en="Quick Turnaround" data-es="Entrega Rápida">Quick Turnaround</div>
+          <div class="pill" data-en="Fair Pricing" data-es="Precio Justo">Fair Pricing</div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="note"
+          data-en="Tip: Save this page to your home screen so you can call or WhatsApp in one tap."
+          data-es="Tip: Guarda esta página en tu pantalla principal para llamar o mandar WhatsApp con un toque.">
+          Tip: Save this page to your home screen so you can call or WhatsApp in one tap.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sideGrid">
+          <div class="infoItem">
+            <div class="icon">📍</div>
+            <div>
+              <b data-en="Location" data-es="Ubicación">Location</b>
+              <span data-en="Tijuana, Baja California, Mexico" data-es="Tijuana, Baja California, México">
+                Tijuana, Baja California, Mexico
+              </span>
+              <div class="small" data-en="(We’ll add the exact address next.)" data-es="(Agregaremos la dirección exacta después.)">
+                (We’ll add the exact address next.)
+              </div>
+            </div>
+          </div>
+
+          <div class="infoItem">
+            <div class="icon">🕒</div>
+            <div>
+              <b data-en="Hours" data-es="Horario">Hours</b>
+              <span data-en="Mon–Sat: 9:00am–6:00pm (Example)"
+                    data-es="Lun–Sáb: 9:00am–6:00pm (Ejemplo)">
+                Mon–Sat: 9:00am–6:00pm (Example)
+              </span>
+            </div>
+          </div>
+
+          <div class="infoItem">
+            <div class="icon">⭐</div>
+            <div>
+              <b data-en="Reviews" data-es="Reseñas">Reviews</b>
+              <span data-en="Trusted locally — Google reviews available."
+                    data-es="Con confianza local — reseñas en Google.">
+                Trusted locally — Google reviews available.
+              </span>
+            </div>
+          </div>
+
+          <div class="infoItem">
+            <div class="icon">🔧</div>
+            <div>
+              <b data-en="Services" data-es="Servicios">Services</b>
+              <span data-en="Hybrid battery rebuilds, cell replacement, diagnostics."
+                    data-es="Reconstrucción, cambio de celdas, diagnóstico.">
+                Hybrid battery rebuilds, cell replacement, diagnostics.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTIONS -->
+    <section class="grid">
+      <div class="card">
+        <h2 data-en="Services" data-es="Servicios">Services</h2>
+        <ul>
+          <li data-en="Hybrid battery cell replacement (Prius and other hybrids)"
+              data-es="Cambio de celdas de batería híbrida (Prius y otros híbridos)">
+            Hybrid battery cell replacement (Prius and other hybrids)
+          </li>
+          <li data-en="Hybrid battery rebuilds and balancing"
+              data-es="Reconstrucción y balanceo de batería híbrida">
+            Hybrid battery rebuilds and balancing
+          </li>
+          <li data-en="Hybrid system diagnostics (warning lights, performance issues)"
+              data-es="Diagnóstico del sistema híbrido (luces, fallas, rendimiento)">
+            Hybrid system diagnostics (warning lights, performance issues)
+          </li>
+          <li data-en="General hybrid repair support"
+              data-es="Soporte general para reparación híbrida">
+            General hybrid repair support
+          </li>
+        </ul>
+
+        <p class="small"
+           data-en="If you’re coming from San Diego, message on WhatsApp first and we’ll coordinate."
+           data-es="Si vienes de San Diego, manda WhatsApp primero y coordinamos.">
+          If you’re coming from San Diego, message on WhatsApp first and we’ll coordinate.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 data-en="Why choose Tinoco Hybrids?" data-es="¿Por qué Tinoco Hybrids?">Why choose Tinoco Hybrids?</h2>
+        <ul>
+          <li data-en="Hybrid-focused experience" data-es="Experiencia enfocada en híbridos">Hybrid-focused experience</li>
+          <li data-en="Clear diagnostics + honest recommendations" data-es="Diagnóstico claro + recomendaciones honestas">Clear diagnostics + honest recommendations</li>
+          <li data-en="Fair pricing vs. U.S. repairs" data-es="Precio justo vs. reparaciones en EE.UU.">Fair pricing vs. U.S. repairs</li>
+          <li data-en="Fast turnaround (when parts are available)" data-es="Entrega rápida (según disponibilidad de piezas)">Fast turnaround (when parts are available)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2 data-en="Contact" data-es="Contacto">Contact</h2>
+        <p style="margin:0; color:var(--muted);">
+          <b data-en="Phone / WhatsApp:" data-es="Teléfono / WhatsApp:">Phone / WhatsApp:</b>
+          <a class="inlineLink" href="tel:+526642705566">+52 664 270 5566</a>
+        </p>
+        <p style="margin:10px 0 0; color:var(--muted);">
+          <b data-en="WhatsApp link:" data-es="Link de WhatsApp:">WhatsApp link:</b>
+          <a class="inlineLink" href="https://wa.me/526642705566" target="_blank" rel="noopener">wa.me/526642705566</a>
+        </p>
+
+        <div class="line"></div>
+
+        <p class="small"
+           data-en="Want this page in Spanish by default? We can set that once we confirm most customers."
+           data-es="¿Quieres esta página en español por defecto? Lo dejamos así cuando confirmemos qué usan más los clientes.">
+          Want this page in Spanish by default? We can set that once we confirm most customers.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 data-en="Location & Map" data-es="Ubicación y Mapa">Location & Map</h2>
+
+        <div class="mapBox">
+          <!-- Option A (simple): link to Google Maps until we add an embed -->
+          <div class="mapPlaceholder">
+            <div data-en="We’ll add an embedded Google Map once we paste the exact address/link."
+                 data-es="Agregaremos el mapa incrustado cuando peguemos la dirección/link exacto.">
+              We’ll add an embedded Google Map once we paste the exact address/link.
+            </div>
+            <div style="margin-top:10px;">
+              <a class="inlineLink" href="#" id="mapsLink" target="_blank" rel="noopener"
+                 data-en="Open in Google Maps" data-es="Abrir en Google Maps">
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="small"
+           data-en="Next: we’ll paste the exact Google Business address + map link."
+           data-es="Siguiente: pegamos la dirección exacta de Google Business + link del mapa.">
+          Next: we’ll paste the exact Google Business address + map link.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <span data-en="© " data-es="© ">© </span><span id="year"></span>
+      <span data-en=" Tinoco Hybrids. All rights reserved."
+            data-es=" Tinoco Hybrids. Todos los derechos reservados.">
+        Tinoco Hybrids. All rights reserved.
+      </span>
+    </div>
+  </div>
+
+  <script>
+    // Language toggle
+    const btnEn = document.getElementById('btn-en');
+    const btnEs = document.getElementById('btn-es');
+
+    function setLang(lang){
+      document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+      btnEn.classList.toggle('active', lang === 'en');
+      btnEs.classList.toggle('active', lang === 'es');
+
+      document.querySelectorAll('[data-en]').forEach(el=>{
+        el.textContent = (lang === 'es') ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      });
+    }
+    btnEn.addEventListener('click', ()=>setLang('en'));
+    btnEs.addEventListener('click', ()=>setLang('es'));
+
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // TODO: Replace these with the real Google Maps link once you paste it.
+    const googleMapsLink = "#"; // e.g. "https://maps.google.com/?q=Tinoco%27s+Hybrid+Systems+Performance"
+    document.getElementById('mapsLink').href = googleMapsLink;
+    document.getElementById('directionsLink').href = googleMapsLink;
+
+    // Default language (change to 'es' later if you want Spanish default)
+    setLang('en');
+  </script>
 </body>
 </html>
