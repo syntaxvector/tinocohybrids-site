@@ -422,7 +422,57 @@
       </div>
 
     </div>
+/* ---- Professional gear + subtle sparks (single gear) ---- */
+.heroFX{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  width:170px;
+  height:170px;
+  opacity:.85;
+  pointer-events:none;
+  filter: drop-shadow(0 14px 26px rgba(15,23,42,.12));
+}
 
+@media (max-width: 980px){
+  .heroFX{
+    position:relative;
+    right:auto; bottom:auto;
+    margin-top:14px;
+    width:160px; height:160px;
+  }
+}
+
+.gearSpin{
+  transform-origin: 50% 50%;
+  animation: gearSpin 10.5s linear infinite;
+}
+
+@keyframes gearSpin { to { transform: rotate(360deg); } }
+
+.sparks{
+  position:absolute; inset:0;
+  overflow:hidden;
+}
+
+.bolt{
+  position:absolute;
+  width:22px;
+  height:22px;
+  opacity:0;
+  transform: translate(-50%,-50%) scale(.9) rotate(10deg);
+  filter: drop-shadow(0 0 10px rgba(14,165,233,.35)) drop-shadow(0 0 10px rgba(185,28,28,.12));
+  animation: boltPop 1.35s ease-in-out infinite;
+}
+
+.bolt svg{width:100%;height:100%}
+
+@keyframes boltPop{
+  0%{opacity:0; transform: translate(-50%,-50%) scale(.85) rotate(10deg)}
+  18%{opacity:.85}
+  55%{opacity:.55}
+  100%{opacity:0; transform: translate(-50%,-50%) scale(1.10) rotate(18deg)}
+}
   </div>
 
   <script>
