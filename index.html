@@ -4,34 +4,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tinoco Hybrids | Hybrid, EV & Gas Vehicle Mechanic in Tijuana</title>
-  <meta name="description" content="Tinoco Hybrids — Hybrid, EV & Gas vehicle mechanic in Tijuana. Diagnostics, electrical troubleshooting, maintenance and repairs. Call or WhatsApp." />
+  <meta name="description" content="Tinoco Hybrids — Hybrid, EV & gasoline vehicle mechanic in Tijuana. Diagnostics, electrical troubleshooting, maintenance and repairs. Call or WhatsApp." />
 
   <style>
     :root{
-      --steel-1:#3a3f46;
-      --steel-2:#2d3137;
-      --steel-3:#23262b;
+      /* Steel / metallic background */
+      --bg0:#2b2f35;
+      --bg1:#1e2227;
+      --bg2:#323844;
 
-      --panel:#ffffff;
-      --panel-2:#f5f6f7;
-      --text:#0f172a;
-      --muted:#5b6472;
+      --card:#ffffff;
+      --card2:#f5f6f8;
+      --stroke: rgba(0,0,0,.08);
 
-      --stroke: rgba(15,23,42,.10);
-      --shadow: 0 18px 48px rgba(0,0,0,.28);
-      --shadow-soft: 0 10px 26px rgba(0,0,0,.18);
+      --text:#0e1116;
+      --muted:#4c5561;
 
-      --brand:#b91c1c;      /* deep red */
-      --whatsapp:#25D366;
+      --brand:#b3261e;   /* deep red */
+      --brand2:#1f5fff;  /* blue */
+      --wa:#25D366;
 
+      --shadow: 0 18px 55px rgba(0,0,0,.35);
       --radius: 18px;
-      --max: 1120px;
+      --max: 1100px;
+
       --base: 18px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
-
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -39,296 +40,269 @@
       color: var(--text);
       overflow-x:hidden;
 
-      /* metallic / steel background (uniform feel) */
+      /* Uniform metallic/steel look (no “patchy” changes) */
       background:
-        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.10), transparent 60%),
-        radial-gradient(900px 540px at 15% 85%, rgba(255,255,255,.06), transparent 65%),
-        linear-gradient(180deg, var(--steel-1), var(--steel-2) 45%, var(--steel-3));
+        radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,.10), transparent 62%),
+        radial-gradient(1200px 700px at 80% 20%, rgba(255,255,255,.08), transparent 64%),
+        radial-gradient(900px 500px at 50% 95%, rgba(0,0,0,.25), transparent 65%),
+        linear-gradient(180deg, var(--bg2), var(--bg1) 40%, var(--bg0));
+      background-attachment: fixed;
     }
 
     a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 80px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:30px 18px 70px}
 
-    /* ---------- HEADER (BIG LOGO, CLEAN) ---------- */
-    .site-header{
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding: 22px 28px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(15,23,42,.08);
-    }
-
-    .header-inner{
+    /* Header pill */
+    .topbar{
       display:flex;
       align-items:center;
-      gap: 22px;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: var(--shadow);
     }
+    .brandRow{display:flex; align-items:center; gap:16px; min-width:0}
 
-    /* BIGGER LOGO INSIDE THE HEADER */
-    .logo{
-      width: 160px;     /* intentionally large */
-      height: auto;
-      display:block;
-      flex: 0 0 auto;
-      object-fit: contain;
-    }
-
-    .brand-text h1{
-      margin:0;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.2px;
-      line-height: 1.15;
-    }
-    .brand-text p{
-      margin: 6px 0 0;
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-
-    .lang-toggle{
-      margin-left:auto;
+    /* Logo frame (rounded) */
+    .logoFrame{
+      width: 120px;              /* outer frame size */
+      height: 120px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,1), rgba(245,246,248,1));
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
       display:flex;
-      gap:8px;
-      background: rgba(15,23,42,.05);
-      border: 1px solid rgba(15,23,42,.10);
-      padding: 6px;
-      border-radius: 999px;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+      overflow:hidden;
     }
-    .lang-toggle button{
+    .logo{
+      width: 104px;              /* make the logo MUCH larger inside the frame */
+      height: 104px;
+      object-fit: contain;
+      display:block;
+    }
+
+    .brandText{min-width:0}
+    .brandName{font-weight:900; letter-spacing:-.2px; font-size:1.15rem; line-height:1.1}
+    .brandSub{color:var(--muted); font-size:.95rem; margin-top:3px}
+
+    /* Language toggle */
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      background: rgba(0,0,0,.06);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+      padding:6px;
+      flex:0 0 auto;
+    }
+    .lang button{
       border:0;
-      background: transparent;
-      padding: 8px 12px;
-      border-radius: 999px;
+      background:transparent;
+      padding:8px 12px;
+      border-radius:999px;
       cursor:pointer;
-      font-weight: 800;
-      font-size: .85rem;
-      color: rgba(15,23,42,.70);
+      font-weight:800;
+      color:#111;
+      opacity:.72;
     }
-    .lang-toggle button.active{
-      background: var(--brand);
-      color: white;
-      box-shadow: 0 8px 18px rgba(185,28,28,.24);
-    }
-
-    @media (max-width: 700px){
-      .site-header{ padding: 18px 18px; }
-      .header-inner{ gap: 14px; }
-      .logo{ width: 128px; }
-      .brand-text h1{ font-size: 1.15rem; }
-      .brand-text p{ font-size: .9rem; }
+    .lang button.active{
+      opacity:1;
+      color:#fff;
+      background: linear-gradient(90deg, rgba(179,38,30,.95), rgba(31,95,255,.95));
+      box-shadow: 0 10px 18px rgba(0,0,0,.18);
     }
 
-    /* ---------- CARDS ---------- */
+    /* Main card */
     .card{
-      margin-top: 18px;
-      background: var(--panel);
+      margin-top:18px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(0,0,0,.06);
       border-radius: var(--radius);
-      border: 1px solid rgba(15,23,42,.08);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .cardPad{ padding: 22px 22px; }
+    .cardPad{padding:22px}
 
     .heroTitle{
-      font-size: 2.05rem;
-      line-height: 1.1;
-      margin: 0 0 8px;
-      letter-spacing: -0.6px;
+      font-size: 2.0rem;
+      line-height:1.08;
+      margin:0 0 8px;
+      font-weight:950;
+      letter-spacing:-.6px;
+    }
+    .accent{
+      color: var(--brand);
+      font-weight: 950;
+    }
+    .tagline{
       font-weight: 900;
+      margin: 6px 0 10px;
+      color: #1a1f2a;
     }
-    .heroTitle .accent{ color: var(--brand); }
-
-    .heroTagline{
-      font-weight: 800;
-      color: rgba(15,23,42,.90);
-      margin: 0 0 10px;
-    }
-
     .heroDesc{
       color: var(--muted);
       max-width: 70ch;
-      font-size: 1.02rem;
-      line-height: 1.6;
+      line-height:1.6;
       margin: 0 0 14px;
+      font-size: 1.02rem;
     }
 
-    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 6px; }
+    /* Buttons */
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
     .btn{
       display:inline-flex; align-items:center; gap:10px;
-      padding: 11px 14px;
+      padding:10px 14px;
       border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.85);
       text-decoration:none;
-      font-weight: 900;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(15,23,42,.04);
-      box-shadow: var(--shadow-soft);
-      transition: transform .14s ease, box-shadow .14s ease, background .2s ease;
+      font-weight:900;
+      box-shadow: 0 10px 18px rgba(0,0,0,.14);
+      transition: transform .15s ease, filter .2s ease;
       user-select:none;
     }
-    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 32px rgba(0,0,0,.18); }
-    .btn.primary{
-      background: var(--brand);
-      border-color: rgba(185,28,28,.45);
-      color: white;
-    }
-    .btn.whatsapp{
-      background: linear-gradient(180deg, rgba(37,211,102,.95), rgba(37,211,102,.75));
-      border-color: rgba(37,211,102,.55);
-      color: #052012;
-    }
-    .btn.ghost{
-      background: rgba(15,23,42,.03);
-    }
+    .btn:hover{transform: translateY(-1px); filter: brightness(1.02)}
+    .btn.call{background: linear-gradient(90deg, rgba(179,38,30,.95), rgba(179,38,30,.82)); color:#fff; border-color: rgba(179,38,30,.55)}
+    .btn.wa{background: linear-gradient(90deg, rgba(37,211,102,.95), rgba(37,211,102,.78)); color:#062012; border-color: rgba(37,211,102,.55)}
+    .btn.dir{background: linear-gradient(90deg, rgba(31,95,255,.95), rgba(31,95,255,.78)); color:#fff; border-color: rgba(31,95,255,.55)}
 
-    /* ---------- INFO GRID ---------- */
+    /* Two-column info */
     .infoGrid{
-      margin-top: 16px;
+      margin-top:14px;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap:14px;
     }
-    @media (max-width: 900px){
-      .infoGrid{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 900px){ .infoGrid{grid-template-columns:1fr} }
 
-    .infoBox{
-      background: var(--panel-2);
-      border: 1px solid rgba(15,23,42,.08);
+    .mini{
+      background: rgba(0,0,0,.03);
+      border: 1px solid rgba(0,0,0,.06);
       border-radius: 14px;
-      padding: 14px 14px;
+      padding:14px 14px;
     }
-    .infoBox h3{
-      margin:0 0 10px;
-      font-size: 1rem;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-    }
-    .list{
-      margin:0;
-      padding-left: 18px;
-      color: rgba(15,23,42,.78);
-      line-height: 1.65;
-      font-size: .98rem;
-    }
-    .smallLine{
-      margin-top: 10px;
-      font-size: .95rem;
-      color: rgba(15,23,42,.72);
-    }
-    .smallLine strong{ color: rgba(15,23,42,.90); }
+    .mini h3{margin:0 0 8px; font-size:1rem; font-weight:950}
+    .mini ul{margin:0; padding-left:18px; color:#1b2230}
+    .mini li{margin:4px 0; color:#1b2230}
+    .mini .small{margin-top:10px; color:var(--muted); font-size:.95rem; line-height:1.55}
 
-    /* ---------- WHY SECTION ---------- */
-    .why{
-      margin-top: 16px;
-      background: var(--panel);
-      border-radius: var(--radius);
-      border: 1px solid rgba(15,23,42,.08);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .whyPad{ padding: 18px 22px; }
-    .whyTitle{
-      margin:0 0 10px;
-      font-size: 1.05rem;
-      font-weight: 900;
-      letter-spacing: -0.2px;
-    }
-    .whyList{
-      margin:0;
-      padding-left: 18px;
-      color: rgba(15,23,42,.78);
-      line-height: 1.7;
-      font-size: .98rem;
-    }
-
-    /* ---------- PHOTO GALLERY ---------- */
-    .galleryCard{
-      margin-top: 16px;
-      background: var(--panel);
-      border-radius: var(--radius);
-      border: 1px solid rgba(15,23,42,.08);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .galleryPad{ padding: 18px 22px 22px; }
-    .galleryTitleRow{
+    /* Trust bar */
+    .trust{
+      margin-top:14px;
+      background: linear-gradient(90deg, rgba(179,38,30,.08), rgba(31,95,255,.08));
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 14px;
+      padding:12px 14px;
       display:flex;
-      align-items:flex-end;
+      flex-wrap:wrap;
+      gap:10px 16px;
+      align-items:center;
+      font-weight:900;
+      color:#1a1f2a;
+    }
+    .trust span{font-weight:900}
+    .dot{opacity:.55}
+
+    /* Photos */
+    .sectionTitleRow{
+      display:flex;
       justify-content:space-between;
-      gap: 14px;
-      margin-bottom: 10px;
+      align-items:baseline;
+      gap:12px;
+      margin:0 0 10px;
     }
-    .galleryTitle{
+    .sectionTitle{
+      font-weight:950;
+      letter-spacing:-.2px;
       margin:0;
-      font-size: 1.05rem;
-      font-weight: 900;
+      font-size:1.05rem;
     }
-    .galleryNote{
-      margin:0;
-      color: rgba(15,23,42,.55);
-      font-size: .9rem;
-    }
+    .hint{color:var(--muted); font-size:.92rem}
 
     .gallery{
       display:grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
     }
-    @media (max-width: 1100px){ .gallery{ grid-template-columns: repeat(4, 1fr);} }
-    @media (max-width: 860px){ .gallery{ grid-template-columns: repeat(3, 1fr);} }
-    @media (max-width: 560px){ .gallery{ grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 980px){ .gallery{grid-template-columns: repeat(3, 1fr);} }
+    @media (max-width: 680px){ .gallery{grid-template-columns: repeat(2, 1fr);} }
 
     .shot{
+      position:relative;
       border-radius: 14px;
       overflow:hidden;
-      border: 1px solid rgba(15,23,42,.10);
-      background: #e9eaec;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(0,0,0,.04);
       aspect-ratio: 4 / 3;
-      box-shadow: 0 10px 18px rgba(0,0,0,.10);
+      box-shadow: 0 12px 22px rgba(0,0,0,.10);
     }
     .shot img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
+      width:100%; height:100%;
+      object-fit:cover;
       display:block;
-      transform: scale(1.02);
-      transition: transform .25s ease;
+      transform: scale(1.01);
+      transition: transform .3s ease;
     }
-    .shot:hover img{ transform: scale(1.06); }
+    .shot:hover img{transform: scale(1.06)}
+    .shot::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.18));
+      pointer-events:none;
+    }
+
+    /* Footer */
+    .foot{
+      margin-top:14px;
+      color: var(--muted);
+      font-size:.95rem;
+      line-height:1.6;
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
 
-    <!-- HEADER -->
-    <header class="site-header">
-      <div class="header-inner">
-        <!-- Use your existing logo filename here -->
-        <img class="logo" src="tinoco_logo.png" alt="Tinoco Hybrids logo" />
-
-        <div class="brand-text">
-          <h1 data-i18n="brandName">Tinoco Hybrids</h1>
-          <p data-i18n="brandSub">Hybrid, EV & Gas Vehicle Mechanic · Tijuana</p>
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="brandRow">
+        <div class="logoFrame">
+          <!-- We’ll auto-try multiple filenames so it never breaks again -->
+          <img
+            class="logo"
+            id="logoImg"
+            src="tinoco_logo_transparent.png"
+            alt="Tinoco Hybrids logo"
+            data-src-list="tinoco_logo_transparent.png,tinoco_logo.png,tinoco_logo.jpg,tinoco_logo.jpeg,tinoco_logo.webp,tinoco_logo_transparent.jpg,tinoco_logo_transparent.jpeg"
+          />
         </div>
 
-        <div class="lang-toggle" aria-label="Language switcher">
-          <button id="btnEN" class="active" type="button">EN</button>
-          <button id="btnES" type="button">ES</button>
+        <div class="brandText">
+          <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
+          <div class="brandSub" data-i18n="brandSub">Hybrid, EV & Gas Vehicle Mechanic • Tijuana</div>
         </div>
       </div>
-    </header>
+
+      <div class="lang" aria-label="Language switcher">
+        <button id="btnEN" class="active" type="button">EN</button>
+        <button id="btnES" type="button">ES</button>
+      </div>
+    </div>
 
     <!-- HERO -->
-    <section class="card">
+    <div class="card">
       <div class="cardPad">
         <div class="heroTitle" data-i18n="heroTitle">
           Professional Automotive Repair in <span class="accent">Tijuana</span>
         </div>
 
-        <div class="heroTagline" data-i18n="heroTagline">
+        <div class="tagline" data-i18n="tagline">
           Hybrid, EV & Gas — diagnosed right the first time.
         </div>
 
@@ -337,99 +311,126 @@
         </p>
 
         <div class="ctaRow">
-          <a class="btn primary" href="tel:+526642705566" data-i18n="callNow">📞 Call</a>
-          <a class="btn whatsapp" href="https://wa.me/526642705566" target="_blank" rel="noopener" data-i18n="whatsapp">💬 WhatsApp</a>
-          <a class="btn ghost" href="https://www.google.com/maps" target="_blank" rel="noopener" data-i18n="directions">📍 Directions</a>
+          <a class="btn call" href="tel:+526642705566" data-i18n="callNow">📞 Call</a>
+          <a class="btn wa" href="https://wa.me/526642705566" target="_blank" rel="noopener" data-i18n="whatsapp">💬 WhatsApp</a>
+          <a class="btn dir" href="https://www.google.com/maps" target="_blank" rel="noopener" data-i18n="directions">📍 Directions</a>
+        </div>
+
+        <div class="trust" role="note" aria-label="Trust highlights">
+          <span data-i18n="trust1">✅ Clear diagnostics</span>
+          <span class="dot">•</span>
+          <span data-i18n="trust2">⚡ Hybrid & EV expertise</span>
+          <span class="dot">•</span>
+          <span data-i18n="trust3">🧰 Modern tools</span>
+          <span class="dot">•</span>
+          <span data-i18n="trust4">💬 Honest communication</span>
         </div>
 
         <div class="infoGrid">
-          <div class="infoBox">
+          <div class="mini">
             <h3 data-i18n="servicesTitle">Services</h3>
-            <ul class="list">
+            <ul>
               <li data-i18n="s1">Hybrid & EV diagnostics</li>
               <li data-i18n="s2">Electrical & sensor troubleshooting</li>
               <li data-i18n="s3">Inverter & cooling systems</li>
-              <li data-i18n="s4">Brake, suspension & maintenance</li>
+              <li data-i18n="s4">Brakes, suspension & maintenance</li>
               <li data-i18n="s5">Gasoline vehicle repair</li>
             </ul>
+            <div class="small" data-i18n="servicesNote">If you want, we can list the top 6–8 most common jobs customers ask for.</div>
           </div>
 
-          <div class="infoBox">
+          <div class="mini">
             <h3 data-i18n="hoursTitle">Hours</h3>
-            <div class="smallLine"><strong data-i18n="monfri">Mon–Fri:</strong> <span data-i18n="hoursMonFri">9:00am – 5:00pm</span></div>
-            <div class="smallLine"><strong data-i18n="sat">Sat:</strong> <span data-i18n="hoursSat">Closed</span></div>
-            <div class="smallLine"><strong data-i18n="sun">Sun:</strong> <span data-i18n="hoursSun">Closed</span></div>
-            <div class="smallLine" style="margin-top:12px">
-              <strong data-i18n="phoneLabel">Phone / WhatsApp:</strong>
-              <span>+52 664 270 5566</span>
+            <ul>
+              <li><strong data-i18n="monfri">Mon–Fri:</strong> <span data-i18n="hoursMonFri">9:00am – 5:00pm</span></li>
+              <li><strong data-i18n="sat">Sat:</strong> <span data-i18n="hoursSat">Closed</span></li>
+              <li><strong data-i18n="sun">Sun:</strong> <span data-i18n="hoursSun">Closed</span></li>
+            </ul>
+            <div class="small" style="margin-top:10px">
+              <strong data-i18n="phoneLabel">Phone / WhatsApp:</strong> <span>+52 664 270 5566</span>
+            </div>
+            <div class="small" data-i18n="mapsNote" style="margin-top:8px">
+              Next: replace the Directions link with the real Google Maps share link.
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- WHY -->
-    <section class="why">
-      <div class="whyPad">
-        <h3 class="whyTitle" data-i18n="whyTitle">Why customers choose this shop</h3>
-        <ul class="whyList">
+    <!-- WHY CHOOSE -->
+    <div class="card">
+      <div class="cardPad">
+        <h3 class="sectionTitle" data-i18n="whyTitle">Why customers choose this shop</h3>
+        <ul style="margin:10px 0 0; padding-left:18px; color:#1b2230; line-height:1.65">
           <li data-i18n="w1">Honest diagnostics — no guesswork</li>
           <li data-i18n="w2">Hybrid & EV specialist</li>
           <li data-i18n="w3">Fair pricing vs. U.S. shops</li>
           <li data-i18n="w4">Real photos of real work</li>
         </ul>
       </div>
-    </section>
+    </div>
 
-    <!-- GALLERY -->
-    <section class="galleryCard">
-      <div class="galleryPad">
-        <div class="galleryTitleRow">
-          <h3 class="galleryTitle" data-i18n="galleryTitle">Shop Photos</h3>
-          <p class="galleryNote" data-i18n="galleryNote">Clean work, real results.</p>
+    <!-- PHOTOS -->
+    <div class="card">
+      <div class="cardPad">
+        <div class="sectionTitleRow">
+          <h3 class="sectionTitle" data-i18n="photosTitle">Shop Photos</h3>
+          <div class="hint" data-i18n="photosHint">Clean work, real results.</div>
         </div>
 
-        <!-- Use your uploaded files: 1-12.jpg -->
-        <div class="gallery">
-          <div class="shot"><img src="1.jpg" alt="Shop photo 1"></div>
-          <div class="shot"><img src="2.jpg" alt="Shop photo 2"></div>
-          <div class="shot"><img src="3.jpg" alt="Shop photo 3"></div>
-          <div class="shot"><img src="4.jpg" alt="Shop photo 4"></div>
-          <div class="shot"><img src="5.jpg" alt="Shop photo 5"></div>
-          <div class="shot"><img src="6.jpg" alt="Shop photo 6"></div>
-          <div class="shot"><img src="7.jpg" alt="Shop photo 7"></div>
-          <div class="shot"><img src="8.jpg" alt="Shop photo 8"></div>
-          <div class="shot"><img src="9.jpg" alt="Shop photo 9"></div>
+        <div class="gallery" id="gallery">
+          <!-- Uses 1–12.jpg -->
+          <div class="shot"><img src="1.jpg"  alt="Shop photo 1"></div>
+          <div class="shot"><img src="2.jpg"  alt="Shop photo 2"></div>
+          <div class="shot"><img src="3.jpg"  alt="Shop photo 3"></div>
+          <div class="shot"><img src="4.jpg"  alt="Shop photo 4"></div>
+          <div class="shot"><img src="5.jpg"  alt="Shop photo 5"></div>
+          <div class="shot"><img src="6.jpg"  alt="Shop photo 6"></div>
+          <div class="shot"><img src="7.jpg"  alt="Shop photo 7"></div>
+          <div class="shot"><img src="8.jpg"  alt="Shop photo 8"></div>
+          <div class="shot"><img src="9.jpg"  alt="Shop photo 9"></div>
           <div class="shot"><img src="10.jpg" alt="Shop photo 10"></div>
           <div class="shot"><img src="11.jpg" alt="Shop photo 11"></div>
           <div class="shot"><img src="12.jpg" alt="Shop photo 12"></div>
         </div>
+
+        <div class="foot" data-i18n="photosFoot">
+          Tip: pick 1 “hero” photo that shows the shop + 2 close-ups (hybrid battery / diagnostics / clean work). That builds trust fast.
+        </div>
       </div>
-    </section>
+    </div>
 
   </div>
 
   <script>
-    // ---------- Language toggle ----------
+    // ---------------------------
+    // Language toggle (EN/ES)
+    // ---------------------------
     const dict = {
       en: {
         brandName: "Tinoco Hybrids",
-        brandSub: "Hybrid, EV & Gas Vehicle Mechanic · Tijuana",
+        brandSub: "Hybrid, EV & Gas Vehicle Mechanic • Tijuana",
 
         heroTitle: 'Professional Automotive Repair in <span class="accent">Tijuana</span>',
-        heroTagline: "Hybrid, EV & Gas — diagnosed right the first time.",
+        tagline: "Hybrid, EV & Gas — diagnosed right the first time.",
         heroDesc: "Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and high-quality workmanship.",
 
         callNow: "📞 Call",
         whatsapp: "💬 WhatsApp",
         directions: "📍 Directions",
 
+        trust1: "✅ Clear diagnostics",
+        trust2: "⚡ Hybrid & EV expertise",
+        trust3: "🧰 Modern tools",
+        trust4: "💬 Honest communication",
+
         servicesTitle: "Services",
         s1: "Hybrid & EV diagnostics",
         s2: "Electrical & sensor troubleshooting",
         s3: "Inverter & cooling systems",
-        s4: "Brake, suspension & maintenance",
+        s4: "Brakes, suspension & maintenance",
         s5: "Gasoline vehicle repair",
+        servicesNote: "If you want, we can list the top 6–8 most common jobs customers ask for.",
 
         hoursTitle: "Hours",
         monfri: "Mon–Fri:",
@@ -439,6 +440,7 @@
         hoursSat: "Closed",
         hoursSun: "Closed",
         phoneLabel: "Phone / WhatsApp:",
+        mapsNote: "Next: replace the Directions link with the real Google Maps share link.",
 
         whyTitle: "Why customers choose this shop",
         w1: "Honest diagnostics — no guesswork",
@@ -446,27 +448,34 @@
         w3: "Fair pricing vs. U.S. shops",
         w4: "Real photos of real work",
 
-        galleryTitle: "Shop Photos",
-        galleryNote: "Clean work, real results."
+        photosTitle: "Shop Photos",
+        photosHint: "Clean work, real results.",
+        photosFoot: "Tip: pick 1 “hero” photo that shows the shop + 2 close-ups (hybrid battery / diagnostics / clean work). That builds trust fast."
       },
       es: {
         brandName: "Tinoco Hybrids",
-        brandSub: "Mecánico de vehículos híbridos, EV y gasolina · Tijuana",
+        brandSub: "Mecánico de híbridos, EV y gasolina • Tijuana",
 
         heroTitle: 'Reparación automotriz profesional en <span class="accent">Tijuana</span>',
-        heroTagline: "Híbrido, EV y gasolina — diagnóstico correcto a la primera.",
-        heroDesc: "Especialistas en híbridos y eléctricos, con servicio completo para autos de gasolina. Diagnóstico honesto, herramientas modernas y trabajo de alta calidad.",
+        tagline: "Híbridos, EV y gasolina — diagnóstico correcto desde la primera vez.",
+        heroDesc: "Especializado en vehículos híbridos y eléctricos, con servicio completo para autos de gasolina. Diagnóstico honesto, herramientas modernas y trabajo de alta calidad.",
 
         callNow: "📞 Llamar",
         whatsapp: "💬 WhatsApp",
         directions: "📍 Cómo llegar",
 
+        trust1: "✅ Diagnóstico claro",
+        trust2: "⚡ Experto en híbridos y EV",
+        trust3: "🧰 Herramientas modernas",
+        trust4: "💬 Comunicación honesta",
+
         servicesTitle: "Servicios",
         s1: "Diagnóstico de híbridos y EV",
-        s2: "Eléctrico y diagnóstico de sensores",
-        s3: "Inverter y sistemas de enfriamiento",
+        s2: "Eléctrico y sensores",
+        s3: "Inverter y sistema de enfriamiento",
         s4: "Frenos, suspensión y mantenimiento",
-        s5: "Reparación de vehículos a gasolina",
+        s5: "Reparación de autos de gasolina",
+        servicesNote: "Si quieres, ponemos los 6–8 trabajos más comunes que piden los clientes.",
 
         hoursTitle: "Horario",
         monfri: "Lun–Vie:",
@@ -476,25 +485,26 @@
         hoursSat: "Cerrado",
         hoursSun: "Cerrado",
         phoneLabel: "Tel / WhatsApp:",
+        mapsNote: "Siguiente: reemplaza el enlace de “Cómo llegar” por el link real de Google Maps.",
 
         whyTitle: "Por qué eligen este taller",
         w1: "Diagnóstico honesto — sin adivinar",
         w2: "Especialista en híbridos y EV",
         w3: "Precio justo vs. talleres en EE.UU.",
-        w4: "Fotos reales de trabajo real",
+        w4: "Fotos reales de trabajos reales",
 
-        galleryTitle: "Fotos del taller",
-        galleryNote: "Trabajo limpio, resultados reales."
+        photosTitle: "Fotos del taller",
+        photosHint: "Trabajo limpio, resultados reales.",
+        photosFoot: "Tip: elige 1 foto “principal” del taller + 2 acercamientos (batería híbrida / diagnóstico / trabajo limpio). Eso genera confianza rápido."
       }
     };
 
     function setLang(lang){
       document.documentElement.lang = lang;
-      const nodes = document.querySelectorAll("[data-i18n]");
-      nodes.forEach(n=>{
-        const key = n.getAttribute("data-i18n");
+      document.querySelectorAll("[data-i18n]").forEach(node=>{
+        const key = node.getAttribute("data-i18n");
         if(dict[lang] && dict[lang][key] !== undefined){
-          n.innerHTML = dict[lang][key];
+          node.innerHTML = dict[lang][key];
         }
       });
       document.getElementById("btnEN").classList.toggle("active", lang==="en");
@@ -505,6 +515,33 @@
     document.getElementById("btnEN").addEventListener("click", ()=>setLang("en"));
     document.getElementById("btnES").addEventListener("click", ()=>setLang("es"));
     setLang(localStorage.getItem("tinoco_lang") || "en");
+
+    // ---------------------------
+    // Logo auto-fallback (prevents broken logo)
+    // Tries multiple filenames until one loads.
+    // ---------------------------
+    (function(){
+      const img = document.getElementById("logoImg");
+      if(!img) return;
+
+      const list = (img.getAttribute("data-src-list") || "")
+        .split(",")
+        .map(s=>s.trim())
+        .filter(Boolean);
+
+      let i = 0;
+      function tryNext(){
+        if(i >= list.length) return; // give up
+        img.src = list[i++];
+      }
+
+      // If current src fails, rotate to next candidate
+      img.addEventListener("error", tryNext);
+
+      // Kick off: if the current src is wrong, it will error and fall through.
+      // Also handle case where the first src is empty
+      if(!img.getAttribute("src")) tryNext();
+    })();
   </script>
 </body>
 </html>
