@@ -124,7 +124,7 @@
       gap:12px;
     }
 
-    .spark{
+    .sparkDot{
       width:12px;height:12px;
       border-radius:999px;
       background:var(--green);
@@ -281,7 +281,7 @@
     .reveal{ opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.show{ opacity:1; transform: translateY(0); }
 
-    /* ======= INTERLOCKED GEAR RIG (with occlusion masks) ======= */
+    /* ======= GEAR RIG + SPARKS ======= */
     .gearRig{
       position:absolute;
       right:-18px;
@@ -294,10 +294,52 @@
       filter: drop-shadow(0 18px 30px rgba(0,0,0,.45));
     }
 
+    /* Sparks layer (HTML elements positioned over the SVG) */
+    .sparks{
+      position:absolute;
+      inset:0;
+      z-index:3; /* above gears but still behind hero text (hero text is z=2, but sparks are inside rig) */
+      pointer-events:none;
+    }
+
+    .spark{
+      position:absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      height: var(--h);
+      border-radius:999px;
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,138,31,.95));
+      box-shadow:
+        0 0 10px rgba(255,138,31,.55),
+        0 0 18px rgba(255,255,255,.30);
+      transform: translate(-50%,-50%) rotate(var(--rot)) scale(1);
+      opacity: 0;
+      animation: sparkFly var(--dur) ease-out forwards;
+      filter: blur(.15px);
+    }
+
+    .spark::after{
+      content:"";
+      position:absolute;
+      left:-22px;
+      top:50%;
+      width:22px;
+      height:2px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(255,138,31,.0), rgba(255,138,31,.65));
+      opacity:.85;
+    }
+
+    @keyframes sparkFly{
+      0%   { opacity:0; transform: translate(-50%,-50%) rotate(var(--rot)) translateX(0) translateY(0) scale(.75); }
+      10%  { opacity:1; }
+      100% { opacity:0; transform: translate(-50%,-50%) rotate(var(--rot)) translateX(var(--dx)) translateY(var(--dy)) scale(1); }
+    }
+
     @keyframes spinCW{ to{ transform: rotate(360deg); } }
     @keyframes spinCCW{ to{ transform: rotate(-360deg); } }
 
-    /* Mobile */
     @media(max-width:820px){
       header{flex-direction:column;align-items:flex-start}
       .logoWrap{width:150px;height:150px}
@@ -308,6 +350,7 @@
 
     @media (prefers-reduced-motion: reduce){
       .ambient, .logo, .logoWrap::after, .call::after{ animation:none !important; }
+      .spark{ display:none !important; }
       .reveal{ opacity:1 !important; transform:none !important; }
     }
   </style>
@@ -324,7 +367,7 @@
           <img class="logo" src="tinoco_logo.jpg" alt="Tinoco Hybrids Logo">
         </div>
         <div class="brandText">
-          <h1>Tinoco Hybrids <span class="spark" aria-hidden="true"></span></h1>
+          <h1>Tinoco Hybrids <span class="sparkDot" aria-hidden="true"></span></h1>
           <p id="tagline">Hybrid Vehicle Mechanic • Tijuana, B.C.</p>
         </div>
       </div>
@@ -336,8 +379,8 @@
     </header>
 
     <section class="card hero reveal">
-      <!-- Two gears that visually "mesh" (correct spacing + occlusion bite at contact point) -->
-      <div class="gearRig" aria-hidden="true">
+      <!-- Gear rig -->
+      <div class="gearRig" aria-hidden="true" id="gearRig">
         <svg viewBox="0 0 390 320" width="390" height="320" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <radialGradient id="metal" cx="35%" cy="35%" r="75%">
@@ -350,40 +393,25 @@
               <stop offset="100%" stop-color="rgba(255,255,255,.08)"/>
             </radialGradient>
 
-            <!-- Occlusion masks:
-                 We "cut" a small wedge at the mesh point so it reads as interlocking.
-                 One gear gets a bite on the right, the other gets a bite on the left. -->
+            <!-- Occlusion bites at the mesh point -->
             <mask id="maskLeftGear">
               <rect x="0" y="0" width="390" height="320" fill="white"/>
-              <!-- bite out near mesh point -->
               <circle cx="250" cy="155" r="16" fill="black"/>
               <circle cx="262" cy="155" r="12" fill="black" opacity="0.9"/>
             </mask>
 
             <mask id="maskRightGear">
               <rect x="0" y="0" width="390" height="320" fill="white"/>
-              <!-- bite out near mesh point -->
               <circle cx="250" cy="155" r="16" fill="black"/>
               <circle cx="238" cy="155" r="12" fill="black" opacity="0.9"/>
             </mask>
           </defs>
 
-          <!-- Geometry:
-               Choose radii so the gears "touch" instead of overlap.
-               Left gear center (170,155), radius ~76
-               Right gear center (250,155), radius ~58
-               Distance = 80 (170->250). 76+58=134, so we scale visually with teeth extents.
-               We rely on the occlusion bites + light shading to sell the mesh.
-               (If you want more/less contact, tweak centers slightly.) -->
-
-          <!-- LEFT (bigger) gear: CW -->
+          <!-- LEFT gear (CW) -->
           <g mask="url(#maskLeftGear)"
              style="transform-origin:170px 155px; animation: spinCW 4.4s linear infinite;">
-            <!-- body -->
             <circle cx="170" cy="155" r="74" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
-            <!-- teeth -->
             <g transform="translate(170 155)" fill="rgba(241,245,255,.70)">
-              <!-- 18 teeth -->
               <rect x="-6" y="-94" width="12" height="22" rx="4" opacity=".70"/>
               <g transform="rotate(20)"><rect x="-6" y="-94" width="12" height="22" rx="4" opacity=".50"/></g>
               <g transform="rotate(40)"><rect x="-6" y="-94" width="12" height="22" rx="4" opacity=".70"/></g>
@@ -403,17 +431,15 @@
               <g transform="rotate(320)"><rect x="-6" y="-94" width="12" height="22" rx="4" opacity=".70"/></g>
               <g transform="rotate(340)"><rect x="-6" y="-94" width="12" height="22" rx="4" opacity=".50"/></g>
             </g>
-            <!-- inner ring + hub -->
             <circle cx="170" cy="155" r="46" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
             <circle cx="170" cy="155" r="24" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
           </g>
 
-          <!-- RIGHT (smaller) gear: CCW -->
+          <!-- RIGHT gear (CCW) -->
           <g mask="url(#maskRightGear)"
              style="transform-origin:250px 155px; animation: spinCCW 3.2s linear infinite;">
             <circle cx="250" cy="155" r="58" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
             <g transform="translate(250 155)" fill="rgba(241,245,255,.68)">
-              <!-- 14 teeth -->
               <rect x="-5" y="-74" width="10" height="18" rx="4" opacity=".70"/>
               <g transform="rotate(25.7)"><rect x="-5" y="-74" width="10" height="18" rx="4" opacity=".50"/></g>
               <g transform="rotate(51.4)"><rect x="-5" y="-74" width="10" height="18" rx="4" opacity=".70"/></g>
@@ -433,10 +459,13 @@
             <circle cx="250" cy="155" r="18" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
           </g>
 
-          <!-- Mesh highlight at contact point (tiny glow) -->
+          <!-- tiny mesh glow -->
           <circle cx="250" cy="155" r="16" fill="rgba(56,243,165,.10)"/>
           <circle cx="250" cy="155" r="7" fill="rgba(0,212,255,.10)"/>
         </svg>
+
+        <!-- Sparks overlay -->
+        <div class="sparks" id="sparksLayer"></div>
       </div>
 
       <h2 id="heroTitle">Hybrid Vehicle Mechanic in Tijuana</h2>
@@ -500,6 +529,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
+    // EN/ES toggle copy
     const copy = {
       en: {
         tagline: "Hybrid Vehicle Mechanic • Tijuana, B.C.",
@@ -612,6 +642,77 @@
 
     const saved = localStorage.getItem("tinoco_lang");
     applyLang(saved === "es" ? "es" : "en");
+
+    // ===== Sparks generator =====
+    const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sparksLayer = document.getElementById("sparksLayer");
+    const gearRig = document.getElementById("gearRig");
+
+    // Mesh point in % coordinates of the rig (matches the SVG contact point near x=250,y=155)
+    function meshPointPx(){
+      const r = gearRig.getBoundingClientRect();
+      // SVG is 390x320; mesh point is around (250,155)
+      const x = (250/390) * r.width;
+      const y = (155/320) * r.height;
+      return { x, y };
+    }
+
+    function spawnSpark(){
+      if (!sparksLayer) return;
+
+      const { x, y } = meshPointPx();
+
+      // Random burst parameters
+      const angle = (-65 + Math.random()*40); // mostly up-right
+      const rot = angle + (Math.random()*18 - 9);
+      const dist = 40 + Math.random()*70;
+
+      const dx = Math.cos((angle*Math.PI)/180) * dist;
+      const dy = Math.sin((angle*Math.PI)/180) * dist;
+
+      const w = 3 + Math.random()*3;
+      const h = 10 + Math.random()*14;
+      const dur = 380 + Math.random()*420;
+
+      const s = document.createElement("div");
+      s.className = "spark";
+      s.style.setProperty("--x", `${x}px`);
+      s.style.setProperty("--y", `${y}px`);
+      s.style.setProperty("--dx", `${dx}px`);
+      s.style.setProperty("--dy", `${dy}px`);
+      s.style.setProperty("--w", `${w}px`);
+      s.style.setProperty("--h", `${h}px`);
+      s.style.setProperty("--rot", `${rot}deg`);
+      s.style.setProperty("--dur", `${dur}ms`);
+
+      sparksLayer.appendChild(s);
+      setTimeout(()=> s.remove(), dur + 60);
+    }
+
+    // Spark rate: small random bursts
+    if (!prefersReduce){
+      let timer;
+      function loop(){
+        // 0–3 sparks per burst
+        const count = Math.random() < 0.55 ? 1 : (Math.random() < 0.75 ? 2 : 3);
+        for(let i=0;i<count;i++){
+          setTimeout(spawnSpark, i*40 + Math.random()*40);
+        }
+        // next burst (random)
+        const next = 260 + Math.random()*520;
+        timer = setTimeout(loop, next);
+      }
+      loop();
+
+      // If tab becomes hidden, reduce work
+      document.addEventListener("visibilitychange", ()=>{
+        if (document.hidden){
+          if (timer) clearTimeout(timer);
+        } else {
+          loop();
+        }
+      });
+    }
   </script>
 </body>
 </html>
