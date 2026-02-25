@@ -1,234 +1,475 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tinoco Hybrids | Automotive Repair</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tinoco Hybrids | Hybrid • EV • Gas Vehicle Mechanic in Tijuana</title>
+  <meta name="description" content="Tinoco Hybrids — Hybrid, EV & gasoline vehicle mechanic in Tijuana. Diagnostics, electrical troubleshooting, maintenance & repairs. Call or WhatsApp." />
 
-<style>
-/* ---------- GLOBAL ---------- */
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
+  <style>
+    :root{
+      /* steel / metallic */
+      --steel-0:#14161a;
+      --steel-1:#1b1e23;
+      --steel-2:#242830;
+      --steel-3:#2b3038;
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #4b4f55 0%, #2e3237 45%, #1f2226 100%);
-  color: #111;
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
-}
+      --card:#ffffff;
+      --card2:#f4f6f8;
+      --ink:#0f172a;
+      --muted:#5b6472;
+      --stroke: rgba(15, 23, 42, .10);
 
-/* ---------- LAYOUT ---------- */
-.wrapper {
-  max-width: 1100px;
-  width: 100%;
-}
+      --brand:#c62828;   /* red */
+      --blue:#1976d2;
+      --wa:#25D366;
 
-/* ---------- HEADER ---------- */
-.header {
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 18px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 20px 50px rgba(0,0,0,.35);
-}
+      --radius:20px;
+      --shadow: 0 26px 70px rgba(0,0,0,.35);
+      --max: 1120px;
+    }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--ink);
 
-.brand img {
-  height: 90px;            /* 🔥 BIG LOGO */
-  width: auto;
-  border-radius: 50%;
-  background: transparent;
-}
+      /* uniform “steel” background */
+      background:
+        radial-gradient(900px 520px at 50% -10%, rgba(255,255,255,.10), transparent 55%),
+        radial-gradient(900px 520px at 15% 35%, rgba(255,255,255,.07), transparent 60%),
+        radial-gradient(900px 520px at 85% 45%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, var(--steel-3), var(--steel-1) 45%, var(--steel-0));
+      padding: 34px 18px 70px;
+    }
 
-.brand h1 {
-  margin: 0;
-  font-size: 1.4rem;
-}
+    .wrap{max-width:var(--max); margin:0 auto;}
 
-.brand p {
-  margin: 0;
-  font-size: .9rem;
-  color: #666;
-}
+    /* ---------- TOP BAR ---------- */
+    .topbar{
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 999px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.30);
+      backdrop-filter: blur(10px);
+      padding: 12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
 
-.lang button {
-  border: none;
-  padding: 6px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-}
+    .brandRow{display:flex; align-items:center; gap:14px; min-width:0}
 
-.lang .active {
-  background: #c62828;
-  color: white;
-}
+    /* BIGGER LOGO, ALWAYS ROUND */
+    .logoRing{
+      width: 84px;
+      height: 84px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, #ffffff, #e9edf3);
+      border: 1px solid rgba(15,23,42,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      box-shadow: 0 12px 25px rgba(0,0,0,.18);
+      overflow:hidden;
+    }
+    .logoRing img{
+      width: 76px;
+      height: 76px;
+      border-radius: 999px;  /* prevents square corners */
+      object-fit: cover;
+      display:block;
+    }
 
-/* ---------- CARD ---------- */
-.card {
-  margin-top: 28px;
-  background: #ffffff;
-  border-radius: 26px;
-  padding: 30px;
-  box-shadow: 0 25px 60px rgba(0,0,0,.35);
-}
+    .brandText{min-width:0}
+    .brandName{
+      font-weight: 900;
+      letter-spacing: -.2px;
+      font-size: 1.05rem;
+      margin:0;
+      line-height:1.1;
+    }
+    .brandSub{
+      margin:2px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 64ch;
+    }
 
-.card h2 {
-  margin-top: 0;
-  font-size: 1.9rem;
-}
+    .lang{
+      display:flex;
+      gap:8px;
+      background: rgba(15,23,42,.06);
+      border: 1px solid rgba(15,23,42,.10);
+      border-radius: 999px;
+      padding: 6px;
+      flex: 0 0 auto;
+    }
+    .lang button{
+      border:0;
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight: 800;
+      color: var(--ink);
+      opacity: .75;
+    }
+    .lang button.active{
+      background: linear-gradient(180deg, rgba(198,40,40,.18), rgba(198,40,40,.12));
+      border: 1px solid rgba(198,40,40,.25);
+      opacity: 1;
+    }
 
-.buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 18px;
-}
+    /* ---------- HERO ---------- */
+    .hero{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .logoRing{width:76px;height:76px}
+      .logoRing img{width:68px;height:68px}
+    }
 
-.buttons a {
-  padding: 12px 20px;
-  border-radius: 24px;
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-}
+    .card{
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .pad{padding: 22px}
 
-.call { background: #c62828; }
-.whatsapp { background: #25d366; }
-.directions { background: #1976d2; }
+    .headline{
+      margin: 2px 0 10px;
+      font-size: 2.05rem;
+      letter-spacing: -.6px;
+      line-height: 1.08;
+      font-weight: 950;
+    }
+    .headline .accent{
+      color: var(--brand);
+    }
+    .lead{
+      margin: 0;
+      color: rgba(15,23,42,.74);
+      line-height: 1.6;
+      max-width: 66ch;
+      font-size: 1.02rem;
+    }
 
-/* ---------- INFO ---------- */
-.info {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 22px;
-}
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight: 900;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(15,23,42,.04);
+      color: var(--ink);
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); filter: brightness(1.02)}
+    .btn.call{background: linear-gradient(180deg, #d32f2f, #b71c1c); color: #fff; border-color: rgba(183,28,28,.55)}
+    .btn.wa{background: linear-gradient(180deg, #39e07b, #1fb75a); color: #062012; border-color: rgba(31,183,90,.55)}
+    .btn.map{background: linear-gradient(180deg, #2a7de3, #165cb3); color: #fff; border-color: rgba(22,92,179,.55)}
 
-.box {
-  background: #f6f7f8;
-  border-radius: 18px;
-  padding: 20px;
-}
+    /* right contact card */
+    .sideTitle{margin:0 0 10px; font-weight: 950; letter-spacing: -.2px}
+    .muted{color: rgba(15,23,42,.70); line-height:1.55}
+    .list{margin:10px 0 0; padding-left: 18px; color: rgba(15,23,42,.75); line-height:1.75}
+    .keyline{margin-top:12px; padding-top:12px; border-top: 1px solid rgba(15,23,42,.10)}
 
-/* ---------- GALLERY ---------- */
-.gallery {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
-  gap: 14px;
-}
+    /* ---------- INFO STRIP ---------- */
+    .strip{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 980px){ .strip{grid-template-columns:1fr} }
 
-.gallery img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.25);
-}
+    .box{
+      background: var(--card2);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .box h3{margin:0 0 8px; font-size: 1.05rem}
+    .box ul{margin:0; padding-left:18px; color: rgba(15,23,42,.75); line-height:1.7}
+    .box p{margin:0; color: rgba(15,23,42,.75); line-height:1.7}
 
-/* ---------- MOBILE ---------- */
-@media(max-width:800px){
-  .info { grid-template-columns: 1fr; }
-  .brand img { height: 75px; }
-}
-</style>
+    /* ---------- GALLERY ---------- */
+    .galleryCard{margin-top: 16px}
+    .galleryHead{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .galleryHead h3{margin:0; font-weight: 950; letter-spacing:-.2px}
+    .galleryHead .hint{margin:0; color: rgba(15,23,42,.62); font-size:.95rem}
+
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 1100px){ .gallery{grid-template-columns: repeat(3,1fr)} }
+    @media (max-width: 760px){ .gallery{grid-template-columns: repeat(2,1fr)} }
+    @media (max-width: 460px){ .gallery{grid-template-columns: 1fr} }
+
+    .shot{
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 10px 22px rgba(0,0,0,.14);
+      background: #e9edf3;
+      aspect-ratio: 4 / 3;
+      position:relative;
+    }
+    .shot img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.01);
+      transition: transform .35s ease;
+    }
+    .shot:hover img{transform: scale(1.06)}
+    .shot::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.12));
+      pointer-events:none;
+    }
+
+    /* ---------- FOOT ---------- */
+    .foot{
+      margin-top: 12px;
+      color: rgba(255,255,255,.72);
+      text-align:center;
+      font-size: .95rem;
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrapper">
+  <div class="wrap">
 
-<!-- HEADER -->
-<div class="header">
-  <div class="brand">
-    <img src="tinoco_logo.jpg" alt="Tinoco Hybrids">
-    <div>
-      <h1>Tinoco Hybrids</h1>
-      <p>Hybrid, EV & Gas Vehicle Mechanic · Tijuana</p>
-    </div>
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="brandRow">
+        <div class="logoRing">
+          <img src="tinoco_logo.jpg" alt="Tinoco Hybrids logo">
+        </div>
+        <div class="brandText">
+          <p class="brandName" data-i18n="brandName">Tinoco Hybrids</p>
+          <p class="brandSub" data-i18n="brandSub">Hybrid, EV & Gas Vehicle Mechanic · Tijuana</p>
+        </div>
+      </div>
+
+      <div class="lang" aria-label="Language switcher">
+        <button id="btnEN" class="active" type="button">EN</button>
+        <button id="btnES" type="button">ES</button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <div class="pad">
+          <h1 class="headline" data-i18n="heroTitle">
+            Professional Automotive Repair in <span class="accent">Tijuana</span>
+          </h1>
+          <p class="lead" data-i18n="heroDesc">
+            Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and quality workmanship.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn call" href="tel:+526642705566" data-i18n="call">📞 Call</a>
+            <a class="btn wa" href="https://wa.me/526642705566" target="_blank" rel="noopener" data-i18n="whatsapp">💬 WhatsApp</a>
+            <a class="btn map" href="https://www.google.com/maps" target="_blank" rel="noopener" data-i18n="directions">📍 Directions</a>
+          </div>
+
+          <div class="strip">
+            <div class="box">
+              <h3 data-i18n="servicesTitle">Services</h3>
+              <ul>
+                <li data-i18n="s1">Hybrid & EV diagnostics</li>
+                <li data-i18n="s2">Electrical & sensor troubleshooting</li>
+                <li data-i18n="s3">Inverter & cooling systems</li>
+                <li data-i18n="s4">Brake, suspension & maintenance</li>
+                <li data-i18n="s5">Gasoline vehicle repair</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h3 data-i18n="hoursTitle">Hours</h3>
+              <p>
+                <span data-i18n="monfri"><b>Mon–Fri:</b></span> <span data-i18n="monfriHours">9:00am – 5:00pm</span><br>
+                <span data-i18n="sat"><b>Sat:</b></span> <span data-i18n="satHours">Closed</span><br>
+                <span data-i18n="sun"><b>Sun:</b></span> <span data-i18n="sunHours">Closed</span><br><br>
+                <b data-i18n="phone">Phone / WhatsApp:</b> +52 664 270 5566
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT CONTACT / TRUST -->
+      <aside class="card">
+        <div class="pad">
+          <h3 class="sideTitle" data-i18n="whyTitle">Why customers choose this shop</h3>
+          <p class="muted" data-i18n="whyIntro">
+            Clear communication, careful work, and fair pricing — especially for hybrid & EV diagnostics.
+          </p>
+
+          <ul class="list">
+            <li data-i18n="w1">Honest diagnostics + clear explanation</li>
+            <li data-i18n="w2">Hybrid & EV experience</li>
+            <li data-i18n="w3">Full service for gasoline vehicles</li>
+            <li data-i18n="w4">Clean, professional work</li>
+          </ul>
+
+          <div class="keyline">
+            <p class="muted" style="margin:0" data-i18n="note">
+              Add your exact address + Google Maps share link when ready.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="card galleryCard">
+      <div class="pad">
+        <div class="galleryHead">
+          <h3 data-i18n="galleryTitle">Photos</h3>
+          <p class="hint" data-i18n="galleryHint">Real shop photos build trust fast.</p>
+        </div>
+
+        <div class="gallery">
+          <div class="shot"><img src="1.jpg" alt="Tinoco Hybrids photo 1"></div>
+          <div class="shot"><img src="2.jpg" alt="Tinoco Hybrids photo 2"></div>
+          <div class="shot"><img src="3.jpg" alt="Tinoco Hybrids photo 3"></div>
+          <div class="shot"><img src="4.jpg" alt="Tinoco Hybrids photo 4"></div>
+          <div class="shot"><img src="5.jpg" alt="Tinoco Hybrids photo 5"></div>
+          <div class="shot"><img src="6.jpg" alt="Tinoco Hybrids photo 6"></div>
+          <div class="shot"><img src="7.jpg" alt="Tinoco Hybrids photo 7"></div>
+          <div class="shot"><img src="8.jpg" alt="Tinoco Hybrids photo 8"></div>
+          <div class="shot"><img src="9.jpg" alt="Tinoco Hybrids photo 9"></div>
+          <div class="shot"><img src="10.jpg" alt="Tinoco Hybrids photo 10"></div>
+          <div class="shot"><img src="11.jpg" alt="Tinoco Hybrids photo 11"></div>
+          <div class="shot"><img src="12.jpg" alt="Tinoco Hybrids photo 12"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">© <span id="yr"></span> Tinoco Hybrids</div>
+
   </div>
 
-  <div class="lang">
-    <button class="active" onclick="setLang('en')">EN</button>
-    <button onclick="setLang('es')">ES</button>
-  </div>
-</div>
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
 
-<!-- MAIN CARD -->
-<div class="card">
-  <h2 id="title">Professional Automotive Repair in Tijuana</h2>
-  <p id="desc">
-    Specialized in hybrid and electric vehicles with full service for gasoline cars.
-    Honest diagnostics, modern tools, and quality workmanship.
-  </p>
+    const dict = {
+      en: {
+        brandName: "Tinoco Hybrids",
+        brandSub: "Hybrid, EV & Gas Vehicle Mechanic · Tijuana",
+        heroTitle: 'Professional Automotive Repair in <span class="accent">Tijuana</span>',
+        heroDesc: "Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and quality workmanship.",
+        call: "📞 Call",
+        whatsapp: "💬 WhatsApp",
+        directions: "📍 Directions",
+        servicesTitle: "Services",
+        s1: "Hybrid & EV diagnostics",
+        s2: "Electrical & sensor troubleshooting",
+        s3: "Inverter & cooling systems",
+        s4: "Brake, suspension & maintenance",
+        s5: "Gasoline vehicle repair",
+        hoursTitle: "Hours",
+        monfri: "Mon–Fri:",
+        monfriHours: "9:00am – 5:00pm",
+        sat: "Sat:",
+        satHours: "Closed",
+        sun: "Sun:",
+        sunHours: "Closed",
+        phone: "Phone / WhatsApp:",
+        whyTitle: "Why customers choose this shop",
+        whyIntro: "Clear communication, careful work, and fair pricing — especially for hybrid & EV diagnostics.",
+        w1: "Honest diagnostics + clear explanation",
+        w2: "Hybrid & EV experience",
+        w3: "Full service for gasoline vehicles",
+        w4: "Clean, professional work",
+        note: "Add your exact address + Google Maps share link when ready.",
+        galleryTitle: "Photos",
+        galleryHint: "Real shop photos build trust fast."
+      },
+      es: {
+        brandName: "Tinoco Hybrids",
+        brandSub: "Mecánico de híbridos, eléctricos y gasolina · Tijuana",
+        heroTitle: 'Reparación automotriz profesional en <span class="accent">Tijuana</span>',
+        heroDesc: "Especialistas en vehículos híbridos y eléctricos, con servicio completo para autos de gasolina. Diagnóstico honesto, herramientas modernas y trabajo de calidad.",
+        call: "📞 Llamar",
+        whatsapp: "💬 WhatsApp",
+        directions: "📍 Cómo llegar",
+        servicesTitle: "Servicios",
+        s1: "Diagnóstico de híbridos y eléctricos",
+        s2: "Diagnóstico eléctrico y sensores",
+        s3: "Inversor y sistema de enfriamiento",
+        s4: "Frenos, suspensión y mantenimiento",
+        s5: "Reparación de autos de gasolina",
+        hoursTitle: "Horario",
+        monfri: "Lun–Vie:",
+        monfriHours: "9:00am – 5:00pm",
+        sat: "Sáb:",
+        satHours: "Cerrado",
+        sun: "Dom:",
+        sunHours: "Cerrado",
+        phone: "Tel / WhatsApp:",
+        whyTitle: "Por qué eligen este taller",
+        whyIntro: "Comunicación clara, trabajo cuidadoso y precio justo — especialmente en diagnóstico híbrido y eléctrico.",
+        w1: "Diagnóstico honesto y explicación clara",
+        w2: "Experiencia en híbridos y eléctricos",
+        w3: "Servicio completo para autos de gasolina",
+        w4: "Trabajo limpio y profesional",
+        note: "Cuando gustes, agrega dirección exacta y enlace de Google Maps.",
+        galleryTitle: "Fotos",
+        galleryHint: "Las fotos reales del taller generan confianza."
+      }
+    };
 
-  <div class="buttons">
-    <a class="call" href="tel:+526642705566">Call</a>
-    <a class="whatsapp" href="https://wa.me/526642705566">WhatsApp</a>
-    <a class="directions" href="#">Directions</a>
-  </div>
+    function setLang(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if(dict[lang][key] !== undefined) el.innerHTML = dict[lang][key];
+      });
+      document.getElementById("btnEN").classList.toggle("active", lang==="en");
+      document.getElementById("btnES").classList.toggle("active", lang==="es");
+      localStorage.setItem("tinoco_lang", lang);
+    }
 
-  <div class="info">
-    <div class="box">
-      <h3 id="servicesTitle">Services</h3>
-      <ul id="services">
-        <li>Hybrid & EV diagnostics</li>
-        <li>Electric & sensor troubleshooting</li>
-        <li>Inverter & cooling systems</li>
-        <li>Brake, suspension & maintenance</li>
-        <li>Gasoline vehicle repair</li>
-      </ul>
-    </div>
-
-    <div class="box">
-      <h3 id="hoursTitle">Hours</h3>
-      <p>
-        Mon–Fri: 9:00am – 5:00pm<br>
-        Sat & Sun: Closed<br><br>
-        Phone / WhatsApp: +52 664 270 5566
-      </p>
-    </div>
-  </div>
-
-  <!-- PHOTO GALLERY -->
-  <div class="gallery">
-    <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
-    <img src="5.jpg"><img src="6.jpg"><img src="7.jpg"><img src="8.jpg">
-    <img src="9.jpg"><img src="10.jpg"><img src="11.jpg"><img src="12.jpg">
-  </div>
-</div>
-
-</div>
-
-<script>
-function setLang(lang){
-  document.querySelectorAll(".lang button").forEach(b=>b.classList.remove("active"));
-  event.target.classList.add("active");
-
-  if(lang==="es"){
-    title.innerText="Reparación Automotriz Profesional en Tijuana";
-    desc.innerText="Especialistas en vehículos híbridos y eléctricos con servicio completo para autos de gasolina.";
-    servicesTitle.innerText="Servicios";
-    hoursTitle.innerText="Horario";
-  } else {
-    title.innerText="Professional Automotive Repair in Tijuana";
-    desc.innerText="Specialized in hybrid and electric vehicles with full service for gasoline cars.";
-    servicesTitle.innerText="Services";
-    hoursTitle.innerText="Hours";
-  }
-}
-</script>
-
+    document.getElementById("btnEN").addEventListener("click", ()=>setLang("en"));
+    document.getElementById("btnES").addEventListener("click", ()=>setLang("es"));
+    setLang(localStorage.getItem("tinoco_lang") || "en");
+  </script>
 </body>
 </html>
