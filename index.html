@@ -8,12 +8,25 @@
 
   <style>
     :root{
-      --bg1:#2b3036; --bg2:#1f242a; --bg3:#12161b;
-      --card:#ffffff; --stroke: rgba(0,0,0,.08);
-      --text:#0e1115; --muted:#4a5563;
-      --brand:#b91c1c; --brand2:#1d4ed8; --ok:#25D366;
-      --radius:18px; --shadow: 0 18px 60px rgba(0,0,0,.28);
-      --max: 1080px; --base: 16px;
+      /* steel / metallic background */
+      --bgTop:#3a3f46;
+      --bgMid:#242a31;
+      --bgBot:#171b20;
+
+      --card:#ffffff;
+      --card2:#f5f6f8;
+      --stroke: rgba(0,0,0,.10);
+      --text:#0e1115;
+      --muted:#4a5563;
+
+      --red:#b91c1c;
+      --blue:#1d4ed8;
+      --green:#25D366;
+
+      --radius:20px;
+      --shadow: 0 18px 60px rgba(0,0,0,.30);
+      --shadowSoft: 0 12px 28px rgba(0,0,0,.18);
+      --max: 1080px;
     }
 
     *{box-sizing:border-box}
@@ -21,40 +34,48 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: var(--base);
       color: var(--text);
       background:
-        radial-gradient(1200px 600px at 18% 10%, rgba(255,255,255,.10), transparent 60%),
-        radial-gradient(900px 520px at 85% 25%, rgba(255,255,255,.07), transparent 62%),
-        linear-gradient(180deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+        radial-gradient(1200px 700px at 20% 10%, rgba(255,255,255,.10), transparent 62%),
+        radial-gradient(1000px 700px at 85% 25%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, var(--bgTop), var(--bgMid) 48%, var(--bgBot));
       overflow-x:hidden;
     }
 
-    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 80px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 70px}
+    .stack{margin-top:18px; display:flex; flex-direction:column; gap:16px}
+
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
       gap:14px;
       padding:14px 16px;
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: 20px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.60);
+      border-radius: 22px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
     }
     .brandRow{display:flex; align-items:center; gap:14px; min-width:0}
 
+    /* Bigger logo + fills circle */
+    .logoWrap{
+      width:130px; height:130px; flex:0 0 auto;
+      border-radius: 999px;
+      overflow:hidden;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+      display:grid;
+      place-items:center;
+    }
     .logo{
-      width:120px; height:120px; flex:0 0 auto;
+      width:120px; height:120px;
       object-fit:contain;
-      border-radius:999px;
-      background:transparent;
-      border:0;
-      padding:0;
       display:block;
     }
 
     .brandText{min-width:0}
-    .brandName{font-weight:900; letter-spacing:.2px; font-size:1.1rem; line-height:1.1}
+    .brandName{font-weight:950; letter-spacing:.2px; font-size:1.15rem; line-height:1.1}
     .brandSub{color:var(--muted); font-size:.95rem; margin-top:4px}
 
     .lang{
@@ -70,7 +91,7 @@
       padding:8px 12px;
       border-radius:999px;
       cursor:pointer;
-      font-weight:800;
+      font-weight:900;
       opacity:.7;
     }
     .lang button.active{
@@ -79,24 +100,34 @@
       opacity:1;
     }
 
-    .stack{margin-top:18px; display:flex; flex-direction:column; gap:16px}
-
     .card{
       background: rgba(255,255,255,.95);
-      border: 1px solid rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.65);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadowSoft);
       overflow:hidden;
     }
     .pad{padding:22px}
 
     .heroTitle{
-      font-size: 2.05rem; line-height:1.08; margin:0 0 6px;
-      letter-spacing:-.4px; font-weight:950;
+      font-size: 2.05rem;
+      line-height:1.08;
+      margin:0 0 6px;
+      letter-spacing:-.4px;
+      font-weight: 950;
     }
-    .heroTitle .accent{color: var(--brand)}
-    .tagline{font-weight:900; margin: 0 0 10px; color:#111827;}
-    .heroDesc{color:var(--muted); max-width: 70ch; line-height:1.6; margin:0;}
+    .heroTitle .accent{color: var(--red)}
+    .tagline{
+      font-weight:950;
+      margin: 0 0 10px;
+      color:#111827;
+    }
+    .heroDesc{
+      color:var(--muted);
+      max-width: 72ch;
+      line-height:1.6;
+      margin:0;
+    }
 
     .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
     .btn{
@@ -104,9 +135,8 @@
       padding:12px 16px;
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.85);
       text-decoration:none;
-      font-weight:900;
+      font-weight:950;
       box-shadow: 0 10px 22px rgba(0,0,0,.14);
       transition: transform .15s ease, filter .2s ease;
       user-select:none;
@@ -122,19 +152,15 @@
       grid-template-columns: 1fr 1fr;
       gap:14px;
     }
-    @media (max-width: 860px){
-      .grid2{grid-template-columns:1fr}
-      .logo{width:110px;height:110px}
-    }
-
     .box{
       background: rgba(0,0,0,.03);
       border: 1px solid rgba(0,0,0,.08);
-      border-radius: 14px;
+      border-radius: 16px;
       padding:14px;
     }
     .box h3{margin:0 0 8px; font-size:1rem}
     .box ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.65}
+
     .hoursLine{margin-top:8px; color:var(--muted); line-height:1.6}
 
     .why ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.75}
@@ -151,9 +177,6 @@
       grid-template-columns: repeat(5, 1fr);
       gap:12px;
     }
-    @media (max-width: 980px){ .gallery{grid-template-columns: repeat(4, 1fr);} }
-    @media (max-width: 760px){ .gallery{grid-template-columns: repeat(2, 1fr);} }
-
     .shot{
       border-radius: 14px;
       overflow:hidden;
@@ -174,9 +197,17 @@
     .footer{
       margin-top:16px;
       text-align:center;
-      color: rgba(255,255,255,.85);
-      font-weight:700;
+      color: rgba(255,255,255,.88);
+      font-weight:800;
       letter-spacing:.1px;
+    }
+
+    @media (max-width: 980px){ .gallery{grid-template-columns: repeat(4, 1fr);} }
+    @media (max-width: 760px){ .gallery{grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 860px){
+      .grid2{grid-template-columns:1fr}
+      .logoWrap{width:120px;height:120px}
+      .logo{width:112px;height:112px}
     }
   </style>
 </head>
@@ -186,7 +217,9 @@
 
     <div class="topbar">
       <div class="brandRow">
-        <img class="logo" src="tinoco_logo.jpg" alt="Tinoco Hybrids logo" />
+        <div class="logoWrap">
+          <img class="logo" src="tinoco_logo.jpg" alt="Tinoco Hybrids logo" />
+        </div>
         <div class="brandText">
           <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
           <div class="brandSub" data-i18n="brandSub">Hybrid, EV & Gas Vehicle Mechanic • Tijuana</div>
