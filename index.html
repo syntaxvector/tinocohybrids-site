@@ -1,562 +1,295 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana</title>
-  <meta name="description" content="Tinoco Hybrids — Hybrid vehicle mechanic in Tijuana. Hybrid diagnostics, electrical troubleshooting, maintenance and repairs for Prius and other hybrids. Call or WhatsApp." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana</title>
+<meta name="description" content="Tinoco Hybrids — Professional hybrid vehicle diagnostics and repair in Tijuana. Prius and hybrid specialists. Call or WhatsApp.">
 
-  <style>
-    :root{
-      /* Classy, bright, professional palette (not dark) */
-      --bg1:#f6f8fb;
-      --bg2:#eef2f7;
-      --card:#ffffffcc;
-      --stroke:rgba(20,30,40,.10);
-      --stroke2:rgba(20,30,40,.08);
-      --text:rgba(12,18,25,.92);
-      --muted:rgba(12,18,25,.70);
-      --muted2:rgba(12,18,25,.56);
+<style>
+:root{
+  --bg1:#f4f7fb;
+  --bg2:#e9eef5;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --stroke:rgba(15,23,42,.12);
+  --brand:#dc2626;
+  --brand2:#2563eb;
+  --ok:#22c55e;
+  --radius:18px;
+  --shadow:0 18px 45px rgba(15,23,42,.12);
+}
 
-      /* Brand accents */
-      --brand:#e53935;  /* refined red */
-      --brand2:#0ea5e9; /* clean blue */
-      --ok:#25D366;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(900px 400px at 15% 10%, rgba(37,99,235,.10), transparent 60%),
+    radial-gradient(900px 400px at 85% 15%, rgba(220,38,38,.08), transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+}
 
-      --shadow: 0 18px 55px rgba(10,20,30,.12);
-      --radius: 18px;
-      --max: 1120px;
-      --base: 18px;
-    }
+.wrap{
+  max-width:1120px;
+  margin:auto;
+  padding:26px 18px 80px;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: var(--base);
-      color: var(--text);
-      background:
-        radial-gradient(1200px 520px at 18% 8%, rgba(14,165,233,.12), transparent 60%),
-        radial-gradient(1000px 520px at 86% 14%, rgba(229,57,53,.10), transparent 62%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      overflow-x:hidden;
-    }
+a{color:inherit;text-decoration:none}
 
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 80px}
+/* Top bar */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:14px 18px;
+  background:#fff;
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  box-shadow:var(--shadow);
+  position:sticky;
+  top:14px;
+  z-index:10;
+}
 
-    /* Top bar */
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding:12px 14px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid var(--stroke);
-      border-radius: 999px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(10,20,30,.08);
-      position: sticky; top:14px; z-index:20;
-    }
-    .brandRow{display:flex; align-items:center; gap:14px; min-width:0}
-    .logo{
-      width:84px; height:84px; flex:0 0 auto;
-      object-fit:contain;
-      filter: drop-shadow(0 10px 16px rgba(10,20,30,.18));
-    }
-    .brandText{min-width:0}
-    .brandName{font-weight:900; letter-spacing:.2px; font-size:1.05rem; line-height:1.1}
-    .brandSub{color:var(--muted); font-size:.95rem; margin-top:2px}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-    .lang{
-      display:flex; gap:8px; align-items:center; flex:0 0 auto;
-      background: rgba(255,255,255,.75);
-      border: 1px solid var(--stroke);
-      border-radius: 999px;
-      padding:6px;
-    }
-    .lang button{
-      border:0; color:var(--text);
-      background:transparent; padding:8px 12px; border-radius:999px;
-      cursor:pointer; font-weight:800;
-      opacity:.70;
-      transition: background .15s ease, opacity .15s ease;
-    }
-    .lang button.active{
-      background: linear-gradient(90deg, rgba(229,57,53,.14), rgba(14,165,233,.14));
-      border: 1px solid rgba(20,30,40,.10);
-      opacity:1;
-    }
+.logo{
+  width:82px;
+  height:auto;
+  object-fit:contain;
+}
 
-    /* Hero grid */
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:16px;
-      align-items:start;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-      .logo{width:70px;height:70px}
-    }
+.brand h1{
+  font-size:1.05rem;
+  margin:0;
+  font-weight:900;
+}
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .cardPad{padding:22px}
+.brand span{
+  display:block;
+  font-size:.9rem;
+  color:var(--muted);
+}
 
-    /* Subtle, classy animated accent (NOT gears) */
-    .heroAccent{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      opacity:.85;
-    }
-    .heroAccent::before{
-      content:"";
-      position:absolute;
-      left:-20%;
-      top:-40%;
-      width: 140%;
-      height: 120%;
-      background:
-        radial-gradient(520px 320px at 30% 35%, rgba(14,165,233,.18), transparent 60%),
-        radial-gradient(520px 320px at 70% 55%, rgba(229,57,53,.14), transparent 62%);
-      filter: blur(2px);
-    }
-    .heroAccent::after{
-      content:"";
-      position:absolute;
-      left:-40%;
-      top:12px;
-      width: 180%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(229,57,53,.55), rgba(14,165,233,.55), transparent);
-      opacity:.55;
-      animation: sweep 7.5s ease-in-out infinite;
-    }
-    @keyframes sweep{
-      0%{transform: translateX(-8%)}
-      50%{transform: translateX(8%)}
-      100%{transform: translateX(-8%)}
-    }
+.lang button{
+  border:0;
+  background:transparent;
+  font-weight:800;
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--muted);
+}
 
-    .heroTitle{
-      font-size: 2.35rem;
-      line-height:1.05;
-      margin:2px 0 10px;
-      letter-spacing:-.6px;
-      font-weight:950;
-    }
-    .heroTitle .accent{
-      background: linear-gradient(90deg, var(--brand), var(--brand2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    .heroDesc{color:var(--muted); max-width: 64ch; font-size:1.05rem; line-height:1.6}
+.lang .active{
+  background:linear-gradient(90deg,rgba(220,38,38,.15),rgba(37,99,235,.15));
+  color:var(--text);
+}
 
-    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
-    .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(20,30,40,.12);
-      background: rgba(255,255,255,.70);
-      text-decoration:none;
-      font-weight:900;
-      box-shadow: 0 10px 18px rgba(10,20,30,.10);
-      transition: transform .15s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.85)}
-    .btn.primary{
-      background: linear-gradient(90deg, rgba(229,57,53,.96), rgba(229,57,53,.80));
-      border-color: rgba(229,57,53,.55);
-      color:#fff;
-    }
-    .btn.whatsapp{
-      background: linear-gradient(90deg, rgba(37,211,102,.96), rgba(37,211,102,.78));
-      border-color: rgba(37,211,102,.55);
-      color:#062012;
-    }
-    .btn.ghost{
-      background: rgba(255,255,255,.65);
-    }
+/* Layout */
+.grid{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:18px;
+}
 
-    .pillRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
-    .pill{
-      font-size:.88rem;
-      padding:8px 10px;
-      border-radius:999px;
-      border: 1px solid rgba(20,30,40,.10);
-      background: rgba(255,255,255,.68);
-      color: var(--muted);
-      white-space:nowrap;
-    }
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+}
 
-    /* Mini cards */
-    .miniGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-    @media (max-width: 700px){ .miniGrid{grid-template-columns:1fr} }
-    .mini{
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(20,30,40,.10);
-      border-radius: 14px;
-      padding:14px;
-      min-height:110px;
-      box-shadow: 0 10px 18px rgba(10,20,30,.06);
-    }
-    .mini h3{margin:0 0 6px; font-size:1rem}
-    .mini p{margin:0; color:var(--muted); font-size:.98rem; line-height:1.5}
+/* Cards */
+.card{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:26px;
+}
 
-    /* Right column */
-    .sideTitle{margin:0 0 8px; font-weight:950; letter-spacing:-.2px}
-    .list{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7}
-    .small{color:var(--muted2); font-size:.95rem; line-height:1.55}
-    .contactLine{
-      margin-top:12px;
-      padding-top:12px;
-      border-top: 1px solid rgba(20,30,40,.10);
-      color: var(--muted);
-      font-size:1rem;
-    }
+.hero h2{
+  font-size:2.4rem;
+  line-height:1.1;
+  margin:0 0 10px;
+  font-weight:900;
+}
 
-    /* Section grid */
-    .grid2{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-    }
-    @media (max-width: 980px){ .grid2{grid-template-columns:1fr} }
+.hero h2 span{
+  background:linear-gradient(90deg,var(--brand),var(--brand2));
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-    .foot{
-      margin-top:14px;
-      color: var(--muted2);
-      font-size:.95rem;
-      line-height:1.6;
-    }
-    .badge{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(20,30,40,.10);
-      background: rgba(255,255,255,.74);
-      color: var(--muted);
-      font-size:.92rem;
-      margin-top:10px;
-      box-shadow: 0 10px 18px rgba(10,20,30,.06);
-    }
+.hero p{
+  color:var(--muted);
+  max-width:62ch;
+  font-size:1.05rem;
+  line-height:1.6;
+}
 
-    /* Accessibility: reduce motion */
-    @media (prefers-reduced-motion: reduce){
-      .heroAccent::after{animation:none}
-      .btn{transition:none}
-    }
-  </style>
+.cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.btn{
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:900;
+  border:1px solid var(--stroke);
+  background:#fff;
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.btn.primary{
+  background:linear-gradient(90deg,var(--brand),#b91c1c);
+  color:#fff;
+  border-color:var(--brand);
+}
+
+.btn.whatsapp{
+  background:linear-gradient(90deg,var(--ok),#16a34a);
+  color:#052e16;
+  border-color:var(--ok);
+}
+
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+
+.pill{
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.88rem;
+  background:#f8fafc;
+  border:1px solid var(--stroke);
+  color:var(--muted);
+}
+
+/* Lists */
+h3{
+  margin:0 0 10px;
+  font-size:1.2rem;
+  font-weight:900;
+}
+
+ul{
+  margin:0;
+  padding-left:18px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.section{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+@media(max-width:900px){
+  .section{grid-template-columns:1fr}
+}
+
+.footer-note{
+  margin-top:12px;
+  color:#64748b;
+  font-size:.95rem;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- TOP BAR -->
-    <div class="topbar">
-      <div class="brandRow">
-        <img class="logo" src="tinoco_logo.jpg" alt="Tinoco Hybrids logo" />
-        <div class="brandText">
-          <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
-          <div class="brandSub" data-i18n="brandSub">Hybrid Vehicle Mechanic • Tijuana</div>
-        </div>
-      </div>
-
-      <div class="lang" aria-label="Language switcher">
-        <button id="btnEN" class="active" type="button">EN</button>
-        <button id="btnES" type="button">ES</button>
+  <div class="topbar">
+    <div class="brand">
+      <img src="tinoco_logo.jpg" class="logo" alt="Tinoco Hybrids">
+      <div>
+        <h1>Tinoco Hybrids</h1>
+        <span>Hybrid Vehicle Mechanic • Tijuana</span>
       </div>
     </div>
-
-    <!-- HERO -->
-    <div class="grid">
-      <div class="card">
-        <div class="heroAccent" aria-hidden="true"></div>
-
-        <div class="cardPad">
-          <div class="heroTitle" data-i18n="heroTitle">
-            Hybrid Vehicle Mechanic in <span class="accent">Tijuana</span>
-          </div>
-          <div class="heroDesc" data-i18n="heroDesc">
-            Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations, and clear explanations.
-          </div>
-
-          <div class="ctaRow">
-            <a class="btn primary" href="tel:+526642705566" data-i18n="callNow">📞 Call Now</a>
-            <a class="btn whatsapp" href="https://wa.me/526642705566" target="_blank" rel="noopener" data-i18n="whatsapp">💬 WhatsApp</a>
-            <!-- Replace with your real Google Maps share link later -->
-            <a class="btn ghost" href="https://www.google.com/maps" target="_blank" rel="noopener" data-i18n="directions">📍 Get Directions</a>
-          </div>
-
-          <div class="pillRow">
-            <div class="pill" data-i18n="pill1">Hybrid Diagnostics</div>
-            <div class="pill" data-i18n="pill2">Prius + Other Hybrids</div>
-            <div class="pill" data-i18n="pill3">Electrical & Sensor Issues</div>
-            <div class="pill" data-i18n="pill4">Maintenance & Repairs</div>
-          </div>
-
-          <div class="miniGrid">
-            <div class="mini">
-              <h3 data-i18n="m1t">Check Engine / Hybrid Light</h3>
-              <p data-i18n="m1d">Scan, diagnose, and fix the real issue — not guesswork.</p>
-            </div>
-            <div class="mini">
-              <h3 data-i18n="m2t">Electrical Troubleshooting</h3>
-              <p data-i18n="m2d">Sensors, wiring, warning lights, performance issues.</p>
-            </div>
-            <div class="mini">
-              <h3 data-i18n="m3t">Service & Repairs</h3>
-              <p data-i18n="m3d">Brakes, cooling, suspension, maintenance, and more.</p>
-            </div>
-          </div>
-
-          <div class="badge" data-i18n="trustBadge">✅ Clear diagnostics • Honest pricing • Fast turnaround</div>
-        </div>
-      </div>
-
-      <!-- RIGHT COLUMN -->
-      <div class="card">
-        <div class="cardPad">
-          <h3 class="sideTitle" data-i18n="servicesTitle">Services</h3>
-          <div class="small" data-i18n="servicesIntro">
-            Hybrid vehicle mechanic (not a “battery-only” shop). Full diagnostics, electrical, and repair work.
-          </div>
-          <ul class="list">
-            <li data-i18n="s1">Hybrid diagnostics (warning lights / performance issues)</li>
-            <li data-i18n="s2">Electrical & sensor troubleshooting</li>
-            <li data-i18n="s3">Inverter / cooling system checks</li>
-            <li data-i18n="s4">Brake service, suspension, general maintenance</li>
-            <li data-i18n="s5">Prius-focused repairs + other hybrids</li>
-          </ul>
-
-          <div class="contactLine">
-            <div><strong data-i18n="phoneLabel">Phone / WhatsApp:</strong> <span>+52 664 270 5566</span></div>
-            <div class="small" style="margin-top:6px" data-i18n="noteDirections">
-              Add the exact address + Google Maps link when ready.
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="lang">
+      <button class="active">EN</button>
+      <button>ES</button>
     </div>
-
-    <!-- LOWER SECTIONS -->
-    <div class="grid2">
-
-      <div class="card">
-        <div class="cardPad">
-          <h3 class="sideTitle" data-i18n="whyTitle">Why customers choose Tinoco Hybrids</h3>
-          <ul class="list">
-            <li data-i18n="w1">Honest diagnostics + clear explanation</li>
-            <li data-i18n="w2">Hybrid-focused experience</li>
-            <li data-i18n="w3">Fair pricing vs. U.S. repairs</li>
-            <li data-i18n="w4">Fast turnaround (depends on parts)</li>
-          </ul>
-          <div class="foot" data-i18n="whyFoot">
-            Want to add a warranty line or “same-day diagnostics”? Tell me what he offers and I’ll plug it in.
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="cardPad">
-          <h3 class="sideTitle" data-i18n="hoursTitle">Hours</h3>
-          <ul class="list">
-            <li><strong data-i18n="monfri">Mon–Fri:</strong> <span data-i18n="hoursMonFri">9:00am – 5:00pm</span></li>
-            <li><strong data-i18n="sat">Sat:</strong> <span data-i18n="hoursSat">Closed</span></li>
-            <li><strong data-i18n="sun">Sun:</strong> <span data-i18n="hoursSun">Closed</span></li>
-          </ul>
-          <div class="foot" data-i18n="hoursFoot">
-            If he’s open Saturdays sometimes, tell me and I’ll update it.
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="cardPad">
-          <h3 class="sideTitle" data-i18n="locationTitle">Location</h3>
-          <div class="small" data-i18n="locationIntro">
-            Paste the Google Maps share link and we’ll connect the “Get Directions” button to it.
-          </div>
-          <div class="ctaRow" style="margin-top:12px">
-            <a class="btn ghost" href="https://www.google.com/maps" target="_blank" rel="noopener" data-i18n="openMaps">🗺️ Open in Google Maps</a>
-          </div>
-          <div class="foot" data-i18n="seoNote">
-            Once your domain points to GitHub Pages, the site loads immediately. Google search results can take longer to appear.
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="cardPad">
-          <h3 class="sideTitle" data-i18n="nextTitle">Next easy upgrades</h3>
-          <ul class="list">
-            <li data-i18n="n1">Add the address + real Google Maps link</li>
-            <li data-i18n="n2">Add 3–6 real shop photos for instant trust</li>
-            <li data-i18n="n3">Add a short “What to bring” checklist (VIN, symptoms, photos)</li>
-            <li data-i18n="n4">Add “Call / WhatsApp” at the bottom (sticky on mobile)</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
-  <script>
-    // ---------- Language toggle ----------
-    const dict = {
-      en: {
-        brandName: "Tinoco Hybrids",
-        brandSub: "Hybrid Vehicle Mechanic • Tijuana",
+  <div class="grid">
+    <div class="card hero">
+      <h2>Hybrid Vehicle Mechanic in <span>Tijuana</span></h2>
+      <p>
+        Professional diagnostics and repair for hybrid vehicles.
+        Specializing in Prius and other hybrid systems — electrical,
+        performance, and maintenance work done right.
+      </p>
 
-        heroTitle: 'Hybrid Vehicle Mechanic in <span class="accent">Tijuana</span>',
-        heroDesc: "Diagnostics and repairs for Prius and many other hybrids. Fast service, honest recommendations, and clear explanations.",
-        callNow: "📞 Call Now",
-        whatsapp: "💬 WhatsApp",
-        directions: "📍 Get Directions",
-        pill1: "Hybrid Diagnostics",
-        pill2: "Prius + Other Hybrids",
-        pill3: "Electrical & Sensor Issues",
-        pill4: "Maintenance & Repairs",
-        m1t: "Check Engine / Hybrid Light",
-        m1d: "Scan, diagnose, and fix the real issue — not guesswork.",
-        m2t: "Electrical Troubleshooting",
-        m2d: "Sensors, wiring, warning lights, performance issues.",
-        m3t: "Service & Repairs",
-        m3d: "Brakes, cooling, suspension, maintenance, and more.",
-        trustBadge: "✅ Clear diagnostics • Honest pricing • Fast turnaround",
+      <div class="cta">
+        <a href="tel:+526642705566" class="btn primary">📞 Call Now</a>
+        <a href="https://wa.me/526642705566" class="btn whatsapp">💬 WhatsApp</a>
+        <a href="https://www.google.com/maps" class="btn">📍 Directions</a>
+      </div>
 
-        servicesTitle: "Services",
-        servicesIntro: "Hybrid vehicle mechanic (not a “battery-only” shop). Full diagnostics, electrical, and repair work.",
-        s1: "Hybrid diagnostics (warning lights / performance issues)",
-        s2: "Electrical & sensor troubleshooting",
-        s3: "Inverter / cooling system checks",
-        s4: "Brake service, suspension, general maintenance",
-        s5: "Prius-focused repairs + other hybrids",
-        phoneLabel: "Phone / WhatsApp:",
-        noteDirections: "Add the exact address + Google Maps link when ready.",
+      <div class="pills">
+        <div class="pill">Hybrid Diagnostics</div>
+        <div class="pill">Electrical & Sensors</div>
+        <div class="pill">Prius & Hybrid Repair</div>
+        <div class="pill">Maintenance & Service</div>
+      </div>
+    </div>
 
-        whyTitle: "Why customers choose Tinoco Hybrids",
-        w1: "Honest diagnostics + clear explanation",
-        w2: "Hybrid-focused experience",
-        w3: "Fair pricing vs. U.S. repairs",
-        w4: "Fast turnaround (depends on parts)",
-        whyFoot: "Want to add a warranty line or “same-day diagnostics”? Tell me what he offers and I’ll plug it in.",
+    <div class="card">
+      <h3>Services</h3>
+      <ul>
+        <li>Hybrid system diagnostics & warning lights</li>
+        <li>Electrical and sensor troubleshooting</li>
+        <li>Inverter and cooling system checks</li>
+        <li>Brake service and general maintenance</li>
+        <li>Prius and other hybrid repairs</li>
+      </ul>
 
-        hoursTitle: "Hours",
-        monfri: "Mon–Fri:",
-        sat: "Sat:",
-        sun: "Sun:",
-        hoursMonFri: "9:00am – 5:00pm",
-        hoursSat: "Closed",
-        hoursSun: "Closed",
-        hoursFoot: "If he’s open Saturdays sometimes, tell me and I’ll update it.",
+      <div class="footer-note">
+        Hybrid mechanic — not a battery-only shop.
+      </div>
+    </div>
+  </div>
 
-        locationTitle: "Location",
-        locationIntro: "Paste the Google Maps share link and we’ll connect the “Get Directions” button to it.",
-        openMaps: "🗺️ Open in Google Maps",
-        seoNote: "Once your domain points to GitHub Pages, the site loads immediately. Google search results can take longer to appear.",
+  <div class="section">
+    <div class="card">
+      <h3>Why Customers Choose Tinoco Hybrids</h3>
+      <ul>
+        <li>Honest diagnostics and clear explanations</li>
+        <li>Hybrid-focused experience</li>
+        <li>Fair pricing compared to U.S. repairs</li>
+        <li>Fast turnaround depending on parts</li>
+      </ul>
+    </div>
 
-        nextTitle: "Next easy upgrades",
-        n1: "Add the address + real Google Maps link",
-        n2: "Add 3–6 real shop photos for instant trust",
-        n3: "Add a short “What to bring” checklist (VIN, symptoms, photos)",
-        n4: "Add “Call / WhatsApp” at the bottom (sticky on mobile)"
-      },
-      es: {
-        brandName: "Tinoco Hybrids",
-        brandSub: "Mecánico de vehículos híbridos • Tijuana",
+    <div class="card">
+      <h3>Hours</h3>
+      <ul>
+        <li><strong>Mon–Fri:</strong> 9:00am – 5:00pm</li>
+        <li><strong>Sat:</strong> Closed</li>
+        <li><strong>Sun:</strong> Closed</li>
+      </ul>
+    </div>
+  </div>
 
-        heroTitle: 'Mecánico de híbridos en <span class="accent">Tijuana</span>',
-        heroDesc: "Diagnóstico y reparación para Prius y muchos otros híbridos. Servicio rápido, recomendaciones honestas y explicación clara.",
-        callNow: "📞 Llamar",
-        whatsapp: "💬 WhatsApp",
-        directions: "📍 Cómo llegar",
-        pill1: "Diagnóstico híbrido",
-        pill2: "Prius y otros híbridos",
-        pill3: "Eléctrico y sensores",
-        pill4: "Mantenimiento y reparaciones",
-        m1t: "Check Engine / Luz híbrida",
-        m1d: "Escaneo y diagnóstico real — sin adivinar.",
-        m2t: "Diagnóstico eléctrico",
-        m2d: "Sensores, cableado, luces, problemas de rendimiento.",
-        m3t: "Servicio y reparaciones",
-        m3d: "Frenos, enfriamiento, suspensión, mantenimiento y más.",
-        trustBadge: "✅ Diagnóstico claro • Precio justo • Servicio rápido",
-
-        servicesTitle: "Servicios",
-        servicesIntro: "Mecánico de vehículos híbridos (no solo baterías). Diagnóstico completo, eléctrico y reparaciones.",
-        s1: "Diagnóstico híbrido (luces / problemas de rendimiento)",
-        s2: "Diagnóstico eléctrico y sensores",
-        s3: "Revisión de inverter / sistema de enfriamiento",
-        s4: "Frenos, suspensión, mantenimiento general",
-        s5: "Reparaciones para Prius y otros híbridos",
-        phoneLabel: "Tel / WhatsApp:",
-        noteDirections: "Agrega dirección exacta y enlace de Google Maps cuando esté listo.",
-
-        whyTitle: "Por qué eligen Tinoco Hybrids",
-        w1: "Diagnóstico honesto y explicación clara",
-        w2: "Experiencia en híbridos",
-        w3: "Precio justo vs. EE.UU.",
-        w4: "Entrega rápida (según refacciones)",
-        whyFoot: "¿Quieres agregar garantía o “diagnóstico el mismo día”? Dime lo que ofrece y lo agrego.",
-
-        hoursTitle: "Horario",
-        monfri: "Lun–Vie:",
-        sat: "Sáb:",
-        sun: "Dom:",
-        hoursMonFri: "9:00am – 5:00pm",
-        hoursSat: "Cerrado",
-        hoursSun: "Cerrado",
-        hoursFoot: "Si abre algunos sábados, dime y lo actualizo.",
-
-        locationTitle: "Ubicación",
-        locationIntro: "Pega el enlace de Google Maps y conectamos el botón de “Cómo llegar”.",
-        openMaps: "🗺️ Abrir en Google Maps",
-        seoNote: "Cuando el dominio apunte a GitHub Pages, el sitio carga al instante. Google puede tardar más en mostrarlo.",
-
-        nextTitle: "Próximas mejoras fáciles",
-        n1: "Agregar la dirección + enlace real de Google Maps",
-        n2: "Agregar 3–6 fotos reales del taller para confianza",
-        n3: "Agregar lista corta: qué traer (VIN, síntomas, fotos)",
-        n4: "Agregar botones “Llamar / WhatsApp” al final (fijo en móvil)"
-      }
-    };
-
-    function setLang(lang){
-      document.documentElement.lang = lang;
-      const nodes = document.querySelectorAll("[data-i18n]");
-      nodes.forEach(n=>{
-        const key = n.getAttribute("data-i18n");
-        if(dict[lang][key] !== undefined){
-          n.innerHTML = dict[lang][key];
-        }
-      });
-      document.getElementById("btnEN").classList.toggle("active", lang==="en");
-      document.getElementById("btnES").classList.toggle("active", lang==="es");
-      localStorage.setItem("tinoco_lang", lang);
-    }
-
-    document.getElementById("btnEN").addEventListener("click", ()=>setLang("en"));
-    document.getElementById("btnES").addEventListener("click", ()=>setLang("es"));
-    setLang(localStorage.getItem("tinoco_lang") || "en");
-  </script>
+</div>
 </body>
 </html>
