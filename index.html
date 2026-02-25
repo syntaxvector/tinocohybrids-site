@@ -7,40 +7,38 @@
 
 <style>
 :root{
-  --steel1:#eef1f5;
-  --steel2:#d5dae1;
-  --steel3:#bfc6cf;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
+  --steel-dark:#2b2f36;
+  --steel-mid:#3a3f47;
+  --steel-light:#4a505a;
+  --card:#f8fafc;
+  --text:#0f172a;
+  --muted:#475569;
   --accent:#dc2626;
   --radius:18px;
-  --shadow:0 20px 40px rgba(0,0,0,.12);
+  --shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
   background:
-    radial-gradient(1200px 500px at 20% 0%, rgba(255,255,255,.65), transparent 60%),
-    radial-gradient(900px 600px at 80% 10%, rgba(255,255,255,.45), transparent 65%),
-    linear-gradient(180deg,var(--steel1),var(--steel2),var(--steel3));
+    linear-gradient(180deg,var(--steel-dark),var(--steel-mid),var(--steel-dark));
+  color:var(--text);
 }
 
-/* subtle brushed metal */
+/* brushed metal texture */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:repeating-linear-gradient(
     90deg,
-    rgba(0,0,0,.04) 0px,
-    rgba(0,0,0,.04) 1px,
-    transparent 3px,
-    transparent 7px
+    rgba(255,255,255,.04) 0px,
+    rgba(255,255,255,.04) 1px,
+    transparent 4px,
+    transparent 8px
   );
   opacity:.25;
   pointer-events:none;
@@ -52,9 +50,9 @@ body::before{
   padding:28px 18px 80px;
 }
 
-/* Header */
+/* HEADER */
 .topbar{
-  background:#fff;
+  background:#ffffff;
   border-radius:999px;
   padding:14px 18px;
   display:flex;
@@ -90,7 +88,7 @@ body::before{
 
 .lang button{
   border:none;
-  background:#f3f4f6;
+  background:#e5e7eb;
   padding:6px 10px;
   border-radius:999px;
   font-weight:700;
@@ -103,13 +101,15 @@ body::before{
   color:#fff;
 }
 
-/* Hero */
+/* HERO */
 .hero{
-  margin-top:24px;
+  margin-top:26px;
   background:var(--card);
   border-radius:var(--radius);
-  padding:26px;
+  padding:28px;
   box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
 }
 
 .hero h2{
@@ -141,12 +141,33 @@ body::before{
 .whatsapp{background:#16a34a}
 .maps{background:#2563eb}
 
-/* Info cards */
+/* REAL GEAR */
+.gear-wrap{
+  position:absolute;
+  right:26px;
+  bottom:26px;
+  width:140px;
+  height:140px;
+  opacity:.18;
+}
+
+.gear{
+  width:100%;
+  height:100%;
+  animation:spin 16s linear infinite;
+  transform-origin:50% 50%;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* INFO GRID */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:16px;
-  margin-top:20px;
+  margin-top:22px;
 }
 
 .card{
@@ -166,7 +187,7 @@ body::before{
   color:var(--muted);
 }
 
-/* Gallery */
+/* GALLERY */
 .gallery{
   margin-top:26px;
   display:grid;
@@ -179,7 +200,7 @@ body::before{
   height:180px;
   object-fit:cover;
   border-radius:14px;
-  box-shadow:0 12px 24px rgba(0,0,0,.15);
+  box-shadow:0 12px 24px rgba(0,0,0,.25);
 }
 </style>
 </head>
@@ -215,6 +236,18 @@ body::before{
     <a href="https://wa.me/526642705566" class="whatsapp">💬 WhatsApp</a>
     <a href="https://maps.google.com" class="maps">📍 Directions</a>
   </div>
+
+  <!-- MECHANICALLY CORRECT GEAR -->
+  <div class="gear-wrap">
+    <svg class="gear" viewBox="0 0 100 100">
+      <path d="
+        M50 10
+        l6 0 3 8 8 3 6-4 4 4-4 6 3 8 8 3 0 6-8 3-3 8 4 6-4 4-6-4-8 3-3 8-6 0-3-8-8-3-6 4-4-4 4-6-3-8-8-3 0-6 8-3 3-8-4-6 4-4 6 4 8-3z
+      "
+      fill="#9ca3af"/>
+      <circle cx="50" cy="50" r="16" fill="#374151"/>
+    </svg>
+  </div>
 </div>
 
 <!-- INFO -->
@@ -232,7 +265,7 @@ body::before{
 
   <div class="card">
     <h3 id="hoursTitle">Hours</h3>
-    <ul id="hours">
+    <ul>
       <li>Mon–Fri: 9:00am – 5:00pm</li>
       <li>Sat: Closed</li>
       <li>Sun: Closed</li>
@@ -243,60 +276,48 @@ body::before{
 
 <!-- GALLERY -->
 <div class="gallery">
-  <script>
-    for(let i=1;i<=12;i++){
-      document.write(`<img src="${i}.jpg" alt="Shop photo ${i}">`);
-    }
-  </script>
+<script>
+for(let i=1;i<=12;i++){
+  document.write(`<img src="${i}.jpg" alt="Shop photo ${i}">`);
+}
+</script>
 </div>
 
 </div>
 
 <script>
-const en = {
-  subtitle:"Hybrid, EV & Gas Vehicle Mechanic · Tijuana",
-  title:"Professional Automotive Repair in Tijuana",
-  desc:"Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and quality workmanship.",
-  servicesTitle:"Services",
-  services:[
-    "Hybrid & EV diagnostics",
-    "Electrical & sensor troubleshooting",
-    "Inverter & cooling systems",
-    "Brake, suspension & maintenance",
-    "Gasoline vehicle repair"
-  ],
-  hoursTitle:"Hours"
+const en={
+ subtitle:"Hybrid, EV & Gas Vehicle Mechanic · Tijuana",
+ title:"Professional Automotive Repair in Tijuana",
+ desc:"Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and quality workmanship.",
+ services:["Hybrid & EV diagnostics","Electrical & sensor troubleshooting","Inverter & cooling systems","Brake, suspension & maintenance","Gasoline vehicle repair"],
+ hours:"Hours"
 };
 
-const es = {
-  subtitle:"Mecánico de vehículos híbridos, eléctricos y gasolina · Tijuana",
-  title:"Servicio Profesional Automotriz en Tijuana",
-  desc:"Especialistas en vehículos híbridos y eléctricos, con servicio completo para autos a gasolina. Diagnóstico honesto y trabajo de calidad.",
-  servicesTitle:"Servicios",
-  services:[
-    "Diagnóstico híbrido y EV",
-    "Eléctrico y sensores",
-    "Inverter y enfriamiento",
-    "Frenos, suspensión y mantenimiento",
-    "Reparación de autos a gasolina"
-  ],
-  hoursTitle:"Horario"
+const es={
+ subtitle:"Mecánico de vehículos híbridos, eléctricos y gasolina · Tijuana",
+ title:"Servicio Profesional Automotriz en Tijuana",
+ desc:"Especialistas en vehículos híbridos y eléctricos, con servicio completo para autos a gasolina. Diagnóstico honesto y trabajo de calidad.",
+ services:["Diagnóstico híbrido y EV","Eléctrico y sensores","Inverter y enfriamiento","Frenos, suspensión y mantenimiento","Reparación de autos a gasolina"],
+ hours:"Horario"
 };
 
-function setLang(lang){
-  const d = lang==="en"?en:es;
-  subtitle.textContent=d.subtitle;
-  title.textContent=d.title;
-  desc.textContent=d.desc;
-  servicesTitle.textContent=d.servicesTitle;
-  services.innerHTML=d.services.map(s=>`<li>${s}</li>`).join("");
-  hoursTitle.textContent=d.hoursTitle;
-  document.getElementById("en").classList.toggle("active",lang==="en");
-  document.getElementById("es").classList.toggle("active",lang==="es");
+function setLang(l){
+ const d=l==="en"?en:es;
+ subtitle.textContent=d.subtitle;
+ title.textContent=d.title;
+ desc.textContent=d.desc;
+ services.innerHTML=d.services.map(s=>`<li>${s}</li>`).join("");
+ servicesTitle.textContent=l==="en"?"Services":"Servicios";
+ hoursTitle.textContent=d.hours;
+ enBtn.classList.toggle("active",l==="en");
+ esBtn.classList.toggle("active",l==="es");
 }
 
-en.onclick=()=>setLang("en");
-es.onclick=()=>setLang("es");
+const enBtn=document.getElementById("en");
+const esBtn=document.getElementById("es");
+enBtn.onclick=()=>setLang("en");
+esBtn.onclick=()=>setLang("es");
 </script>
 
 </body>
