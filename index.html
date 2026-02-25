@@ -136,11 +136,7 @@
       font-size:17px;
     }
 
-    .lang{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .lang{ display:flex; gap:10px; flex-wrap:wrap; }
     .lang button{
       border:1px solid var(--stroke);
       background:rgba(255,255,255,.05);
@@ -268,7 +264,7 @@
     .reveal{ opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.show{ opacity:1; transform: translateY(0); }
 
-    /* ===== 3-GEAR RIG + RANDOM LIGHTNING ===== */
+    /* ===== 3-GEAR RIG + LIGHTNING ===== */
     .gearRig{
       position:absolute;
       right:-18px;
@@ -286,7 +282,6 @@
     @keyframes spinCW { to{ transform: rotate(360deg); } }
     @keyframes spinCCW{ to{ transform: rotate(-360deg); } }
 
-    /* Lightning layer */
     .lightningLayer{
       position:absolute;
       inset:0;
@@ -311,8 +306,6 @@
         drop-shadow(0 0 18px rgba(255,43,214,.55))
         drop-shadow(0 0 28px rgba(255,138,31,.45));
     }
-
-    /* big colorful bolt svg scales nicely */
     .bolt svg{ width:100%; height:100%; display:block; }
 
     @keyframes boltPop{
@@ -364,7 +357,6 @@
     </header>
 
     <section class="card hero reveal">
-      <!-- 3 gears + randomized outward lightning -->
       <div class="gearRig" aria-hidden="true" id="gearRig">
         <div class="gearRigInner">
           <svg class="gearSvg" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
@@ -632,27 +624,45 @@
     const saved = localStorage.getItem("tinoco_lang");
     applyLang(saved === "es" ? "es" : "en");
 
-    // ===== Random outward lightning bolts =====
+    // ===== Lightning behavior (B): mostly mesh points + occasional random =====
     const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const gearRig = document.getElementById("gearRig");
     const layer = document.getElementById("lightningLayer");
 
-    // Gear centers in SVG coordinates (420x320) + radii
-    const gears = [
-      { cx:275, cy:105, r:78 }, // big (r ~64 + tooth)
-      { cx:185, cy:175, r:62 }, // medium
-      { cx:330, cy:210, r:48 }  // small
-    ];
+    // SVG space for rig:
+    const SVG_W = 420, SVG_H = 320;
+
+    // Gear centers + approximate rim radii (include teeth)
+    const gears = {
+      big:    { cx:275, cy:105, r:78 },
+      med:    { cx:185, cy:175, r:62 },
+      small:  { cx:330, cy:210, r:48 }
+    };
+
+    // Two mesh/contact points (approx):
+    // Between big and medium: point along line connecting centers near where teeth meet.
+    // Between big and small: same.
+    function meshPoint(a, b){
+      const ax = a.cx, ay = a.cy, bx = b.cx, by = b.cy;
+      const dx = bx - ax, dy = by - ay;
+      const dist = Math.hypot(dx, dy) || 1;
+      // choose point near the middle but biased closer to the actual contact (rim-to-rim)
+      // contact fraction = a.r / (a.r + b.r)
+      const t = a.r / (a.r + b.r);
+      return { x: ax + dx * t, y: ay + dy * t, dirx: dx / dist, diry: dy / dist };
+    }
+
+    const meshA = () => meshPoint(gears.big, gears.med);   // big<->med
+    const meshB = () => meshPoint(gears.big, gears.small); // big<->small
 
     function toRigPx(svgX, svgY){
       const rect = gearRig.getBoundingClientRect();
-      const x = (svgX / 420) * rect.width;
-      const y = (svgY / 320) * rect.height;
+      const x = (svgX / SVG_W) * rect.width;
+      const y = (svgY / SVG_H) * rect.height;
       return { x, y };
     }
 
     function boltSVG(){
-      // Big jagged bolt (colorful gradient)
       return `
         <svg viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -682,36 +692,17 @@
         </svg>`;
     }
 
-    function spawnBolt(){
+    function spawnBoltAt(svgX, svgY, angleDeg){
       if (!layer) return;
 
-      // pick a gear
-      const g = gears[Math.floor(Math.random() * gears.length)];
+      const { x, y } = toRigPx(svgX, svgY);
 
-      // pick an outward angle (0° is right, 90° down)
-      // We bias outward directions so it shoots away from center of the rig.
-      // Add randomness for "around gears" look.
-      const ang = (Math.random() * 360);
+      // BIG + colorful
+      const w = 70 + Math.random() * 70;
+      const h = 160 + Math.random() * 160;
 
-      // point on the rim + slight jitter
-      const jitter = 6 + Math.random() * 10;
-      const px = g.cx + (g.r + jitter) * Math.cos(ang * Math.PI/180);
-      const py = g.cy + (g.r + jitter) * Math.sin(ang * Math.PI/180);
-
-      const { x, y } = toRigPx(px, py);
-
-      // Bolt size (BIG)
-      const w = 60 + Math.random() * 55;   // px
-      const h = 140 + Math.random() * 120; // px
-
-      // Rotate so it points outward (bolt is "up" by default)
-      // Our SVG bolt points roughly up, so subtract 90deg to align.
-      const rot = (ang + 90) + (Math.random()*22 - 11);
-
-      // push it outward a bit so it starts outside the gear
-      const out = 6 + Math.random()*16;
-
-      // duration + flicker
+      const rot = angleDeg + (Math.random()*18 - 9);
+      const out = 8 + Math.random()*18;
       const dur = 520 + Math.random() * 520;
 
       const el = document.createElement("div");
@@ -723,7 +714,6 @@
       el.style.setProperty("--rot", `${rot}deg`);
       el.style.setProperty("--out", `${out}px`);
       el.style.setProperty("--dur", `${dur}ms`);
-
       el.style.width = `${w}px`;
       el.style.height = `${h}px`;
       el.innerHTML = boltSVG();
@@ -732,17 +722,68 @@
       setTimeout(()=> el.remove(), dur + 80);
     }
 
+    // Mesh bolt: place bolt at contact point and point outward from the mesh
+    function spawnMeshBolt(which){
+      const m = which === "A" ? meshA() : meshB();
+
+      // outward direction: perpendicular-ish + away from the line of centers for drama
+      // We compute a base angle from the direction vector between gear centers,
+      // then swing outward by +/- 90 degrees.
+      const base = Math.atan2(m.diry, m.dirx) * 180 / Math.PI; // angle from big->other
+      const outward = base + (Math.random() < 0.5 ? 90 : -90);
+
+      // tiny jitter around contact point so it doesn't look stamped
+      const j = 5 + Math.random()*10;
+      const jx = m.x + (Math.random()*2 - 1) * j;
+      const jy = m.y + (Math.random()*2 - 1) * j;
+
+      spawnBoltAt(jx, jy, outward);
+    }
+
+    // Occasional random bolt near gear rim (rare)
+    function spawnRandomRimBolt(){
+      const keys = Object.keys(gears);
+      const g = gears[keys[Math.floor(Math.random()*keys.length)]];
+      const ang = Math.random() * 360;
+      const jitter = 6 + Math.random() * 10;
+      const px = g.cx + (g.r + jitter) * Math.cos(ang * Math.PI/180);
+      const py = g.cy + (g.r + jitter) * Math.sin(ang * Math.PI/180);
+
+      // bolt points outward from gear center
+      const rot = ang + 90;
+      spawnBoltAt(px, py, rot);
+    }
+
     if (!prefersReduce){
       let timer;
 
       function burst(){
-        // 1–3 bolts per burst
-        const n = Math.random() < 0.55 ? 1 : (Math.random() < 0.8 ? 2 : 3);
-        for (let i=0; i<n; i++){
-          setTimeout(spawnBolt, i*60 + Math.random()*60);
+        // Mostly mesh bolts (B)
+        const r = Math.random();
+        if (r < 0.46){
+          // burst from mesh A
+          spawnMeshBolt("A");
+          if (Math.random() < 0.35) setTimeout(()=>spawnMeshBolt("A"), 70);
+        } else if (r < 0.92){
+          // burst from mesh B
+          spawnMeshBolt("B");
+          if (Math.random() < 0.35) setTimeout(()=>spawnMeshBolt("B"), 70);
+        } else {
+          // rare random rim bolt
+          spawnRandomRimBolt();
         }
+
+        // Sometimes add a second bolt from the other mesh for variety
+        if (Math.random() < 0.28){
+          setTimeout(()=> {
+            if (Math.random() < 0.5) spawnMeshBolt("A");
+            else spawnMeshBolt("B");
+          }, 120 + Math.random()*120);
+        }
+
         timer = setTimeout(burst, 260 + Math.random()*520);
       }
+
       burst();
 
       document.addEventListener("visibilitychange", ()=>{
