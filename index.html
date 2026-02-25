@@ -45,23 +45,25 @@
     }
 
     /* Subtle “brushed metal” vibe */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          rgba(15,23,42,.03) 0px,
-          rgba(15,23,42,.03) 1px,
-          transparent 2px,
-          transparent 7px
-        );
-      mix-blend-mode:multiply;
-      opacity:.35;
-    }
+    body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--text);
+  overflow-x:hidden;
 
+  /* Steel / brushed metal background */
+  background:
+    radial-gradient(1200px 500px at 20% 0%, rgba(255,255,255,.55), transparent 55%),
+    radial-gradient(900px 500px at 80% 20%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(
+      180deg,
+      #e5e7eb 0%,
+      #cfd4dc 30%,
+      #b8bec8 50%,
+      #d6dae1 70%,
+      #eef1f5 100%
+    );
+}
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:24px 16px 70px; position:relative; z-index:1;}
 
