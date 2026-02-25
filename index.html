@@ -4,13 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tinoco Hybrids | Hybrid Vehicle Mechanic in Tijuana</title>
-  <meta name="description" content="Tinoco Hybrids — Hybrid vehicle mechanic in Tijuana. Diagnostics, repairs, and maintenance for Prius and other hybrids. Call or WhatsApp today.">
+  <meta name="description" content="Tinoco Hybrids — Hybrid vehicle mechanic in Tijuana. Diagnostics, repairs, and maintenance for Prius and other hybrid vehicles. Call or WhatsApp today.">
 
   <style>
     :root{
       --bg0:#05070c;
       --bg1:#0a0f19;
-
       --stroke: rgba(255,255,255,.14);
       --text:#f1f5ff;
       --muted:#b9c3e2;
@@ -38,7 +37,6 @@
       overflow-x:hidden;
     }
 
-    /* Animated ambient background */
     .ambient{
       position:fixed;
       inset:-260px;
@@ -75,7 +73,6 @@
       gap:26px;
     }
 
-    /* BIG LOGO */
     .logoWrap{
       width:180px;
       height:180px;
@@ -124,8 +121,7 @@
       gap:12px;
     }
     .spark{
-      width:12px;height:12px;
-      border-radius:999px;
+      width:12px;height:12px;border-radius:999px;
       background:var(--green);
       box-shadow:0 0 0 0 rgba(56,243,165,.6);
       animation:pulse 1.8s ease-in-out infinite;
@@ -267,19 +263,12 @@
     .mini p{ margin:0; color:var(--muted); font-size:16px; line-height:1.45; }
 
     ul{ padding-left:22px; color:var(--muted); font-size:17px; line-height:1.6; }
+    footer{ margin-top:46px; text-align:center; color:var(--muted); font-size:15px; }
 
-    footer{
-      margin-top:46px;
-      text-align:center;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    /* Reveal */
     .reveal{ opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.show{ opacity:1; transform: translateY(0); }
 
-    /* ===== 3-GEAR + LIGHTNING RIG ===== */
+    /* ===== 3-GEAR RIG + RANDOM LIGHTNING ===== */
     .gearRig{
       position:absolute;
       right:-18px;
@@ -288,51 +277,65 @@
       height:320px;
       z-index:1;
       pointer-events:none;
-      opacity:.93;
+      opacity:.94;
       filter: drop-shadow(0 18px 30px rgba(0,0,0,.45));
     }
-    .gearSvg{ width:100%; height:100%; }
+    .gearRigInner{ position:relative; width:100%; height:100%; }
+    .gearSvg{ position:absolute; inset:0; width:100%; height:100%; }
 
     @keyframes spinCW { to{ transform: rotate(360deg); } }
     @keyframes spinCCW{ to{ transform: rotate(-360deg); } }
 
-    /* Lightning */
-    .zap{
-      transform-origin: center;
-      animation: zapFlicker var(--zapDur) steps(2,end) infinite;
+    /* Lightning layer */
+    .lightningLayer{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:3;
+    }
+
+    .bolt{
+      position:absolute;
+      left: var(--x);
+      top:  var(--y);
+      width: var(--w);
+      height: var(--h);
+      transform:
+        translate(-50%,-50%)
+        rotate(var(--rot))
+        translateX(var(--out));
       opacity:0;
-      filter: drop-shadow(0 0 10px rgba(0,212,255,.65))
-              drop-shadow(0 0 18px rgba(255,0,255,.45))
-              drop-shadow(0 0 26px rgba(255,138,31,.35));
-    }
-    .zap.big { animation: zapFlicker 1.15s steps(2,end) infinite; }
-    .zap.med { animation: zapFlicker 1.45s steps(2,end) infinite; }
-    .zap.alt { animation: zapFlicker 1.65s steps(2,end) infinite; }
-
-    @keyframes zapFlicker{
-      0%   { opacity:0; }
-      12%  { opacity:1; }
-      18%  { opacity:.35; }
-      26%  { opacity:1; }
-      34%  { opacity:.25; }
-      42%  { opacity:1; }
-      55%  { opacity:0; }
-      100% { opacity:0; }
+      animation: boltPop var(--dur) steps(2,end) forwards;
+      filter:
+        drop-shadow(0 0 10px rgba(0,212,255,.75))
+        drop-shadow(0 0 18px rgba(255,43,214,.55))
+        drop-shadow(0 0 28px rgba(255,138,31,.45));
     }
 
-    /* Mobile */
+    /* big colorful bolt svg scales nicely */
+    .bolt svg{ width:100%; height:100%; display:block; }
+
+    @keyframes boltPop{
+      0%   { opacity:0; transform: translate(-50%,-50%) rotate(var(--rot)) translateX(var(--out)) scale(.75); }
+      10%  { opacity:1; }
+      22%  { opacity:.35; }
+      34%  { opacity:1; }
+      48%  { opacity:.25; }
+      62%  { opacity:1; }
+      100% { opacity:0; transform: translate(-50%,-50%) rotate(var(--rot)) translateX(var(--out)) scale(1.05); }
+    }
+
     @media(max-width:820px){
       header{flex-direction:column;align-items:flex-start}
       .logoWrap{width:150px;height:150px}
       .hero h2{font-size:44px}
       .btn{width:100%; justify-content:center;}
-      .gearRig{ width:320px; height:250px; right:-26px; top:-24px; opacity:.80; }
+      .gearRig{ width:320px; height:250px; right:-26px; top:-24px; opacity:.82; }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .ambient, .logo, .logoWrap::after, .call::after,
-      .gCW, .gCCW, .zap { animation:none !important; opacity:.25 !important; }
+      .ambient, .logo, .logoWrap::after, .call::after{ animation:none !important; }
+      .bolt{ display:none !important; }
       .reveal{ opacity:1 !important; transform:none !important; }
     }
   </style>
@@ -349,7 +352,7 @@
           <img class="logo" src="tinoco_logo.jpg" alt="Tinoco Hybrids Logo">
         </div>
         <div class="brandText">
-          <h1><span id="brandName">Tinoco Hybrids</span> <span class="spark" aria-hidden="true"></span></h1>
+          <h1>Tinoco Hybrids <span class="spark" aria-hidden="true"></span></h1>
           <p id="tagline">Hybrid Vehicle Mechanic • Tijuana, B.C.</p>
         </div>
       </div>
@@ -361,173 +364,97 @@
     </header>
 
     <section class="card hero reveal">
-      <!-- 3 gears + lightning bolts -->
-      <div class="gearRig" aria-hidden="true">
-        <svg class="gearSvg" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="metal" cx="35%" cy="35%" r="75%">
-              <stop offset="0%" stop-color="rgba(255,255,255,.22)"/>
-              <stop offset="45%" stop-color="rgba(255,255,255,.10)"/>
-              <stop offset="100%" stop-color="rgba(0,0,0,.22)"/>
-            </radialGradient>
-            <radialGradient id="hub" cx="30%" cy="30%" r="70%">
-              <stop offset="0%" stop-color="rgba(0,212,255,.22)"/>
-              <stop offset="100%" stop-color="rgba(255,255,255,.08)"/>
-            </radialGradient>
+      <!-- 3 gears + randomized outward lightning -->
+      <div class="gearRig" aria-hidden="true" id="gearRig">
+        <div class="gearRigInner">
+          <svg class="gearSvg" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="metal" cx="35%" cy="35%" r="75%">
+                <stop offset="0%" stop-color="rgba(255,255,255,.22)"/>
+                <stop offset="45%" stop-color="rgba(255,255,255,.10)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,.22)"/>
+              </radialGradient>
+              <radialGradient id="hub" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="rgba(0,212,255,.22)"/>
+                <stop offset="100%" stop-color="rgba(255,255,255,.08)"/>
+              </radialGradient>
+            </defs>
 
-            <!-- Colorful lightning gradient -->
-            <linearGradient id="zapGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%"  stop-color="#00d4ff"/>
-              <stop offset="35%" stop-color="#7c3aed"/>
-              <stop offset="70%" stop-color="#ff2bd6"/>
-              <stop offset="100%" stop-color="#ff8a1f"/>
-            </linearGradient>
-
-            <!-- Thicker outline for "big" bolts -->
-            <filter id="zapGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="2.4" result="blur"/>
-              <feColorMatrix in="blur" type="matrix"
-                values="
-                  1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 14 -6" result="glow"/>
-              <feMerge>
-                <feMergeNode in="glow"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-
-          <!-- ======= GEARS ======= -->
-          <!-- Big gear center (275,105) -->
-          <g class="gCW" style="transform-origin:275px 105px; animation: spinCW 4.2s linear infinite;">
-            <circle cx="275" cy="105" r="64" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
-            <g transform="translate(275 105)" fill="rgba(241,245,255,.70)">
-              <!-- 18 teeth -->
-              <rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".75"/>
-              <g transform="rotate(20)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(40)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(60)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(80)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(100)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(120)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(140)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(160)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(180)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(200)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(220)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(240)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(260)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(280)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(300)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
-              <g transform="rotate(320)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
-              <g transform="rotate(340)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+            <!-- Big gear (275,105) -->
+            <g style="transform-origin:275px 105px; animation: spinCW 4.2s linear infinite;">
+              <circle cx="275" cy="105" r="64" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+              <g transform="translate(275 105)" fill="rgba(241,245,255,.70)">
+                <rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".75"/>
+                <g transform="rotate(20)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(40)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(60)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(80)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(100)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(120)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(140)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(160)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(180)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(200)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(220)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(240)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(260)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(280)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(300)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+                <g transform="rotate(320)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".72"/></g>
+                <g transform="rotate(340)"><rect x="-6" y="-82" width="12" height="18" rx="4" opacity=".55"/></g>
+              </g>
+              <circle cx="275" cy="105" r="42" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+              <circle cx="275" cy="105" r="22" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
             </g>
-            <circle cx="275" cy="105" r="42" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
-            <circle cx="275" cy="105" r="22" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-          </g>
 
-          <!-- Medium gear center (185,175) -->
-          <g class="gCCW" style="transform-origin:185px 175px; animation: spinCCW 3.3s linear infinite;">
-            <circle cx="185" cy="175" r="50" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
-            <g transform="translate(185 175)" fill="rgba(241,245,255,.68)">
-              <rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".75"/>
-              <g transform="rotate(24)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(48)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
-              <g transform="rotate(72)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(96)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
-              <g transform="rotate(120)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(144)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
-              <g transform="rotate(168)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(192)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
-              <g transform="rotate(216)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(240)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
-              <g transform="rotate(264)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(288)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
-              <g transform="rotate(312)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
-              <g transform="rotate(336)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+            <!-- Medium gear (185,175) -->
+            <g style="transform-origin:185px 175px; animation: spinCCW 3.3s linear infinite;">
+              <circle cx="185" cy="175" r="50" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+              <g transform="translate(185 175)" fill="rgba(241,245,255,.68)">
+                <rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".75"/>
+                <g transform="rotate(24)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(48)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+                <g transform="rotate(72)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(96)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+                <g transform="rotate(120)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(144)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+                <g transform="rotate(168)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(192)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+                <g transform="rotate(216)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(240)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+                <g transform="rotate(264)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(288)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+                <g transform="rotate(312)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".55"/></g>
+                <g transform="rotate(336)"><rect x="-5" y="-65" width="10" height="15" rx="4" opacity=".72"/></g>
+              </g>
+              <circle cx="185" cy="175" r="32" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+              <circle cx="185" cy="175" r="16" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
             </g>
-            <circle cx="185" cy="175" r="32" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
-            <circle cx="185" cy="175" r="16" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-          </g>
 
-          <!-- Small gear center (330,210) -->
-          <g class="gCCW" style="transform-origin:330px 210px; animation: spinCCW 2.7s linear infinite;">
-            <circle cx="330" cy="210" r="38" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
-            <g transform="translate(330 210)" fill="rgba(241,245,255,.66)">
-              <rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".75"/>
-              <g transform="rotate(30)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
-              <g transform="rotate(60)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
-              <g transform="rotate(90)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
-              <g transform="rotate(120)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
-              <g transform="rotate(150)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
-              <g transform="rotate(180)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
-              <g transform="rotate(210)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
-              <g transform="rotate(240)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
-              <g transform="rotate(270)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
-              <g transform="rotate(300)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
-              <g transform="rotate(330)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+            <!-- Small gear (330,210) -->
+            <g style="transform-origin:330px 210px; animation: spinCCW 2.7s linear infinite;">
+              <circle cx="330" cy="210" r="38" fill="url(#metal)" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>
+              <g transform="translate(330 210)" fill="rgba(241,245,255,.66)">
+                <rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".75"/>
+                <g transform="rotate(30)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+                <g transform="rotate(60)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
+                <g transform="rotate(90)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+                <g transform="rotate(120)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
+                <g transform="rotate(150)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+                <g transform="rotate(180)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
+                <g transform="rotate(210)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+                <g transform="rotate(240)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
+                <g transform="rotate(270)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+                <g transform="rotate(300)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".72"/></g>
+                <g transform="rotate(330)"><rect x="-4.3" y="-52" width="8.6" height="13" rx="4" opacity=".55"/></g>
+              </g>
+              <circle cx="330" cy="210" r="24" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+              <circle cx="330" cy="210" r="12" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
             </g>
-            <circle cx="330" cy="210" r="24" fill="rgba(0,0,0,.14)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
-            <circle cx="330" cy="210" r="12" fill="url(#hub)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
-          </g>
+          </svg>
 
-          <!-- ======= LIGHTNING BOLTS (big, colorful) ======= -->
-          <!-- Mesh point A: between big (275,105) and medium (185,175) -->
-          <g class="zap big" style="--zapDur: 1.2s;">
-            <!-- Bold bolt -->
-            <path d="M230 145
-                     L205 170
-                     L222 170
-                     L195 205
-                     L232 176
-                     L213 176
-                     L245 145 Z"
-                  fill="url(#zapGrad)" filter="url(#zapGlow)"/>
-            <!-- Secondary bolt -->
-            <path d="M238 138
-                     L222 154
-                     L234 154
-                     L216 176
-                     L242 160
-                     L232 160
-                     L250 138 Z"
-                  fill="url(#zapGrad)" opacity=".8" filter="url(#zapGlow)"/>
-          </g>
-
-          <!-- Mesh point B: between big (275,105) and small (330,210) -->
-          <g class="zap med" style="--zapDur: 1.5s;">
-            <path d="M318 165
-                     L300 190
-                     L314 190
-                     L292 225
-                     L326 198
-                     L312 198
-                     L338 165 Z"
-                  fill="url(#zapGrad)" filter="url(#zapGlow)"/>
-            <path d="M332 158
-                     L320 174
-                     L330 174
-                     L316 194
-                     L340 180
-                     L332 180
-                     L348 158 Z"
-                  fill="url(#zapGrad)" opacity=".75" filter="url(#zapGlow)"/>
-          </g>
-
-          <!-- Extra random-ish bolt near gears for drama -->
-          <g class="zap alt" style="--zapDur: 1.7s;">
-            <path d="M360 95
-                     L342 120
-                     L356 120
-                     L334 155
-                     L368 128
-                     L354 128
-                     L380 95 Z"
-                  fill="url(#zapGrad)" opacity=".65" filter="url(#zapGlow)"/>
-          </g>
-        </svg>
+          <div class="lightningLayer" id="lightningLayer"></div>
+        </div>
       </div>
 
       <h2 id="heroTitle">Hybrid Vehicle Mechanic in Tijuana</h2>
@@ -591,7 +518,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // EN/ES toggle
+    // EN/ES toggle copy
     const copy = {
       en: {
         tagline: "Hybrid Vehicle Mechanic • Tijuana, B.C.",
@@ -704,6 +631,128 @@
 
     const saved = localStorage.getItem("tinoco_lang");
     applyLang(saved === "es" ? "es" : "en");
+
+    // ===== Random outward lightning bolts =====
+    const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const gearRig = document.getElementById("gearRig");
+    const layer = document.getElementById("lightningLayer");
+
+    // Gear centers in SVG coordinates (420x320) + radii
+    const gears = [
+      { cx:275, cy:105, r:78 }, // big (r ~64 + tooth)
+      { cx:185, cy:175, r:62 }, // medium
+      { cx:330, cy:210, r:48 }  // small
+    ];
+
+    function toRigPx(svgX, svgY){
+      const rect = gearRig.getBoundingClientRect();
+      const x = (svgX / 420) * rect.width;
+      const y = (svgY / 320) * rect.height;
+      return { x, y };
+    }
+
+    function boltSVG(){
+      // Big jagged bolt (colorful gradient)
+      return `
+        <svg viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00d4ff"/>
+              <stop offset="35%" stop-color="#7c3aed"/>
+              <stop offset="70%" stop-color="#ff2bd6"/>
+              <stop offset="100%" stop-color="#ff8a1f"/>
+            </linearGradient>
+          </defs>
+          <path d="M70 0
+                   L10 95
+                   L55 95
+                   L15 175
+                   L92 110
+                   L55 110
+                   L110 0 Z"
+                fill="url(#g)" opacity="0.96"/>
+          <path d="M62 18
+                   L30 70
+                   L58 70
+                   L38 115
+                   L78 84
+                   L60 84
+                   L88 18 Z"
+                fill="white" opacity="0.22"/>
+        </svg>`;
+    }
+
+    function spawnBolt(){
+      if (!layer) return;
+
+      // pick a gear
+      const g = gears[Math.floor(Math.random() * gears.length)];
+
+      // pick an outward angle (0° is right, 90° down)
+      // We bias outward directions so it shoots away from center of the rig.
+      // Add randomness for "around gears" look.
+      const ang = (Math.random() * 360);
+
+      // point on the rim + slight jitter
+      const jitter = 6 + Math.random() * 10;
+      const px = g.cx + (g.r + jitter) * Math.cos(ang * Math.PI/180);
+      const py = g.cy + (g.r + jitter) * Math.sin(ang * Math.PI/180);
+
+      const { x, y } = toRigPx(px, py);
+
+      // Bolt size (BIG)
+      const w = 60 + Math.random() * 55;   // px
+      const h = 140 + Math.random() * 120; // px
+
+      // Rotate so it points outward (bolt is "up" by default)
+      // Our SVG bolt points roughly up, so subtract 90deg to align.
+      const rot = (ang + 90) + (Math.random()*22 - 11);
+
+      // push it outward a bit so it starts outside the gear
+      const out = 6 + Math.random()*16;
+
+      // duration + flicker
+      const dur = 520 + Math.random() * 520;
+
+      const el = document.createElement("div");
+      el.className = "bolt";
+      el.style.setProperty("--x", `${x}px`);
+      el.style.setProperty("--y", `${y}px`);
+      el.style.setProperty("--w", `${w}px`);
+      el.style.setProperty("--h", `${h}px`);
+      el.style.setProperty("--rot", `${rot}deg`);
+      el.style.setProperty("--out", `${out}px`);
+      el.style.setProperty("--dur", `${dur}ms`);
+
+      el.style.width = `${w}px`;
+      el.style.height = `${h}px`;
+      el.innerHTML = boltSVG();
+
+      layer.appendChild(el);
+      setTimeout(()=> el.remove(), dur + 80);
+    }
+
+    if (!prefersReduce){
+      let timer;
+
+      function burst(){
+        // 1–3 bolts per burst
+        const n = Math.random() < 0.55 ? 1 : (Math.random() < 0.8 ? 2 : 3);
+        for (let i=0; i<n; i++){
+          setTimeout(spawnBolt, i*60 + Math.random()*60);
+        }
+        timer = setTimeout(burst, 260 + Math.random()*520);
+      }
+      burst();
+
+      document.addEventListener("visibilitychange", ()=>{
+        if (document.hidden){
+          if (timer) clearTimeout(timer);
+        } else {
+          burst();
+        }
+      });
+    }
   </script>
 </body>
 </html>
