@@ -8,17 +8,24 @@
 
   <style>
     :root{
-      --bg: #070A0F;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --stroke: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.55);
+      /* NEW: classy light background */
+      --bg: #f5f6f8;            /* pearl */
+      --bg2:#eef1f5;            /* soft cool gray */
+      --card: rgba(255,255,255,.78);
+      --card2: rgba(255,255,255,.90);
+      --stroke: rgba(10,20,40,.10);
+      --stroke2: rgba(10,20,40,.14);
+
+      --text: rgba(10,18,30,.92);
+      --muted: rgba(10,18,30,.70);
+      --muted2: rgba(10,18,30,.55);
+
       --brand: #ff3b30;     /* memorable red */
-      --brand2:#00e5ff;     /* electric cyan */
-      --ok:#25D366;         /* whatsapp */
-      --shadow: 0 24px 70px rgba(0,0,0,.55);
+      --brand2:#00a3ff;     /* professional electric blue (less neon than before) */
+      --ok:#25D366;
+
+      --shadow: 0 18px 55px rgba(12,18,28,.12);
+      --shadow2: 0 10px 28px rgba(12,18,28,.10);
       --radius: 18px;
       --max: 1120px;
       --base: 18px;
@@ -31,15 +38,29 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       font-size: var(--base);
       color: var(--text);
-
-      /* CLASSY BACKGROUND (updated) */
-      background:
-        radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.05), transparent 60%),
-        radial-gradient(900px 500px at 20% 90%, rgba(0,229,255,.07), transparent 65%),
-        radial-gradient(900px 500px at 80% 90%, rgba(255,59,48,.06), transparent 65%),
-        #0b0f14;
-
       overflow-x:hidden;
+
+      /* NEW: classy “pearl + subtle grid” background */
+      background:
+        radial-gradient(900px 520px at 15% 10%, rgba(0,163,255,.14), transparent 60%),
+        radial-gradient(900px 520px at 90% 18%, rgba(255,59,48,.10), transparent 62%),
+        radial-gradient(900px 520px at 50% 95%, rgba(0,163,255,.08), transparent 65%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      position:relative;
+    }
+
+    /* subtle grid pattern overlay */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background-image:
+        linear-gradient(to right, rgba(10,20,40,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(10,20,40,.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 10%, rgba(0,0,0,.55), rgba(0,0,0,0) 70%);
     }
 
     a{color:inherit}
@@ -49,26 +70,29 @@
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; padding:12px 14px;
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.70);
       border: 1px solid var(--stroke);
       border-radius: 999px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      box-shadow: var(--shadow2);
       position: sticky; top:14px; z-index:20;
     }
     .brandRow{display:flex; align-items:center; gap:14px; min-width:0}
     .logo{
-      width:74px; height:74px; flex:0 0 auto;
+      width:86px; height:86px; flex:0 0 auto;
       object-fit:contain;
-      filter: drop-shadow(0 14px 24px rgba(0,0,0,.55));
+      filter: drop-shadow(0 12px 18px rgba(12,18,28,.18));
+    }
+    @media (max-width: 980px){
+      .logo{width:72px;height:72px}
     }
     .brandText{min-width:0}
-    .brandName{font-weight:800; letter-spacing:.2px; font-size:1.05rem; line-height:1.1}
+    .brandName{font-weight:900; letter-spacing:.2px; font-size:1.05rem; line-height:1.1}
     .brandSub{color:var(--muted); font-size:.95rem; margin-top:2px}
 
     .lang{
       display:flex; gap:8px; align-items:center; flex:0 0 auto;
-      background: rgba(0,0,0,.22);
+      background: rgba(10,18,30,.05);
       border: 1px solid var(--stroke);
       border-radius: 999px;
       padding:6px;
@@ -76,30 +100,29 @@
     .lang button{
       border:0; color:var(--text);
       background:transparent; padding:8px 12px; border-radius:999px;
-      cursor:pointer; font-weight:700;
-      opacity:.75;
+      cursor:pointer; font-weight:800;
+      opacity:.72;
     }
     .lang button.active{
-      background: linear-gradient(90deg, rgba(255,59,48,.22), rgba(0,229,255,.16));
-      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(90deg, rgba(255,59,48,.16), rgba(0,163,255,.14));
+      border: 1px solid var(--stroke2);
       opacity:1;
     }
 
-    /* Hero grid */
+    /* Layout */
     .grid{
       margin-top:18px;
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:16px;
       align-items:start;
     }
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
-      .logo{width:64px;height:64px}
     }
 
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.70));
       border: 1px solid var(--stroke);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -109,11 +132,11 @@
     .cardPad{padding:20px}
 
     .heroTitle{
-      font-size: 2.2rem;
+      font-size: 2.25rem;
       line-height:1.05;
       margin:2px 0 10px;
-      letter-spacing:-.5px;
-      font-weight:900;
+      letter-spacing:-.6px;
+      font-weight:950;
     }
     .heroTitle .accent{
       background: linear-gradient(90deg, var(--brand), var(--brand2));
@@ -128,39 +151,38 @@
       display:inline-flex; align-items:center; gap:10px;
       padding:12px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(10,20,40,.14);
+      background: rgba(255,255,255,.72);
       text-decoration:none;
-      font-weight:800;
-      box-shadow: 0 10px 22px rgba(0,0,0,.28);
+      font-weight:900;
+      box-shadow: 0 10px 22px rgba(12,18,28,.10);
       transition: transform .15s ease, background .2s ease, border-color .2s ease;
       user-select:none;
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08)}
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.86)}
     .btn.primary{
-      background: linear-gradient(90deg, rgba(255,59,48,.90), rgba(255,59,48,.70));
-      border-color: rgba(255,59,48,.65);
+      background: linear-gradient(90deg, rgba(255,59,48,.95), rgba(255,59,48,.78));
+      border-color: rgba(255,59,48,.45);
+      color:#fff;
     }
     .btn.whatsapp{
-      background: linear-gradient(90deg, rgba(37,211,102,.95), rgba(37,211,102,.72));
-      border-color: rgba(37,211,102,.65);
-      color:#04140a;
+      background: linear-gradient(90deg, rgba(37,211,102,.95), rgba(37,211,102,.78));
+      border-color: rgba(37,211,102,.45);
+      color:#062012;
     }
-    .btn.ghost{
-      background: rgba(255,255,255,.05);
-    }
+    .btn.ghost{ background: rgba(255,255,255,.62); }
+
     .pillRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
     .pill{
       font-size:.88rem;
       padding:8px 10px;
       border-radius:999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(10,20,40,.12);
+      background: rgba(255,255,255,.60);
       color: var(--muted);
       white-space:nowrap;
     }
 
-    /* Mini cards */
     .miniGrid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -169,66 +191,80 @@
     }
     @media (max-width: 700px){ .miniGrid{grid-template-columns:1fr} }
     .mini{
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(10,20,40,.10);
       border-radius: 14px;
       padding:14px;
       min-height:110px;
+      box-shadow: 0 10px 24px rgba(12,18,28,.06);
     }
     .mini h3{margin:0 0 6px; font-size:1rem}
     .mini p{margin:0; color:var(--muted); font-size:.98rem; line-height:1.5}
 
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(10,20,40,.12);
+      background: rgba(255,255,255,.70);
+      color: var(--muted);
+      font-size:.92rem;
+      margin-top:10px;
+    }
+
     /* Right column */
-    .sideTitle{margin:0 0 8px; font-weight:900; letter-spacing:-.2px}
+    .sideTitle{margin:0 0 8px; font-weight:950; letter-spacing:-.2px}
     .list{margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.7}
     .small{color:var(--muted2); font-size:.95rem; line-height:1.55}
     .contactLine{
       margin-top:12px;
       padding-top:12px;
-      border-top: 1px solid rgba(255,255,255,.10);
+      border-top: 1px solid rgba(10,20,40,.10);
       color: var(--muted);
       font-size:1rem;
     }
 
-    /* Section grid */
-    .grid2{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
+    /* NEW: Gears live in the right column card (always in the right place) */
+    .gearCard{
+      margin-top:14px;
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid rgba(10,20,40,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.62));
+      box-shadow: 0 12px 30px rgba(12,18,28,.08);
+      position:relative;
+      overflow:hidden;
     }
-    @media (max-width: 980px){ .grid2{grid-template-columns:1fr} }
-
-    /* Animated gears */
+    .gearTitle{
+      font-weight:900;
+      margin:0 0 8px;
+      font-size:1rem;
+      color: rgba(10,18,30,.86);
+    }
     .gearWrap{
-      position:absolute;
-      inset:auto 18px 18px auto;
-      width: 290px;
+      width: 100%;
       height: 210px;
-      opacity:.95;
-      pointer-events:none;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,.55));
+      position:relative;
+      filter: drop-shadow(0 18px 30px rgba(12,18,28,.18));
     }
-    @media (max-width: 700px){
-      .gearWrap{position:relative; inset:auto; width:100%; height:220px; margin-top:12px}
-    }
-    .gearSvg{width:100%; height:100%;}
+    .gearSvg{width:100%; height:100%}
     .gear1{transform-origin: 92px 106px; animation: spin 7.5s linear infinite;}
     .gear2{transform-origin: 172px 120px; animation: spinReverse 6.2s linear infinite;}
     .gear3{transform-origin: 232px 86px; animation: spin 5.8s linear infinite;}
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes spinReverse { to { transform: rotate(-360deg); } }
 
-    /* Sparks / lightning */
-    .sparks{position:absolute; inset:0; overflow:hidden;}
+    /* Sparks */
+    .sparks{ position:absolute; inset:0; overflow:hidden; }
     .bolt{
       position:absolute;
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       opacity:0;
-      transform: translate(-50%,-50%) rotate(0deg);
-      filter: drop-shadow(0 0 14px rgba(0,229,255,.6)) drop-shadow(0 0 18px rgba(255,59,48,.35));
+      transform: translate(-50%,-50%);
+      filter: drop-shadow(0 0 12px rgba(0,163,255,.45)) drop-shadow(0 0 16px rgba(255,59,48,.22));
       animation: pop 1.2s ease-in-out infinite;
+      pointer-events:none;
     }
     .bolt svg{width:100%;height:100%}
     @keyframes pop{
@@ -238,22 +274,20 @@
       100%{opacity:0; transform: translate(-50%,-50%) scale(1.15) rotate(18deg)}
     }
 
-    /* Footer note */
+    /* Lower grid */
+    .grid2{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){ .grid2{grid-template-columns:1fr} }
+
     .foot{
       margin-top:18px;
       color: var(--muted2);
       font-size:.95rem;
       line-height:1.6;
-    }
-    .badge{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.20);
-      color: var(--muted);
-      font-size:.92rem;
-      margin-top:10px;
     }
   </style>
 </head>
@@ -277,8 +311,10 @@
       </div>
     </div>
 
-    <!-- HERO -->
+    <!-- TOP GRID -->
     <div class="grid">
+
+      <!-- LEFT: HERO -->
       <div class="card">
         <div class="cardPad">
           <div class="heroTitle" data-i18n="heroTitle">
@@ -318,75 +354,9 @@
 
           <div class="badge" data-i18n="trustBadge">⚡ Clear diagnostics • Honest pricing • Fast turnaround</div>
         </div>
-
-        <!-- GEARS ANIMATION -->
-        <div class="gearWrap" aria-hidden="true">
-          <svg class="gearSvg" viewBox="0 0 320 220" fill="none">
-            <defs>
-              <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                gradientTransform="translate(210 90) rotate(130) scale(180 120)">
-                <stop stop-color="rgba(0,229,255,.22)"/>
-                <stop offset="1" stop-color="rgba(0,0,0,0)"/>
-              </radialGradient>
-              <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
-                gradientTransform="translate(110 140) rotate(20) scale(160 120)">
-                <stop stop-color="rgba(255,59,48,.16)"/>
-                <stop offset="1" stop-color="rgba(0,0,0,0)"/>
-              </radialGradient>
-            </defs>
-            <rect x="0" y="0" width="320" height="220" fill="url(#g1)"/>
-            <rect x="0" y="0" width="320" height="220" fill="url(#g2)"/>
-
-            <g class="gear1">
-              <path d="M92 64
-                c7 0 13 2 18 5 l8-8 12 12-8 8c3 5 5 11 5 18
-                h12v17h-12c-1 7-3 13-6 18l8 8-12 12-8-8
-                c-5 3-11 5-17 6v12H75v-12
-                c-7-1-13-3-18-6l-8 8-12-12 8-8
-                c-3-5-5-11-6-18H27V99h12
-                c1-7 3-13 6-18l-8-8 12-12 8 8
-                c5-3 11-5 18-5z"
-                fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.18)" />
-              <circle cx="92" cy="106" r="22" fill="rgba(0,0,0,.35)" stroke="rgba(0,229,255,.35)" />
-              <circle cx="92" cy="106" r="6" fill="rgba(0,229,255,.70)"/>
-            </g>
-
-            <g class="gear2">
-              <path d="M172 80
-                c8 0 15 2 21 6l9-9 13 13-9 9
-                c4 6 6 13 6 21h13v18h-13
-                c-1 8-3 15-7 21l9 9-13 13-9-9
-                c-6 4-13 6-21 7v13h-18v-13
-                c-8-1-15-3-21-7l-9 9-13-13 9-9
-                c-4-6-6-13-7-21h-13v-18h13
-                c1-8 3-15 7-21l-9-9 13-13 9 9
-                c6-4 13-6 21-6z"
-                fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.16)" />
-              <circle cx="172" cy="120" r="27" fill="rgba(0,0,0,.35)" stroke="rgba(255,59,48,.35)" />
-              <circle cx="172" cy="120" r="7" fill="rgba(255,59,48,.75)"/>
-            </g>
-
-            <g class="gear3">
-              <path d="M232 52
-                c7 0 13 2 18 5l8-8 12 12-8 8
-                c3 5 5 11 5 18h12v17h-12
-                c-1 7-3 13-6 18l8 8-12 12-8-8
-                c-5 3-11 5-17 6v12h-17v-12
-                c-7-1-13-3-18-6l-8 8-12-12 8-8
-                c-3-5-5-11-6-18h-12V87h12
-                c1-7 3-13 6-18l-8-8 12-12 8 8
-                c5-3 11-5 18-5z"
-                fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.14)" />
-              <circle cx="232" cy="86" r="20" fill="rgba(0,0,0,.35)" stroke="rgba(0,229,255,.25)" />
-              <circle cx="232" cy="86" r="6" fill="rgba(255,255,255,.55)"/>
-            </g>
-          </svg>
-
-          <div class="sparks" id="sparks"></div>
-        </div>
       </div>
 
-      <!-- RIGHT COLUMN -->
+      <!-- RIGHT: SERVICES + GEARS (fixed placement) -->
       <div class="card">
         <div class="cardPad">
           <h3 class="sideTitle" data-i18n="servicesTitle">Popular Services</h3>
@@ -407,6 +377,75 @@
               Next: add the exact address + a real Google Maps link.
             </div>
           </div>
+
+          <!-- NEW: gears always live here -->
+          <div class="gearCard" aria-hidden="true">
+            <div class="gearTitle">⚙️ Precision Diagnostics (Live)</div>
+            <div class="gearWrap" id="gearArea">
+              <svg class="gearSvg" viewBox="0 0 320 220" fill="none">
+                <defs>
+                  <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(210 90) rotate(130) scale(180 120)">
+                    <stop stop-color="rgba(0,163,255,.18)"/>
+                    <stop offset="1" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                  <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(110 140) rotate(20) scale(160 120)">
+                    <stop stop-color="rgba(255,59,48,.12)"/>
+                    <stop offset="1" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                </defs>
+                <rect x="0" y="0" width="320" height="220" fill="url(#g1)"/>
+                <rect x="0" y="0" width="320" height="220" fill="url(#g2)"/>
+
+                <g class="gear1">
+                  <path d="M92 64
+                    c7 0 13 2 18 5 l8-8 12 12-8 8c3 5 5 11 5 18
+                    h12v17h-12c-1 7-3 13-6 18l8 8-12 12-8-8
+                    c-5 3-11 5-17 6v12H75v-12
+                    c-7-1-13-3-18-6l-8 8-12-12 8-8
+                    c-3-5-5-11-6-18H27V99h12
+                    c1-7 3-13 6-18l-8-8 12-12 8 8
+                    c5-3 11-5 18-5z"
+                    fill="rgba(255,255,255,.85)" stroke="rgba(10,20,40,.12)" />
+                  <circle cx="92" cy="106" r="22" fill="rgba(10,18,30,.08)" stroke="rgba(0,163,255,.45)" />
+                  <circle cx="92" cy="106" r="6" fill="rgba(0,163,255,.85)"/>
+                </g>
+
+                <g class="gear2">
+                  <path d="M172 80
+                    c8 0 15 2 21 6l9-9 13 13-9 9
+                    c4 6 6 13 6 21h13v18h-13
+                    c-1 8-3 15-7 21l9 9-13 13-9-9
+                    c-6 4-13 6-21 7v13h-18v-13
+                    c-8-1-15-3-21-7l-9 9-13-13 9-9
+                    c-4-6-6-13-7-21h-13v-18h13
+                    c1-8 3-15 7-21l-9-9 13-13 9 9
+                    c6-4 13-6 21-6z"
+                    fill="rgba(255,255,255,.82)" stroke="rgba(10,20,40,.12)" />
+                  <circle cx="172" cy="120" r="27" fill="rgba(10,18,30,.08)" stroke="rgba(255,59,48,.40)" />
+                  <circle cx="172" cy="120" r="7" fill="rgba(255,59,48,.85)"/>
+                </g>
+
+                <g class="gear3">
+                  <path d="M232 52
+                    c7 0 13 2 18 5l8-8 12 12-8 8
+                    c3 5 5 11 5 18h12v17h-12
+                    c-1 7-3 13-6 18l8 8-12 12-8-8
+                    c-5 3-11 5-17 6v12h-17v-12
+                    c-7-1-13-3-18-6l-8 8-12-12 8-8
+                    c-3-5-5-11-6-18h-12V87h12
+                    c1-7 3-13 6-18l-8-8 12-12 8 8
+                    c5-3 11-5 18-5z"
+                    fill="rgba(255,255,255,.78)" stroke="rgba(10,20,40,.12)" />
+                  <circle cx="232" cy="86" r="20" fill="rgba(10,18,30,.08)" stroke="rgba(0,163,255,.28)" />
+                  <circle cx="232" cy="86" r="6" fill="rgba(10,18,30,.40)"/>
+                </g>
+              </svg>
+              <div class="sparks" id="sparks"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -431,18 +470,6 @@
 
       <div class="card">
         <div class="cardPad">
-          <h3 class="sideTitle" data-i18n="galleryTitle">Photos / Gallery</h3>
-          <div class="small" data-i18n="galleryIntro">
-            These images should be either your own photos or royalty-free commercial images (no watermarks).
-          </div>
-          <div class="foot" data-i18n="galleryFoot">
-            (Photos removed for now — we’ll add them later.)
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="cardPad">
           <h3 class="sideTitle" data-i18n="locationTitle">Location</h3>
           <div class="small" data-i18n="locationIntro">
             Paste the Google Maps share link and we’ll wire the “Directions” button to it.
@@ -451,7 +478,7 @@
             <a class="btn ghost" href="https://www.google.com/maps" target="_blank" rel="noopener" data-i18n="openMaps">🗺️ Open in Google Maps</a>
           </div>
           <div class="foot" data-i18n="seoNote">
-            Note: Google indexing can take time — but the site should load immediately once DNS is connected in Netlify + Namecheap.
+            Note: Google indexing can take time — but the site should load immediately once DNS is connected.
           </div>
         </div>
       </div>
@@ -466,6 +493,18 @@
           </ul>
           <div class="foot" data-i18n="hoursFoot">
             If he’s open Saturdays sometimes, tell me and I’ll update it.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardPad">
+          <h3 class="sideTitle" data-i18n="galleryTitle">Photos / Gallery</h3>
+          <div class="small" data-i18n="galleryIntro">
+            We can add photos later (shop photos work best).
+          </div>
+          <div class="foot" data-i18n="galleryFoot">
+            When ready, upload 6 real shop photos and I’ll drop them in with a clean gallery.
           </div>
         </div>
       </div>
@@ -486,10 +525,12 @@
         callNow: "📞 Call Now",
         whatsapp: "💬 WhatsApp",
         directions: "📍 Get Directions",
+
         pill1: "Hybrid Diagnostics",
         pill2: "Prius + Other Hybrids",
         pill3: "Electrical & Sensor Issues",
         pill4: "Border-Friendly",
+
         m1t: "Check Engine / Hybrid Light",
         m1d: "Scan, diagnose, and fix the real issue — not guesswork.",
         m2t: "Hybrid System Performance",
@@ -515,14 +556,10 @@
         w4: "Fast turnaround (depends on parts)",
         whyFoot: "If he offers any warranty/guarantee, we can add it here.",
 
-        galleryTitle: "Photos / Gallery",
-        galleryIntro: "These images should be either your own photos or royalty-free commercial images (no watermarks).",
-        galleryFoot: "(Photos removed for now — we’ll add them later.)",
-
         locationTitle: "Location",
         locationIntro: "Paste the Google Maps share link and we’ll wire the “Directions” button to it.",
         openMaps: "🗺️ Open in Google Maps",
-        seoNote: "Note: Google indexing can take time — but the site should load immediately once DNS is connected in Netlify + Namecheap.",
+        seoNote: "Note: Google indexing can take time — but the site should load immediately once DNS is connected.",
 
         hoursTitle: "Hours",
         monfri: "Mon–Fri:",
@@ -531,7 +568,11 @@
         hoursMonFri: "9:00am – 5:00pm",
         hoursSat: "Closed",
         hoursSun: "Closed",
-        hoursFoot: "If he’s open Saturdays sometimes, tell me and I’ll update it."
+        hoursFoot: "If he’s open Saturdays sometimes, tell me and I’ll update it.",
+
+        galleryTitle: "Photos / Gallery",
+        galleryIntro: "We can add photos later (shop photos work best).",
+        galleryFoot: "When ready, upload 6 real shop photos and I’ll drop them in with a clean gallery."
       },
       es: {
         brandName: "Tinoco Hybrids",
@@ -542,10 +583,12 @@
         callNow: "📞 Llamar",
         whatsapp: "💬 WhatsApp",
         directions: "📍 Cómo llegar",
+
         pill1: "Diagnóstico híbrido",
         pill2: "Prius y otros híbridos",
         pill3: "Eléctrico y sensores",
         pill4: "Cerca de la frontera",
+
         m1t: "Check Engine / Luz híbrida",
         m1d: "Escaneo y diagnóstico real — sin adivinar.",
         m2t: "Rendimiento del sistema híbrido",
@@ -571,14 +614,10 @@
         w4: "Entrega rápida (según refacciones)",
         whyFoot: "Si ofrece garantía, lo agregamos aquí.",
 
-        galleryTitle: "Fotos / Galería",
-        galleryIntro: "Usa fotos propias o fotos libres para uso comercial (sin marcas de agua).",
-        galleryFoot: "(Fotos removidas por ahora — las agregamos después.)",
-
         locationTitle: "Ubicación",
         locationIntro: "Pega el enlace de Google Maps y conectamos el botón de “Cómo llegar”.",
         openMaps: "🗺️ Abrir en Google Maps",
-        seoNote: "Nota: Google puede tardar en indexar — pero el sitio debe cargar en cuanto el DNS esté conectado en Netlify + Namecheap.",
+        seoNote: "Nota: Google puede tardar en indexar — pero el sitio debe cargar en cuanto el DNS esté conectado.",
 
         hoursTitle: "Horario",
         monfri: "Lun–Vie:",
@@ -587,7 +626,11 @@
         hoursMonFri: "9:00am – 5:00pm",
         hoursSat: "Cerrado",
         hoursSun: "Cerrado",
-        hoursFoot: "Si abre algunos sábados, dime y lo actualizo."
+        hoursFoot: "Si abre algunos sábados, dime y lo actualizo.",
+
+        galleryTitle: "Fotos / Galería",
+        galleryIntro: "Podemos agregar fotos después (las del taller son mejores).",
+        galleryFoot: "Cuando estés listo, sube 6 fotos reales del taller y las pongo en una galería limpia."
       }
     };
 
@@ -609,8 +652,9 @@
     document.getElementById("btnES").addEventListener("click", ()=>setLang("es"));
     setLang(localStorage.getItem("tinoco_lang") || "en");
 
-    // ---------- Sparks / lightning around gears ----------
+    // ---------- Sparks / lightning (random around gears) ----------
     const sparks = document.getElementById("sparks");
+    const gearArea = document.getElementById("gearArea");
 
     function boltEl(){
       const d = document.createElement("div");
@@ -618,18 +662,18 @@
       d.innerHTML = `
         <svg viewBox="0 0 64 64" fill="none">
           <path d="M36 2 10 36h18l-6 26 32-38H36l4-22Z"
-                fill="rgba(0,229,255,.95)"/>
+                fill="rgba(0,163,255,.92)"/>
           <path d="M36 2 10 36h18l-6 26 32-38H36l4-22Z"
-                stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+                stroke="rgba(255,255,255,.65)" stroke-width="2"/>
           <path d="M36 2 10 36h18l-6 26 32-38H36l4-22Z"
-                stroke="rgba(255,59,48,.55)" stroke-width="1" opacity=".55"/>
+                stroke="rgba(255,59,48,.45)" stroke-width="1" opacity=".65"/>
         </svg>
       `;
       return d;
     }
 
     const bolts = [];
-    const N = 10;
+    const N = 9;
     for(let i=0;i<N;i++){
       const b = boltEl();
       sparks.appendChild(b);
@@ -639,14 +683,15 @@
     function rand(min,max){return Math.random()*(max-min)+min}
 
     function positionBolts(){
-      const rect = sparks.getBoundingClientRect();
-      bolts.forEach((b)=>{
-        const x = rand(rect.width*0.42, rect.width*0.92);
+      const rect = gearArea.getBoundingClientRect();
+      // bolts randomly placed mainly around the gears cluster area
+      bolts.forEach(b=>{
+        const x = rand(rect.width*0.30, rect.width*0.92);
         const y = rand(rect.height*0.18, rect.height*0.86);
-        b.style.left = x+"px";
-        b.style.top  = y+"px";
+        b.style.left = x + "px";
+        b.style.top  = y + "px";
         b.style.animationDelay = (Math.random()*1.1)+"s";
-        b.style.animationDuration = rand(0.9, 1.4)+"s";
+        b.style.animationDuration = rand(0.95, 1.35)+"s";
       });
     }
 
