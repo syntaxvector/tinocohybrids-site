@@ -6,8 +6,8 @@
   <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
   <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos." />
 
-  <!-- VERSION MARKER (cache-buster): MAP_APPLE_FIX_V1_20260226 -->
-  <meta name="tinoco-build" content="MAP_APPLE_FIX_V1_20260226" />
+  <!-- VERSION MARKER (for debugging cache): STEEL_GREY_V5_DIRNAME_NO_BORDER_20260226_0900 -->
+  <meta name="tinoco-build" content="STEEL_GREY_V5_DIRNAME_NO_BORDER_20260226_0900" />
 
   <style>
     :root{
@@ -36,17 +36,11 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
 
-      /* Steel grey background (uniform, classy) */
+      /* Steel grey background (uniform feel) */
       background:
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0) 40%),
-        repeating-linear-gradient(
-          135deg,
-          rgba(255,255,255,.06) 0px,
-          rgba(255,255,255,.06) 7px,
-          rgba(0,0,0,.10) 7px,
-          rgba(0,0,0,.10) 14px
-        ),
-        linear-gradient(180deg, #4b5563 0%, #2b3441 40%, #1b222c 70%, #0f141a 100%);
+        radial-gradient(900px 520px at 50% 8%, rgba(255,255,255,.20), rgba(255,255,255,0) 65%),
+        radial-gradient(900px 520px at 50% 115%, rgba(255,255,255,.10), rgba(255,255,255,0) 70%),
+        linear-gradient(180deg, var(--steel3) 0%, var(--steel2) 26%, var(--steel1) 60%, var(--steel0) 100%);
       background-attachment: fixed;
     }
 
@@ -77,7 +71,7 @@
       min-width: 0;
     }
 
-    /* Logo frame */
+    /* Bigger logo frame */
     .logoWrap{
       width: 190px;
       height: 110px;
@@ -308,7 +302,7 @@
     <header class="topbar">
       <div class="brand">
         <div class="logoWrap">
-          <img src="tinoco_logo_transparent.png?v=778" alt="Tinoco Hybrids logo" />
+          <img src="tinoco_logo_transparent.png?v=779" alt="Tinoco Hybrids logo" />
         </div>
         <div class="brandText">
           <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
@@ -338,17 +332,15 @@
       <div class="ctaRow">
         <a class="btn btnCall" href="tel:+526642705566">📞 <span data-i18n="call">Call</span></a>
         <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 WhatsApp</a>
-
-        <!-- Directions href is set by JS to ensure iPhone gets Apple Maps with the address -->
-        <a class="btn btnDir" id="dirBtn" href="#" target="_blank" rel="noopener">
-          📍 <span data-i18n="directions">Directions</span>
-        </a>
+        <!-- ✅ Directions button now uses iPhone Apple Maps w/ name “TinocoHybrids” -->
+        <a class="btn btnDir" id="dirBtn" href="#" target="_blank" rel="noopener">📍 <span data-i18n="directions">Directions</span></a>
       </div>
 
       <div class="chips">
         <div class="chip" data-i18n="chip1">⚡ Hybrid / EV Specialist</div>
         <div class="chip" data-i18n="chip2">🔎 Advanced Diagnostics</div>
         <div class="chip" data-i18n="chip3">📷 Real Shop Photos</div>
+        <!-- ❌ Border-friendly removed -->
       </div>
 
       <div class="grid2">
@@ -369,7 +361,9 @@
             <strong data-i18n="monfri">Mon–Fri:</strong> 9:00am – 5:00pm<br/>
             <strong data-i18n="sat">Sat:</strong> <span data-i18n="closed">Closed</span><br/>
             <strong data-i18n="sun">Sun:</strong> <span data-i18n="closed2">Closed</span><br/><br/>
-            <span class="muted" data-i18n="phoneLabel">Phone / WhatsApp:</span> +52 664 270 5566
+            <span class="muted" data-i18n="phoneLabel">Phone / WhatsApp:</span> +52 664 270 5566<br/>
+            <span class="muted" data-i18n="addressLabel">Address:</span>
+            <span data-i18n="addressText">Ruta Mariano Matamoros Circuito, Mariano Matamoros, 22234 Tijuana, B.C., Mexico</span>
           </p>
         </div>
       </div>
@@ -392,20 +386,20 @@
       </div>
 
       <div class="photoGrid">
-        <div class="tile" data-full="1.jpg?v=778"><img src="1.jpg?v=778" alt="Shop photo 1"></div>
-        <div class="tile" data-full="2.jpg?v=778"><img src="2.jpg?v=778" alt="Shop photo 2"></div>
-        <div class="tile" data-full="3.jpg?v=778"><img src="3.jpg?v=778" alt="Shop photo 3"></div>
-        <div class="tile" data-full="4.jpg?v=778"><img src="4.jpg?v=778" alt="Shop photo 4"></div>
+        <div class="tile" data-full="1.jpg?v=779"><img src="1.jpg?v=779" alt="Shop photo 1"></div>
+        <div class="tile" data-full="2.jpg?v=779"><img src="2.jpg?v=779" alt="Shop photo 2"></div>
+        <div class="tile" data-full="3.jpg?v=779"><img src="3.jpg?v=779" alt="Shop photo 3"></div>
+        <div class="tile" data-full="4.jpg?v=779"><img src="4.jpg?v=779" alt="Shop photo 4"></div>
 
-        <div class="tile" data-full="5.jpg?v=778"><img src="5.jpg?v=778" alt="Shop photo 5"></div>
-        <div class="tile" data-full="6.jpg?v=778"><img src="6.jpg?v=778" alt="Shop photo 6"></div>
-        <div class="tile" data-full="7.jpg?v=778"><img src="7.jpg?v=778" alt="Shop photo 7"></div>
-        <div class="tile" data-full="8.jpg?v=778"><img src="8.jpg?v=778" alt="Shop photo 8"></div>
+        <div class="tile" data-full="5.jpg?v=779"><img src="5.jpg?v=779" alt="Shop photo 5"></div>
+        <div class="tile" data-full="6.jpg?v=779"><img src="6.jpg?v=779" alt="Shop photo 6"></div>
+        <div class="tile" data-full="7.jpg?v=779"><img src="7.jpg?v=779" alt="Shop photo 7"></div>
+        <div class="tile" data-full="8.jpg?v=779"><img src="8.jpg?v=779" alt="Shop photo 8"></div>
 
-        <div class="tile" data-full="9.jpg?v=778"><img src="9.jpg?v=778" alt="Shop photo 9"></div>
-        <div class="tile" data-full="10.jpg?v=778"><img src="10.jpg?v=778" alt="Shop photo 10"></div>
-        <div class="tile" data-full="11.jpg?v=778"><img src="11.jpg?v=778" alt="Shop photo 11"></div>
-        <div class="tile" data-full="12.jpg?v=778"><img src="12.jpg?v=778" alt="Shop photo 12"></div>
+        <div class="tile" data-full="9.jpg?v=779"><img src="9.jpg?v=779" alt="Shop photo 9"></div>
+        <div class="tile" data-full="10.jpg?v=779"><img src="10.jpg?v=779" alt="Shop photo 10"></div>
+        <div class="tile" data-full="11.jpg?v=779"><img src="11.jpg?v=779" alt="Shop photo 11"></div>
+        <div class="tile" data-full="12.jpg?v=779"><img src="12.jpg?v=779" alt="Shop photo 12"></div>
       </div>
     </section>
 
@@ -422,31 +416,7 @@
   </div>
 
   <script>
-    // ---- Address + maps (FIXED FOR iPhone) ----
-    const PLACE_NAME = "Tinoco Hybrids";
-    const ADDRESS = "Ruta Mariano Matamoros Circuito, Mariano Matamoros, 22234 Tijuana, B.C., Mexico";
-
-    const appleMapsUrl =
-      "https://maps.apple.com/?" +
-      "q=" + encodeURIComponent(PLACE_NAME) +
-      "&address=" + encodeURIComponent(ADDRESS);
-
-    const googleMapsUrl =
-      "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(ADDRESS);
-
-    function isIOS(){
-      // iPhone/iPad/iPod OR iPadOS (Macintosh with touch)
-      const ua = navigator.userAgent || "";
-      const iOS = /iPad|iPhone|iPod/.test(ua);
-      const iPadOS = (ua.includes("Macintosh") && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
-      return iOS || iPadOS;
-    }
-
-    // Set the Directions link appropriately
-    const dirBtn = document.getElementById("dirBtn");
-    dirBtn.href = isIOS() ? appleMapsUrl : googleMapsUrl;
-
-    // ---- Language toggle (RESTORED) ----
+    // ---------- Translations ----------
     const dict = {
       en: {
         brandName: "Tinoco Hybrids",
@@ -472,6 +442,8 @@
         closed: "Closed",
         closed2: "Closed",
         phoneLabel: "Phone / WhatsApp:",
+        addressLabel: "Address:",
+        addressText: "Ruta Mariano Matamoros Circuito, Mariano Matamoros, 22234 Tijuana, B.C., Mexico",
         whyTitle: "Why customers choose this shop",
         why1: "Honest diagnostics — no guessing, no upselling",
         why2: "Hybrid & EV specialist — not trial-and-error",
@@ -505,6 +477,8 @@
         closed: "Cerrado",
         closed2: "Cerrado",
         phoneLabel: "Teléfono / WhatsApp:",
+        addressLabel: "Dirección:",
+        addressText: "Ruta Mariano Matamoros Circuito, Mariano Matamoros, 22234 Tijuana, B.C., México",
         whyTitle: "Por qué eligen este taller",
         why1: "Diagnóstico honesto — sin adivinar, sin ventas extra",
         why2: "Especialista en híbridos y EV — sin prueba y error",
@@ -534,9 +508,31 @@
 
     document.getElementById("btnEN").addEventListener("click", () => setLang("en"));
     document.getElementById("btnES").addEventListener("click", () => setLang("es"));
-    setLang(localStorage.getItem("tinoco_lang") === "es" ? "es" : "en");
+    const saved = localStorage.getItem("tinoco_lang");
+    setLang(saved === "es" ? "es" : "en");
 
-    // ---- Modal ----
+    // ---------- Directions (shows “TinocoHybrids” on iPhone Apple Maps) ----------
+    const PLACE_NAME = "TinocoHybrids";
+    const ADDRESS = "Ruta Mariano Matamoros Circuito, Mariano Matamoros, 22234 Tijuana, B.C., Mexico";
+
+    const appleMapsUrl =
+      "https://maps.apple.com/?" +
+      "q=" + encodeURIComponent(PLACE_NAME) +
+      "&address=" + encodeURIComponent(ADDRESS);
+
+    const googleMapsUrl =
+      "https://www.google.com/maps/dir/?api=1&destination=" +
+      encodeURIComponent(ADDRESS);
+
+    function isIOS(){
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+             (navigator.userAgent.includes("Macintosh") && navigator.maxTouchPoints > 1);
+    }
+
+    const dirBtn = document.getElementById("dirBtn");
+    if (dirBtn) dirBtn.href = isIOS() ? appleMapsUrl : googleMapsUrl;
+
+    // ---------- Modal ----------
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.getElementById("closeBtn");
