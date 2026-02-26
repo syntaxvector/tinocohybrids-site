@@ -6,8 +6,8 @@
   <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
   <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos." />
 
-  <!-- VERSION MARKER (cache-buster): MAP_FIX_NO_BORDER_LANG_PHOTOS_20260226 -->
-  <meta name="tinoco-build" content="MAP_FIX_NO_BORDER_LANG_PHOTOS_20260226" />
+  <!-- VERSION MARKER (cache-buster): MAP_APPLE_FIX_V1_20260226 -->
+  <meta name="tinoco-build" content="MAP_APPLE_FIX_V1_20260226" />
 
   <style>
     :root{
@@ -339,11 +339,9 @@
         <a class="btn btnCall" href="tel:+526642705566">📞 <span data-i18n="call">Call</span></a>
         <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 WhatsApp</a>
 
-        <!-- ✅ FIXED: passes address into maps, so Apple Maps / Google Maps opens with destination -->
-        <a class="btn btnDir"
-           href="https://www.google.com/maps/search/?api=1&query=Ruta+Mariano+Matamoros+Circuito,+Mariano+Matamoros,+22234+Tijuana,+B.C.,+Mexico"
-           target="_blank" rel="noopener">
-           📍 <span data-i18n="directions">Directions</span>
+        <!-- Directions href is set by JS to ensure iPhone gets Apple Maps with the address -->
+        <a class="btn btnDir" id="dirBtn" href="#" target="_blank" rel="noopener">
+          📍 <span data-i18n="directions">Directions</span>
         </a>
       </div>
 
@@ -351,7 +349,6 @@
         <div class="chip" data-i18n="chip1">⚡ Hybrid / EV Specialist</div>
         <div class="chip" data-i18n="chip2">🔎 Advanced Diagnostics</div>
         <div class="chip" data-i18n="chip3">📷 Real Shop Photos</div>
-        <!-- ❌ removed border-friendly chip -->
       </div>
 
       <div class="grid2">
@@ -425,6 +422,31 @@
   </div>
 
   <script>
+    // ---- Address + maps (FIXED FOR iPhone) ----
+    const PLACE_NAME = "Tinoco Hybrids";
+    const ADDRESS = "Ruta Mariano Matamoros Circuito, Mariano Matamoros, 22234 Tijuana, B.C., Mexico";
+
+    const appleMapsUrl =
+      "https://maps.apple.com/?" +
+      "q=" + encodeURIComponent(PLACE_NAME) +
+      "&address=" + encodeURIComponent(ADDRESS);
+
+    const googleMapsUrl =
+      "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(ADDRESS);
+
+    function isIOS(){
+      // iPhone/iPad/iPod OR iPadOS (Macintosh with touch)
+      const ua = navigator.userAgent || "";
+      const iOS = /iPad|iPhone|iPod/.test(ua);
+      const iPadOS = (ua.includes("Macintosh") && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+      return iOS || iPadOS;
+    }
+
+    // Set the Directions link appropriately
+    const dirBtn = document.getElementById("dirBtn");
+    dirBtn.href = isIOS() ? appleMapsUrl : googleMapsUrl;
+
+    // ---- Language toggle (RESTORED) ----
     const dict = {
       en: {
         brandName: "Tinoco Hybrids",
@@ -514,7 +536,7 @@
     document.getElementById("btnES").addEventListener("click", () => setLang("es"));
     setLang(localStorage.getItem("tinoco_lang") === "es" ? "es" : "en");
 
-    // Modal
+    // ---- Modal ----
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.getElementById("closeBtn");
