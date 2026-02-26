@@ -6,8 +6,8 @@
   <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
   <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos, border-friendly service." />
 
-  <!-- VERSION MARKER (for debugging cache): STEEL_GREY_V4_PHOTO_GRID_4COL_20260225_2050 -->
-  <meta name="tinoco-build" content="STEEL_GREY_V4_PHOTO_GRID_4COL_20260225_2050" />
+  <!-- VERSION MARKER (for debugging cache): STEEL_GREY_V5_PATTERN_FIXED_BG_20260225_2055 -->
+  <meta name="tinoco-build" content="STEEL_GREY_V5_PATTERN_FIXED_BG_20260225_2055" />
 
   <style>
     :root{
@@ -29,15 +29,24 @@
     }
 
     *{box-sizing:border-box}
-
-    /* ✅ FIX: put the background on html (not just body) to prevent “split” seams */
     html,body{height:100%}
 
+    /* ✅ FIX: put the entire background on html as ONE stacked background
+       so it never "splits" into two different colors. */
     html{
-      /* Steel grey background (light → medium dark) */
       background:
-        radial-gradient(900px 520px at 50% 8%, rgba(255,255,255,.22), rgba(255,255,255,0) 65%),
+        /* subtle diagonal pattern */
+        repeating-linear-gradient(
+          -45deg,
+          rgba(255,255,255,.07) 0px,
+          rgba(255,255,255,.07) 6px,
+          rgba(0,0,0,.06) 6px,
+          rgba(0,0,0,.06) 12px
+        ),
+        /* soft highlights */
+        radial-gradient(900px 520px at 50% 8%, rgba(255,255,255,.18), rgba(255,255,255,0) 65%),
         radial-gradient(900px 520px at 50% 115%, rgba(255,255,255,.10), rgba(255,255,255,0) 70%),
+        /* base steel gradient */
         linear-gradient(180deg, var(--steel3) 0%, var(--steel2) 22%, var(--steel1) 55%, var(--steel0) 100%);
       background-attachment: fixed;
     }
@@ -46,7 +55,7 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
-      background: transparent; /* important: let html own the background */
+      background: transparent; /* important: avoid body painting a second background */
     }
 
     a{color:inherit}
@@ -232,14 +241,12 @@
     .photosHeader h2{margin:0;font-size:14px;font-weight:1000}
     .photosHint{margin:0;font-size:12px;color:var(--muted);font-weight:900;white-space:nowrap}
 
-    /* 4 columns on desktop so 12 photos = 3 rows */
     .photoGrid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:12px;
     }
 
-    /* Consistent tile size */
     .tile{
       position:relative;
       border-radius:16px;
@@ -309,7 +316,7 @@
     <header class="topbar">
       <div class="brand">
         <div class="logoWrap">
-          <img src="tinoco_logo_transparent.png?v=778" alt="Tinoco Hybrids logo" />
+          <img src="tinoco_logo_transparent.png?v=779" alt="Tinoco Hybrids logo" />
         </div>
         <div class="brandText">
           <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
@@ -390,20 +397,20 @@
       </div>
 
       <div class="photoGrid">
-        <div class="tile" data-full="1.jpg?v=778"><img src="1.jpg?v=778" alt="Shop photo 1"></div>
-        <div class="tile" data-full="2.jpg?v=778"><img src="2.jpg?v=778" alt="Shop photo 2"></div>
-        <div class="tile" data-full="3.jpg?v=778"><img src="3.jpg?v=778" alt="Shop photo 3"></div>
-        <div class="tile" data-full="4.jpg?v=778"><img src="4.jpg?v=778" alt="Shop photo 4"></div>
+        <div class="tile" data-full="1.jpg?v=779"><img src="1.jpg?v=779" alt="Shop photo 1"></div>
+        <div class="tile" data-full="2.jpg?v=779"><img src="2.jpg?v=779" alt="Shop photo 2"></div>
+        <div class="tile" data-full="3.jpg?v=779"><img src="3.jpg?v=779" alt="Shop photo 3"></div>
+        <div class="tile" data-full="4.jpg?v=779"><img src="4.jpg?v=779" alt="Shop photo 4"></div>
 
-        <div class="tile" data-full="5.jpg?v=778"><img src="5.jpg?v=778" alt="Shop photo 5"></div>
-        <div class="tile" data-full="6.jpg?v=778"><img src="6.jpg?v=778" alt="Shop photo 6"></div>
-        <div class="tile" data-full="7.jpg?v=778"><img src="7.jpg?v=778" alt="Shop photo 7"></div>
-        <div class="tile" data-full="8.jpg?v=778"><img src="8.jpg?v=778" alt="Shop photo 8"></div>
+        <div class="tile" data-full="5.jpg?v=779"><img src="5.jpg?v=779" alt="Shop photo 5"></div>
+        <div class="tile" data-full="6.jpg?v=779"><img src="6.jpg?v=779" alt="Shop photo 6"></div>
+        <div class="tile" data-full="7.jpg?v=779"><img src="7.jpg?v=779" alt="Shop photo 7"></div>
+        <div class="tile" data-full="8.jpg?v=779"><img src="8.jpg?v=779" alt="Shop photo 8"></div>
 
-        <div class="tile" data-full="9.jpg?v=778"><img src="9.jpg?v=778" alt="Shop photo 9"></div>
-        <div class="tile" data-full="10.jpg?v=778"><img src="10.jpg?v=778" alt="Shop photo 10"></div>
-        <div class="tile" data-full="11.jpg?v=778"><img src="11.jpg?v=778" alt="Shop photo 11"></div>
-        <div class="tile" data-full="12.jpg?v=778"><img src="12.jpg?v=778" alt="Shop photo 12"></div>
+        <div class="tile" data-full="9.jpg?v=779"><img src="9.jpg?v=779" alt="Shop photo 9"></div>
+        <div class="tile" data-full="10.jpg?v=779"><img src="10.jpg?v=779" alt="Shop photo 10"></div>
+        <div class="tile" data-full="11.jpg?v=779"><img src="11.jpg?v=779" alt="Shop photo 11"></div>
+        <div class="tile" data-full="12.jpg?v=779"><img src="12.jpg?v=779" alt="Shop photo 12"></div>
       </div>
     </section>
 
