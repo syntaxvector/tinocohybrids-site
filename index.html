@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
-  <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos, border-friendly service." />
+  <title>Tinoco Hybrids • Hybrid, EV &amp; Gas Vehicle Mechanic • Tijuana</title>
+  <meta name="description" content="Hybrid, EV &amp; Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos, border-friendly service." />
 
   <!-- VERSION MARKER (for debugging cache): STEEL_GREY_V3_20260225_1955 -->
   <meta name="tinoco-build" content="STEEL_GREY_V3_20260225_1955" />
@@ -36,7 +36,7 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
 
-      /* ✅ Steel grey background (light → medium dark) */
+      /* Steel grey background (light → medium dark) */
       background:
         radial-gradient(900px 520px at 50% 8%, rgba(255,255,255,.22), rgba(255,255,255,0) 65%),
         radial-gradient(900px 520px at 50% 115%, rgba(255,255,255,.10), rgba(255,255,255,0) 70%),
@@ -70,7 +70,7 @@
       min-width: 0;
     }
 
-    /* ✅ BIGGER logo frame again */
+    /* Bigger logo frame */
     .logoWrap{
       width: 190px;
       height: 110px;
@@ -88,7 +88,7 @@
       width:100%;
       height:100%;
       object-fit: contain;   /* no cropping */
-      padding: 8px;          /* makes it look centered and “premium” */
+      padding: 8px;          /* centered / premium */
       display:block;
     }
 
@@ -228,7 +228,7 @@
 
     .photoGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 
-    /* ✅ No blank space: consistent tile size */
+    /* Consistent tile size */
     .tile{
       position:relative;
       border-radius:16px;
@@ -298,12 +298,19 @@
     <header class="topbar">
       <div class="brand">
         <div class="logoWrap">
-          <!-- ✅ Cache-buster so logo updates instantly -->
-          <img src="tinoco_logo_transparent.png?v=777" alt="Tinoco Hybrids logo" />
+          <!-- LOGO: src is set by JS to include build cache-buster; onerror is a safe fallback -->
+          <img
+            id="logoImg"
+            src="./tinoco_logo_transparent.png"
+            alt="Tinoco Hybrids logo"
+            loading="eager"
+            decoding="async"
+            onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried='1'; this.src='./tinoco_logo.jpg';}"
+          />
         </div>
         <div class="brandText">
           <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
-          <div class="brandTag" data-i18n="brandTag">Hybrid, EV & Gas Vehicle Mechanic • Tijuana</div>
+          <div class="brandTag" data-i18n="brandTag">Hybrid, EV &amp; Gas Vehicle Mechanic • Tijuana</div>
         </div>
       </div>
 
@@ -319,7 +326,7 @@
       </h1>
 
       <div class="tagline" data-i18n="tagline">
-        Hybrid, EV & Gas — diagnosed right the first time.
+        Hybrid, EV &amp; Gas — diagnosed right the first time.
       </div>
 
       <p class="desc" data-i18n="heroDesc">
@@ -329,8 +336,6 @@
       <div class="ctaRow">
         <a class="btn btnCall" href="tel:+526642705566">📞 <span data-i18n="call">Call</span></a>
         <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 WhatsApp</a>
-
-        <!-- Put your real Google Maps Directions link here -->
         <a class="btn btnDir" href="https://www.google.com/maps" target="_blank" rel="noopener">📍 <span data-i18n="directions">Directions</span></a>
       </div>
 
@@ -345,10 +350,10 @@
         <div class="mini">
           <h3 data-i18n="servicesTitle">Services</h3>
           <ul>
-            <li data-i18n="svc1">Hybrid & EV diagnostics</li>
-            <li data-i18n="svc2">Electrical & sensor troubleshooting</li>
-            <li data-i18n="svc3">Inverter & cooling systems</li>
-            <li data-i18n="svc4">Brakes, suspension & maintenance</li>
+            <li data-i18n="svc1">Hybrid &amp; EV diagnostics</li>
+            <li data-i18n="svc2">Electrical &amp; sensor troubleshooting</li>
+            <li data-i18n="svc3">Inverter &amp; cooling systems</li>
+            <li data-i18n="svc4">Brakes, suspension &amp; maintenance</li>
             <li data-i18n="svc5">Gasoline vehicle repair</li>
           </ul>
         </div>
@@ -369,7 +374,7 @@
       <div class="whyTitle" data-i18n="whyTitle">Why customers choose this shop</div>
       <ul class="whyList">
         <li data-i18n="why1">Honest diagnostics — no guessing, no upselling</li>
-        <li data-i18n="why2">Hybrid & EV specialist — not trial-and-error</li>
+        <li data-i18n="why2">Hybrid &amp; EV specialist — not trial-and-error</li>
         <li data-i18n="why3">Fair pricing vs. U.S. shops</li>
         <li data-i18n="why4">Real photos of real work</li>
       </ul>
@@ -382,26 +387,25 @@
       </div>
 
       <div class="photoGrid">
-        <!-- ✅ Cache-buster on photos too -->
-        <div class="tile" data-full="1.jpg?v=777"><img src="1.jpg?v=777" alt="Shop photo 1"></div>
-        <div class="tile" data-full="2.jpg?v=777"><img src="2.jpg?v=777" alt="Shop photo 2"></div>
-        <div class="tile" data-full="3.jpg?v=777"><img src="3.jpg?v=777" alt="Shop photo 3"></div>
-        <div class="tile" data-full="4.jpg?v=777"><img src="4.jpg?v=777" alt="Shop photo 4"></div>
-        <div class="tile" data-full="5.jpg?v=777"><img src="5.jpg?v=777" alt="Shop photo 5"></div>
+        <div class="tile" data-full="1.jpg"><img data-img="1.jpg" alt="Shop photo 1"></div>
+        <div class="tile" data-full="2.jpg"><img data-img="2.jpg" alt="Shop photo 2"></div>
+        <div class="tile" data-full="3.jpg"><img data-img="3.jpg" alt="Shop photo 3"></div>
+        <div class="tile" data-full="4.jpg"><img data-img="4.jpg" alt="Shop photo 4"></div>
+        <div class="tile" data-full="5.jpg"><img data-img="5.jpg" alt="Shop photo 5"></div>
 
-        <div class="tile" data-full="6.jpg?v=777"><img src="6.jpg?v=777" alt="Shop photo 6"></div>
-        <div class="tile" data-full="7.jpg?v=777"><img src="7.jpg?v=777" alt="Shop photo 7"></div>
-        <div class="tile" data-full="8.jpg?v=777"><img src="8.jpg?v=777" alt="Shop photo 8"></div>
-        <div class="tile" data-full="9.jpg?v=777"><img src="9.jpg?v=777" alt="Shop photo 9"></div>
-        <div class="tile" data-full="10.jpg?v=777"><img src="10.jpg?v=777" alt="Shop photo 10"></div>
+        <div class="tile" data-full="6.jpg"><img data-img="6.jpg" alt="Shop photo 6"></div>
+        <div class="tile" data-full="7.jpg"><img data-img="7.jpg" alt="Shop photo 7"></div>
+        <div class="tile" data-full="8.jpg"><img data-img="8.jpg" alt="Shop photo 8"></div>
+        <div class="tile" data-full="9.jpg"><img data-img="9.jpg" alt="Shop photo 9"></div>
+        <div class="tile" data-full="10.jpg"><img data-img="10.jpg" alt="Shop photo 10"></div>
 
-        <div class="tile" data-full="11.jpg?v=777"><img src="11.jpg?v=777" alt="Shop photo 11"></div>
-        <div class="tile" data-full="12.jpg?v=777"><img src="12.jpg?v=777" alt="Shop photo 12"></div>
+        <div class="tile" data-full="11.jpg"><img data-img="11.jpg" alt="Shop photo 11"></div>
+        <div class="tile" data-full="12.jpg"><img data-img="12.jpg" alt="Shop photo 12"></div>
       </div>
     </section>
 
     <footer>
-      <span data-i18n="footer">© Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</span>
+      <span data-i18n="footer">© Tinoco Hybrids • Hybrid, EV &amp; Gas Vehicle Mechanic • Tijuana</span>
     </footer>
   </div>
 
@@ -413,12 +417,49 @@
   </div>
 
   <script>
+    // ===== Build-based cache buster =====
+    const BUILD = document.querySelector('meta[name="tinoco-build"]')?.content || "dev";
+    const v = "?v=" + encodeURIComponent(BUILD);
+
+    // Fix logo reliably (and keep your inline onerror as a backup)
+    (function initLogo(){
+      const logo = document.getElementById("logoImg");
+      if (!logo) return;
+
+      const primary = "./tinoco_logo_transparent.png" + v;
+      const fallback = "./tinoco_logo.jpg" + v;
+
+      // Set primary with cache buster
+      logo.src = primary;
+
+      // JS fallback (extra-safe, avoids weird inline edge cases)
+      logo.addEventListener("error", () => {
+        if (logo.dataset.fallbackTried === "1") return;
+        logo.dataset.fallbackTried = "1";
+        logo.src = fallback;
+      });
+    })();
+
+    // Apply cache-buster to thumbnails + modal full images
+    (function initImages(){
+      document.querySelectorAll("img[data-img]").forEach(img => {
+        const base = img.getAttribute("data-img");
+        img.src = "./" + base + v;
+      });
+
+      document.querySelectorAll(".tile").forEach(tile => {
+        const fullBase = tile.getAttribute("data-full");
+        tile.setAttribute("data-full", "./" + fullBase + v);
+      });
+    })();
+
+    // ===== Language (i18n) =====
     const dict = {
       en: {
         brandName: "Tinoco Hybrids",
-        brandTag: "Hybrid, EV & Gas Vehicle Mechanic • Tijuana",
+        brandTag: "Hybrid, EV &amp; Gas Vehicle Mechanic • Tijuana",
         heroTitle: 'Professional Automotive Repair in <span class="city">Tijuana</span>',
-        tagline: "Hybrid, EV & Gas — diagnosed right the first time.",
+        tagline: "Hybrid, EV &amp; Gas — diagnosed right the first time.",
         heroDesc: "Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and high-quality workmanship.",
         call: "Call",
         directions: "Directions",
@@ -427,10 +468,10 @@
         chip3: "📷 Real Shop Photos",
         chip4: "🇺🇸 Border-Friendly",
         servicesTitle: "Services",
-        svc1: "Hybrid & EV diagnostics",
-        svc2: "Electrical & sensor troubleshooting",
-        svc3: "Inverter & cooling systems",
-        svc4: "Brakes, suspension & maintenance",
+        svc1: "Hybrid &amp; EV diagnostics",
+        svc2: "Electrical &amp; sensor troubleshooting",
+        svc3: "Inverter &amp; cooling systems",
+        svc4: "Brakes, suspension &amp; maintenance",
         svc5: "Gasoline vehicle repair",
         hoursTitle: "Hours",
         monfri: "Mon–Fri:",
@@ -441,12 +482,12 @@
         phoneLabel: "Phone / WhatsApp:",
         whyTitle: "Why customers choose this shop",
         why1: "Honest diagnostics — no guessing, no upselling",
-        why2: "Hybrid & EV specialist — not trial-and-error",
+        why2: "Hybrid &amp; EV specialist — not trial-and-error",
         why3: "Fair pricing vs. U.S. shops",
         why4: "Real photos of real work",
         photosTitle: "Shop Photos",
         photosHint: "Tap any photo to enlarge.",
-        footer: "© Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana"
+        footer: "© Tinoco Hybrids • Hybrid, EV &amp; Gas Vehicle Mechanic • Tijuana"
       },
       es: {
         brandName: "Tinoco Hybrids",
@@ -493,6 +534,7 @@
         const key = el.getAttribute("data-i18n");
         const val = dict[lang][key];
         if (val == null) return;
+        // allow HTML only where needed (heroTitle has a span)
         if (typeof val === "string" && val.includes("<span")) el.innerHTML = val;
         else el.textContent = val;
       });
@@ -505,7 +547,7 @@
     const saved = localStorage.getItem("tinoco_lang");
     setLang(saved === "es" ? "es" : "en");
 
-    // Modal
+    // ===== Modal =====
     const modal = document.getElementById("modal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.getElementById("closeBtn");
