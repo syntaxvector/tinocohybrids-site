@@ -6,15 +6,21 @@
   <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
   <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos, border-friendly service." />
 
-  <!-- VERSION MARKER (cache-buster): GREY_PATTERN_NO_SPLIT_V1_20260225_2105 -->
-  <meta name="tinoco-build" content="GREY_PATTERN_NO_SPLIT_V1_20260225_2105" />
+  <!-- VERSION MARKER (for debugging cache): GREY_PATTERN_PRO_V1_20260225_2105 -->
+  <meta name="tinoco-build" content="GREY_PATTERN_PRO_V1_20260225_2105" />
+
+  <!-- Social preview -->
+  <meta property="og:title" content="Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana" />
+  <meta property="og:description" content="Hybrid, EV & Gas diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos." />
+  <meta property="og:type" content="website" />
 
   <style>
     :root{
-      --steel0:#0f141a;
-      --steel1:#1b222c;
-      --steel2:#2b3441;
-      --steel3:#3a4554;
+      /* Greys */
+      --g0:#0e1116;
+      --g1:#151a22;
+      --g2:#222a36;
+      --g3:#2f3948;
 
       --card:#efefef;
       --card2:#e7e7e7;
@@ -26,35 +32,38 @@
       --cardShadow: 0 18px 40px rgba(0,0,0,.30);
       --softShadow: 0 10px 18px rgba(0,0,0,.18);
       --radius: 22px;
+
+      --maxw: 980px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
 
-    body{
+    /* ✅ IMPORTANT: Put the SAME background on html + body to prevent “split” bands */
+    html, body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
-
-      /* ✅ UNIFORM GREY PATTERN (NO SPLIT / NO TWO-TONE BAND) */
-      background:
-        repeating-linear-gradient(
-          -45deg,
-          rgba(255,255,255,.10) 0px,
-          rgba(255,255,255,.10) 6px,
-          rgba(0,0,0,.10) 6px,
-          rgba(0,0,0,.10) 12px
-        ),
-        linear-gradient(180deg, #6e7582 0%, #646b77 50%, #5a616c 100%);
-      background-attachment: fixed;
+      background-color: var(--g1);
+      background-image:
+        /* subtle light bloom */
+        radial-gradient(900px 520px at 50% 6%, rgba(255,255,255,.10), rgba(255,255,255,0) 62%),
+        /* diagonal stripe pattern */
+        repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 6px, rgba(255,255,255,.03) 6px 12px),
+        /* base grey gradient */
+        linear-gradient(180deg, var(--g3) 0%, var(--g2) 30%, var(--g1) 62%, var(--g0) 100%);
+      background-attachment: fixed, fixed, fixed;
+      background-repeat: no-repeat, repeat, no-repeat;
+      background-size: auto, auto, auto;
     }
 
     a{color:inherit}
+    img{max-width:100%}
 
     .wrap{
-      max-width: 980px;
+      max-width: var(--maxw);
       margin: 0 auto;
-      padding: 28px 18px 70px;
+      padding: 28px 18px 80px;
     }
 
     /* Header */
@@ -67,6 +76,7 @@
       align-items:center;
       justify-content:space-between;
       gap: 16px;
+      border: 1px solid rgba(0,0,0,.06);
     }
 
     .brand{
@@ -76,26 +86,27 @@
       min-width: 0;
     }
 
-    /* Bigger logo frame */
+    /* Larger, cleaner logo frame */
     .logoWrap{
-      width: 190px;
-      height: 110px;
-      background: #f3f3f3;
-      border-radius: 16px;
+      width: 210px;
+      height: 120px;
+      background: #f5f5f5;
+      border-radius: 18px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
       flex: 0 0 auto;
       box-shadow: var(--softShadow);
-      border: 1px solid rgba(0,0,0,.06);
+      border: 1px solid rgba(0,0,0,.08);
     }
     .logoWrap img{
       width:100%;
       height:100%;
       object-fit: contain;
-      padding: 8px;
+      padding: 10px;
       display:block;
+      image-rendering: auto;
     }
 
     .brandText{min-width:0;display:flex;flex-direction:column;gap:2px}
@@ -106,6 +117,7 @@
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+      letter-spacing: -0.2px;
     }
     .brandTag{
       font-size: 12px;
@@ -113,6 +125,7 @@
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+      font-weight: 700;
     }
 
     /* Language toggle */
@@ -124,6 +137,7 @@
       border-radius: 16px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
       flex: 0 0 auto;
+      border: 1px solid rgba(0,0,0,.06);
     }
     .langBtn{
       border: 0;
@@ -132,17 +146,24 @@
       border-radius: 12px;
       font-weight: 900;
       font-size: 12px;
-      background: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.92);
       box-shadow: var(--softShadow);
-      opacity:.75;
-      transition: transform .08s ease, opacity .2s ease;
+      opacity:.78;
+      transition: transform .08s ease, opacity .2s ease, filter .2s ease;
     }
-    .langBtn:hover{opacity:1}
+    .langBtn:hover{opacity:1; filter: brightness(1.02)}
     .langBtn:active{transform: translateY(1px)}
     .langBtn.active{
       background: #fff;
       opacity:1;
       outline: 2px solid rgba(178,31,31,.25);
+    }
+
+    /* Accessibility / focus */
+    :focus-visible{
+      outline: 3px solid rgba(79,124,255,.55);
+      outline-offset: 3px;
+      border-radius: 10px;
     }
 
     /* Cards */
@@ -152,13 +173,14 @@
       box-shadow: var(--cardShadow);
       padding: 22px;
       margin-top: 18px;
+      border: 1px solid rgba(0,0,0,.06);
     }
 
     .title{
-      font-size: 30px;
+      font-size: clamp(26px, 3.2vw, 34px);
       line-height: 1.12;
       margin: 0 0 6px;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
     }
     .title .city{color: var(--red);}
 
@@ -192,7 +214,9 @@
       box-shadow: var(--btnShadow);
       transition: transform .08s ease, filter .2s ease;
       user-select:none;
+      border: 1px solid rgba(0,0,0,.10);
     }
+    .btn:hover{filter: brightness(1.03)}
     .btn:active{transform: translateY(1px)}
     .btnCall{background:#d94b4b;color:#fff}
     .btnWA{background:#50c878;color:#0b1b12}
@@ -207,6 +231,7 @@
       background: rgba(0,0,0,.05);
       color:#1f2937;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
+      border: 1px solid rgba(0,0,0,.06);
     }
 
     /* Two columns */
@@ -216,7 +241,7 @@
       border-radius: 16px;
       padding: 14px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
-      border: 1px solid rgba(0,0,0,.05);
+      border: 1px solid rgba(0,0,0,.06);
     }
     .mini h3{margin:0 0 8px;font-size:12px;font-weight:900}
     .mini ul{margin:0;padding-left:16px;font-size:12px;line-height:1.55}
@@ -232,6 +257,7 @@
     .photosHeader h2{margin:0;font-size:14px;font-weight:1000}
     .photosHint{margin:0;font-size:12px;color:var(--muted);font-weight:900;white-space:nowrap}
 
+    /* 4 columns on desktop so 12 photos = 3 rows */
     .photoGrid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
@@ -245,13 +271,17 @@
       background:#d9d9d9;
       box-shadow: var(--softShadow);
       cursor:pointer;
-      border:1px solid rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.10);
       aspect-ratio: 4 / 3;
+      transition: transform .12s ease, filter .2s ease;
     }
+    .tile:hover{filter: brightness(1.02)}
+    .tile:active{transform: translateY(1px)}
     .tile img{
       width:100%;
       height:100%;
       object-fit: cover;
+      object-position: center;
       display:block;
       transform: scale(1.01);
     }
@@ -259,7 +289,7 @@
     footer{
       margin-top: 20px;
       text-align:center;
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.90);
       font-size: 12px;
       font-weight: 900;
       text-shadow: 0 1px 2px rgba(0,0,0,.35);
@@ -285,8 +315,33 @@
       position:absolute;right:10px;top:10px;
       border:0;cursor:pointer;border-radius:999px;
       padding:10px 12px;font-weight:1000;
-      background: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.92);
       box-shadow: var(--softShadow);
+    }
+
+    /* Sticky bottom CTA (mobile-friendly, professional conversion boost) */
+    .stickyCta{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 10px 12px;
+      background: rgba(14,17,22,.70);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.12);
+      display:none;
+      z-index: 998;
+    }
+    .stickyRow{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .stickyRow .btn{box-shadow: 0 10px 24px rgba(0,0,0,.35)}
+    @media (max-width: 680px){
+      .stickyCta{display:block}
+      .wrap{padding-bottom: 120px}
     }
 
     @media (max-width: 980px){
@@ -294,10 +349,14 @@
     }
     @media (max-width: 680px){
       .topbar{flex-direction:column;align-items:flex-start}
-      .logoWrap{width: 200px;height: 115px;}
+      .logoWrap{width: 220px;height: 128px;}
       .grid2{grid-template-columns:1fr}
       .photoGrid{grid-template-columns:repeat(2,1fr)}
       .photosHint{white-space:normal}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none !important; scroll-behavior:auto !important}
     }
   </style>
 </head>
@@ -307,7 +366,7 @@
     <header class="topbar">
       <div class="brand">
         <div class="logoWrap">
-          <img src="tinoco_logo_transparent.png?v=779" alt="Tinoco Hybrids logo" />
+          <img src="tinoco_logo_transparent.png?v=901" alt="Tinoco Hybrids logo" loading="eager" decoding="async" />
         </div>
         <div class="brandText">
           <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
@@ -316,8 +375,8 @@
       </div>
 
       <div class="langToggle" aria-label="Language toggle">
-        <button class="langBtn active" id="btnEN" type="button">EN</button>
-        <button class="langBtn" id="btnES" type="button">ES</button>
+        <button class="langBtn active" id="btnEN" type="button" aria-pressed="true">EN</button>
+        <button class="langBtn" id="btnES" type="button" aria-pressed="false">ES</button>
       </div>
     </header>
 
@@ -335,12 +394,13 @@
       </p>
 
       <div class="ctaRow">
-        <a class="btn btnCall" href="tel:+526642705566">📞 <span data-i18n="call">Call</span></a>
-        <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 WhatsApp</a>
-        <a class="btn btnDir" href="https://www.google.com/maps" target="_blank" rel="noopener">📍 <span data-i18n="directions">Directions</span></a>
+        <a class="btn btnCall" href="tel:+526642705566" aria-label="Call Tinoco Hybrids">📞 <span data-i18n="call">Call</span></a>
+        <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener" aria-label="WhatsApp Tinoco Hybrids">💬 WhatsApp</a>
+        <!-- Tip: replace the maps link with your exact pin/share link -->
+        <a class="btn btnDir" href="https://www.google.com/maps?q=Tinoco%20Hybrids%20Tijuana" target="_blank" rel="noopener" aria-label="Get directions to Tinoco Hybrids">📍 <span data-i18n="directions">Directions</span></a>
       </div>
 
-      <div class="chips">
+      <div class="chips" aria-label="Highlights">
         <div class="chip" data-i18n="chip1">⚡ Hybrid / EV Specialist</div>
         <div class="chip" data-i18n="chip2">🔎 Advanced Diagnostics</div>
         <div class="chip" data-i18n="chip3">📷 Real Shop Photos</div>
@@ -387,21 +447,21 @@
         <p class="photosHint" data-i18n="photosHint">Tap any photo to enlarge.</p>
       </div>
 
-      <div class="photoGrid">
-        <div class="tile" data-full="1.jpg?v=779"><img src="1.jpg?v=779" alt="Shop photo 1"></div>
-        <div class="tile" data-full="2.jpg?v=779"><img src="2.jpg?v=779" alt="Shop photo 2"></div>
-        <div class="tile" data-full="3.jpg?v=779"><img src="3.jpg?v=779" alt="Shop photo 3"></div>
-        <div class="tile" data-full="4.jpg?v=779"><img src="4.jpg?v=779" alt="Shop photo 4"></div>
+      <div class="photoGrid" aria-label="Shop photo gallery">
+        <div class="tile" role="button" tabindex="0" data-full="1.jpg?v=901"><img src="1.jpg?v=901" alt="Shop photo 1" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="2.jpg?v=901"><img src="2.jpg?v=901" alt="Shop photo 2" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="3.jpg?v=901"><img src="3.jpg?v=901" alt="Shop photo 3" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="4.jpg?v=901"><img src="4.jpg?v=901" alt="Shop photo 4" loading="lazy" decoding="async"></div>
 
-        <div class="tile" data-full="5.jpg?v=779"><img src="5.jpg?v=779" alt="Shop photo 5"></div>
-        <div class="tile" data-full="6.jpg?v=779"><img src="6.jpg?v=779" alt="Shop photo 6"></div>
-        <div class="tile" data-full="7.jpg?v=779"><img src="7.jpg?v=779" alt="Shop photo 7"></div>
-        <div class="tile" data-full="8.jpg?v=779"><img src="8.jpg?v=779" alt="Shop photo 8"></div>
+        <div class="tile" role="button" tabindex="0" data-full="5.jpg?v=901"><img src="5.jpg?v=901" alt="Shop photo 5" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="6.jpg?v=901"><img src="6.jpg?v=901" alt="Shop photo 6" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="7.jpg?v=901"><img src="7.jpg?v=901" alt="Shop photo 7" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="8.jpg?v=901"><img src="8.jpg?v=901" alt="Shop photo 8" loading="lazy" decoding="async"></div>
 
-        <div class="tile" data-full="9.jpg?v=779"><img src="9.jpg?v=779" alt="Shop photo 9"></div>
-        <div class="tile" data-full="10.jpg?v=779"><img src="10.jpg?v=779" alt="Shop photo 10"></div>
-        <div class="tile" data-full="11.jpg?v=779"><img src="11.jpg?v=779" alt="Shop photo 11"></div>
-        <div class="tile" data-full="12.jpg?v=779"><img src="12.jpg?v=779" alt="Shop photo 12"></div>
+        <div class="tile" role="button" tabindex="0" data-full="9.jpg?v=901"><img src="9.jpg?v=901" alt="Shop photo 9" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="10.jpg?v=901"><img src="10.jpg?v=901" alt="Shop photo 10" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="11.jpg?v=901"><img src="11.jpg?v=901" alt="Shop photo 11" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="12.jpg?v=901"><img src="12.jpg?v=901" alt="Shop photo 12" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
@@ -410,9 +470,18 @@
     </footer>
   </div>
 
+  <!-- Mobile sticky CTA -->
+  <div class="stickyCta" aria-label="Quick actions">
+    <div class="stickyRow">
+      <a class="btn btnCall" href="tel:+526642705566">📞 <span data-i18n="call">Call</span></a>
+      <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="btn btnDir" href="https://www.google.com/maps?q=Tinoco%20Hybrids%20Tijuana" target="_blank" rel="noopener">📍 <span data-i18n="directions">Directions</span></a>
+    </div>
+  </div>
+
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <div class="modalCard">
-      <button class="closeBtn" id="closeBtn" type="button">✕</button>
+      <button class="closeBtn" id="closeBtn" type="button" aria-label="Close photo viewer">✕</button>
       <img id="modalImg" src="" alt="Enlarged photo">
     </div>
   </div>
@@ -491,8 +560,14 @@
 
     function setLang(lang){
       document.documentElement.lang = lang;
-      document.getElementById("btnEN").classList.toggle("active", lang === "en");
-      document.getElementById("btnES").classList.toggle("active", lang === "es");
+
+      const btnEN = document.getElementById("btnEN");
+      const btnES = document.getElementById("btnES");
+
+      btnEN.classList.toggle("active", lang === "en");
+      btnES.classList.toggle("active", lang === "es");
+      btnEN.setAttribute("aria-pressed", String(lang === "en"));
+      btnES.setAttribute("aria-pressed", String(lang === "es"));
 
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
@@ -518,14 +593,25 @@
     function openModal(src){
       modalImg.src = src;
       modal.classList.add("open");
+      closeBtn.focus();
     }
     function closeModal(){
       modal.classList.remove("open");
       modalImg.src = "";
     }
 
+    function tileActivate(tile){
+      openModal(tile.getAttribute("data-full"));
+    }
+
     document.querySelectorAll(".tile").forEach(tile => {
-      tile.addEventListener("click", () => openModal(tile.getAttribute("data-full")));
+      tile.addEventListener("click", () => tileActivate(tile));
+      tile.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          tileActivate(tile);
+        }
+      });
     });
 
     closeBtn.addEventListener("click", closeModal);
