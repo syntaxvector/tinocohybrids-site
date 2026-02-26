@@ -6,21 +6,19 @@
   <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
   <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos, border-friendly service." />
 
-  <!-- VERSION MARKER (cache-bust / sanity check): STEEL_GREY_V5_IMPROVEMENTS_20260225_2015 -->
-  <meta name="tinoco-build" content="STEEL_GREY_V5_IMPROVEMENTS_20260225_2015" />
+  <!-- VERSION MARKER (cache-bust / sanity check): SOLID_GREY_PATTERN_V6_20260225_2028 -->
+  <meta name="tinoco-build" content="SOLID_GREY_PATTERN_V6_20260225_2028" />
 
   <!-- SEO basics (helps “findability”) -->
   <link rel="canonical" href="https://tinocohybrids.com/" />
   <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#1b222c" />
+  <meta name="theme-color" content="#3b3f46" />
 
   <!-- Open Graph / sharing -->
   <meta property="og:title" content="Tinoco Hybrids • Hybrid, EV & Gas • Tijuana" />
   <meta property="og:description" content="Hybrid, EV & Gas — diagnosed right the first time. Honest diagnostics, modern tools, real shop photos." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tinocohybrids.com/" />
-  <!-- Optional: set this if you have a share image -->
-  <!-- <meta property="og:image" content="https://tinocohybrids.com/og.jpg" /> -->
 
   <style>
     :root{
@@ -53,26 +51,33 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
 
-      /* Steel grey background (light → medium dark) + subtle metallic grain */
+      /* ✅ CHANGE: Uniform grey background + “metallic weave” pattern */
       background:
-        radial-gradient(900px 520px at 50% 8%, rgba(255,255,255,.22), rgba(255,255,255,0) 65%),
-        radial-gradient(900px 520px at 50% 115%, rgba(255,255,255,.10), rgba(255,255,255,0) 70%),
-        linear-gradient(180deg, var(--steel3) 0%, var(--steel2) 22%, var(--steel1) 55%, var(--steel0) 100%);
+        /* subtle highlight vignettes */
+        radial-gradient(900px 520px at 50% 10%, rgba(255,255,255,.16), rgba(255,255,255,0) 65%),
+        radial-gradient(900px 520px at 50% 115%, rgba(0,0,0,.14), rgba(0,0,0,0) 70%),
+
+        /* catchy, classy pattern (diagonal crosshatch) */
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,.09) 0px,
+          rgba(255,255,255,.09) 1px,
+          rgba(0,0,0,0) 8px,
+          rgba(0,0,0,0) 14px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(0,0,0,.08) 0px,
+          rgba(0,0,0,.08) 1px,
+          rgba(0,0,0,0) 10px,
+          rgba(0,0,0,0) 18px
+        ),
+
+        /* base uniform metallic grey */
+        linear-gradient(180deg, #50555d 0%, #3f444c 45%, #343941 100%);
+
       position: relative;
       overflow-x:hidden;
-    }
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
-      opacity:.10;
-      background:
-        repeating-linear-gradient(135deg,
-          rgba(255,255,255,.20) 0px,
-          rgba(255,255,255,.20) 1px,
-          rgba(0,0,0,0) 5px,
-          rgba(0,0,0,0) 9px);
-      mix-blend-mode: overlay;
     }
 
     a{color:inherit}
@@ -102,10 +107,10 @@
       min-width: 0;
     }
 
-    /* Bigger logo frame + prevent “square frame” complaints by rounding the INNER logo too */
+    /* Bigger logo frame + rounded inner logo */
     .logoWrap{
-      width: 240px;   /* bigger */
-      height: 130px;  /* bigger */
+      width: 240px;
+      height: 130px;
       background: #f3f3f3;
       border-radius: 18px;
       display:flex;
@@ -122,7 +127,7 @@
       object-fit: contain;
       padding: 10px;
       display:block;
-      border-radius: 14px; /* helps if the PNG has a boxy edge */
+      border-radius: 14px;
     }
 
     .brandText{min-width:0;display:flex;flex-direction:column;gap:4px}
@@ -346,7 +351,6 @@
       transform: scale(1.01);
     }
 
-    /* Optional: subtle hover for “memorable” feel */
     .tile::after{
       content:"";
       position:absolute; inset:0;
@@ -457,7 +461,6 @@
           <div class="ctaRow">
             <a class="btn btnCall" href="tel:+526642705566">📞 <span data-i18n="call">Call</span></a>
             <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener">💬 WhatsApp</a>
-            <!-- Replace the href with the real share link when ready -->
             <a class="btn btnDir" href="https://www.google.com/maps" target="_blank" rel="noopener">📍 <span data-i18n="directions">Directions</span></a>
           </div>
 
@@ -719,9 +722,6 @@
     closeBtn.addEventListener("click", closeModal);
     modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-
-    // Small helpful: prevent stale cached logo/photos on GitHub Pages by using the version marker if needed
-    // (You already have ?v=999 on assets, so you're good.)
   </script>
 </body>
 </html>
