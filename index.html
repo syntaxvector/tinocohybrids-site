@@ -6,19 +6,15 @@
   <title>Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana</title>
   <meta name="description" content="Hybrid, EV & Gas vehicle diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos, border-friendly service." />
 
-  <!-- VERSION MARKER (for debugging cache): GREY_PATTERN_PRO_V2_20260225_2128 -->
-  <meta name="tinoco-build" content="GREY_PATTERN_PRO_V2_20260225_2128" />
+  <!-- VERSION MARKER (for debugging cache): PRO_POLISH_V3_20260225_2207 -->
+  <meta name="tinoco-build" content="PRO_POLISH_V3_20260225_2207" />
 
   <!-- Social preview -->
   <meta property="og:title" content="Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana" />
   <meta property="og:description" content="Hybrid, EV & Gas diagnostics and repair in Tijuana. Honest diagnostics, modern tools, real shop photos." />
   <meta property="og:type" content="website" />
 
-  <!-- Favicons (optional: add these files later if you want) -->
-  <!-- <link rel="icon" href="favicon.ico"> -->
-  <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-
-  <!-- LocalBusiness schema (professional SEO/Google understanding) -->
+  <!-- LocalBusiness schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -36,32 +32,44 @@
 
   <style>
     :root{
-      /* Greys */
-      --g0:#0e1116;
-      --g1:#151a22;
-      --g2:#222a36;
-      --g3:#2f3948;
+      /* Background */
+      --g0:#0c1015;
+      --g1:#141a23;
+      --g2:#1f2733;
+      --g3:#2b3544;
 
-      --card:#efefef;
-      --card2:#e7e7e7;
-      --text:#111316;
+      /* Surface */
+      --card:#f2f2f2;
+      --card2:#e9e9e9;
+      --line: rgba(0,0,0,.08);
+
+      /* Text */
+      --text:#101318;
       --muted:#4b5563;
+
+      /* Brand accents */
       --red:#b21f1f;
+      --blue:#4f7cff;
+      --green:#4fc77b;
 
-      --btnShadow: 0 10px 22px rgba(0,0,0,.18);
-      --cardShadow: 0 18px 40px rgba(0,0,0,.30);
-      --softShadow: 0 10px 18px rgba(0,0,0,.18);
+      /* Layout */
       --radius: 22px;
-
+      --radius2: 16px;
       --maxw: 980px;
-      --hairline: rgba(0,0,0,.08);
-      --hairline2: rgba(255,255,255,.28);
+
+      /* Shadows */
+      --shadow1: 0 10px 22px rgba(0,0,0,.16);
+      --shadow2: 0 18px 44px rgba(0,0,0,.30);
+      --shadow3: 0 24px 70px rgba(0,0,0,.38);
+
+      /* Type */
+      --tracking: -0.25px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
 
-    /* ✅ SAME background on html + body to prevent “split” bands */
+    /* ✅ Keep the background identical on html + body (prevents split bands) */
     html, body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -69,50 +77,59 @@
       background-color: var(--g1);
       background-image:
         radial-gradient(900px 520px at 50% 6%, rgba(255,255,255,.10), rgba(255,255,255,0) 62%),
-        repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 6px, rgba(255,255,255,.03) 6px 12px),
+        /* subtle diagonal “carbon” */
+        repeating-linear-gradient(135deg, rgba(255,255,255,.065) 0 6px, rgba(255,255,255,.03) 6px 12px),
         linear-gradient(180deg, var(--g3) 0%, var(--g2) 30%, var(--g1) 62%, var(--g0) 100%);
       background-attachment: fixed, fixed, fixed;
       background-repeat: no-repeat, repeat, no-repeat;
     }
 
-    a{color:inherit}
-    img{max-width:100%}
-
-    /* Subtle, professional text rendering */
     body{
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
+    a{color:inherit}
+    img{max-width:100%}
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    :focus-visible{
+      outline: 3px solid rgba(79,124,255,.55);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
     .wrap{
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 28px 18px 80px;
+      padding: 28px 18px 92px;
     }
 
-    /* Header */
+    /* ===== Header ===== */
     .topbar{
       background: var(--card);
       border-radius: var(--radius);
-      box-shadow: var(--cardShadow);
+      box-shadow: var(--shadow2);
+      border: 1px solid var(--line);
       padding: 18px 20px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 16px;
-      border: 1px solid var(--hairline);
       position: relative;
       overflow: hidden;
     }
-    /* tiny “premium” sheen */
     .topbar::before{
       content:"";
-      position:absolute; inset:-40% -20%;
-      background: radial-gradient(500px 220px at 20% 10%, rgba(255,255,255,.45), rgba(255,255,255,0) 60%);
+      position:absolute; inset:-60% -20%;
+      background: radial-gradient(520px 260px at 18% 10%, rgba(255,255,255,.55), rgba(255,255,255,0) 60%);
       pointer-events:none;
-      opacity:.25;
-      transform: rotate(-8deg);
+      opacity:.22;
+      transform: rotate(-10deg);
     }
 
     .brand{
@@ -124,18 +141,17 @@
       z-index: 1;
     }
 
-    /* Larger, cleaner logo frame */
     .logoWrap{
-      width: 210px;
-      height: 120px;
-      background: #f5f5f5;
+      width: 220px;
+      height: 128px;
+      background: #f7f7f7;
       border-radius: 18px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
       flex: 0 0 auto;
-      box-shadow: var(--softShadow);
+      box-shadow: var(--shadow1);
       border: 1px solid rgba(0,0,0,.10);
     }
     .logoWrap img{
@@ -144,46 +160,56 @@
       object-fit: contain;
       padding: 10px;
       display:block;
-      image-rendering: auto;
-      transform: translateZ(0);
     }
 
-    .brandText{min-width:0;display:flex;flex-direction:column;gap:4px}
+    .brandText{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
     .brandName{
       font-weight: 950;
       font-size: 18px;
       line-height: 1.1;
+      letter-spacing: var(--tracking);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      letter-spacing: -0.2px;
     }
     .brandTag{
       font-size: 12px;
       color: var(--muted);
+      font-weight: 800;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      font-weight: 750;
     }
 
-    /* Small trust row (professional touch) */
-    .trustRow{
+    /* Professional trust pills (smaller + cleaner) */
+    .trust{
       display:flex;
-      gap:10px;
+      gap:8px;
       flex-wrap:wrap;
       align-items:center;
-      color: #374151;
-      font-weight: 850;
-      font-size: 11px;
     }
-    .trustDot{
-      width:6px;height:6px;border-radius:99px;
-      background: rgba(178,31,31,.50);
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.05);
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.60);
+      font-size: 11px;
+      font-weight: 950;
+      color:#1f2937;
+    }
+    .dot{
+      width:7px;height:7px;border-radius:99px;
+      background: rgba(178,31,31,.55);
       box-shadow: 0 0 0 3px rgba(178,31,31,.10);
-      display:inline-block;
-      margin-right:6px;
-      transform: translateY(-1px);
     }
 
     /* Language toggle */
@@ -194,8 +220,8 @@
       background: rgba(0,0,0,.06);
       border-radius: 16px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-      flex: 0 0 auto;
       border: 1px solid rgba(0,0,0,.06);
+      flex: 0 0 auto;
       position: relative;
       z-index: 1;
     }
@@ -204,10 +230,10 @@
       cursor: pointer;
       padding: 8px 12px;
       border-radius: 12px;
-      font-weight: 900;
+      font-weight: 950;
       font-size: 12px;
       background: rgba(255,255,255,.92);
-      box-shadow: var(--softShadow);
+      box-shadow: var(--shadow1);
       opacity:.78;
       transition: transform .08s ease, opacity .2s ease, filter .2s ease;
     }
@@ -219,28 +245,21 @@
       outline: 2px solid rgba(178,31,31,.25);
     }
 
-    /* Accessibility / focus */
-    :focus-visible{
-      outline: 3px solid rgba(79,124,255,.55);
-      outline-offset: 3px;
-      border-radius: 10px;
-    }
-
-    /* Cards */
+    /* ===== Cards ===== */
     .card{
       background: var(--card);
       border-radius: var(--radius);
-      box-shadow: var(--cardShadow);
+      box-shadow: var(--shadow2);
+      border: 1px solid var(--line);
       padding: 22px;
       margin-top: 18px;
-      border: 1px solid var(--hairline);
     }
 
     .title{
       font-size: clamp(26px, 3.2vw, 34px);
       line-height: 1.12;
       margin: 0 0 6px;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.35px;
     }
     .title .city{color: var(--red);}
 
@@ -258,10 +277,17 @@
       max-width: 78ch;
     }
 
-    /* Buttons */
+    /* Subtle section divider inside card */
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, rgba(0,0,0,.10), rgba(0,0,0,0));
+      margin: 14px 0;
+    }
+
+    /* ===== CTAs ===== */
     .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 10px}
     .btn{
-      border: 0;
+      border: 1px solid rgba(0,0,0,.10);
       cursor: pointer;
       text-decoration:none;
       display:inline-flex;
@@ -271,18 +297,22 @@
       border-radius: 999px;
       font-weight: 950;
       font-size: 13px;
-      box-shadow: var(--btnShadow);
-      transition: transform .08s ease, filter .2s ease;
+      box-shadow: var(--shadow1);
+      transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
       user-select:none;
-      border: 1px solid rgba(0,0,0,.10);
+      white-space:nowrap;
     }
-    .btn:hover{filter: brightness(1.03)}
+    .btn:hover{filter: brightness(1.03); box-shadow: 0 14px 26px rgba(0,0,0,.22)}
     .btn:active{transform: translateY(1px)}
     .btnCall{background:#d94b4b;color:#fff}
-    .btnWA{background:#50c878;color:#0b1b12}
-    .btnDir{background:#4f7cff;color:#fff}
+    .btnWA{background: var(--green);color:#0b1b12}
+    .btnDir{background: var(--blue);color:#fff}
+    .btnGhost{
+      background: rgba(255,255,255,.92);
+      color:#111827;
+    }
 
-    /* Chips */
+    /* ===== Feature chips ===== */
     .chips{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 2px}
     .chip{
       display:inline-flex;align-items:center;gap:8px;
@@ -294,51 +324,102 @@
       border: 1px solid rgba(0,0,0,.06);
     }
 
-    /* Two columns */
+    /* ===== Info grid ===== */
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
     .mini{
       background: var(--card2);
-      border-radius: 16px;
+      border-radius: var(--radius2);
       padding: 14px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
       border: 1px solid rgba(0,0,0,.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.70);
     }
-    .mini h3{margin:0 0 8px;font-size:12px;font-weight:950}
-    .mini ul{margin:0;padding-left:16px;font-size:12px;line-height:1.55}
-    .mini .hours{margin:0;font-size:12px;line-height:1.55}
-    .mini .muted{color:var(--muted);font-weight:850}
-
-    /* Professional “micro-divider” under sections (subtle) */
+    .mini h3{
+      margin:0 0 10px;
+      font-size:12px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      color:#111827;
+    }
     .mini h3::after{
       content:"";
       display:block;
       height:1px;
-      background: linear-gradient(90deg, rgba(0,0,0,.10), rgba(0,0,0,0));
+      background: linear-gradient(90deg, rgba(0,0,0,.12), rgba(0,0,0,0));
       margin-top:8px;
+    }
+    .mini ul{margin:0;padding-left:16px;font-size:12px;line-height:1.55}
+    .mini .hours{margin:0;font-size:12px;line-height:1.55}
+    .mini .muted{color:var(--muted);font-weight:850}
+
+    /* “Quick facts” row */
+    .facts{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .fact{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
+    }
+    .factLabel{
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .2px;
+      margin-bottom: 6px;
+    }
+    .factValue{
+      font-size: 13px;
+      font-weight: 950;
+      color:#111827;
+      line-height: 1.2;
     }
 
     /* Why */
-    .whyTitle{margin:0 0 10px;font-size:14px;font-weight:1000}
+    .whyTitle{
+      margin:0 0 10px;
+      font-size:14px;
+      font-weight:1000
+    }
     .whyList{margin:0;padding-left:18px;font-size:13px;line-height:1.65}
 
     /* Photos */
-    .photosHeader{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
-    .photosHeader h2{margin:0;font-size:14px;font-weight:1000}
-    .photosHint{margin:0;font-size:12px;color:var(--muted);font-weight:950;white-space:nowrap}
-
-    /* 4 columns on desktop so 12 photos = 3 rows */
+    .photosHeader{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px
+    }
+    .photosHeader h2{
+      margin:0;
+      font-size:14px;
+      font-weight:1000
+    }
+    .photosHint{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:950;
+      white-space:nowrap
+    }
     .photoGrid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:12px;
     }
-
     .tile{
       position:relative;
       border-radius:16px;
       overflow:hidden;
       background:#d9d9d9;
-      box-shadow: var(--softShadow);
+      box-shadow: var(--shadow1);
       cursor:pointer;
       border:1px solid rgba(0,0,0,.10);
       aspect-ratio: 4 / 3;
@@ -346,7 +427,7 @@
     }
     .tile:hover{
       filter: brightness(1.02);
-      box-shadow: 0 14px 26px rgba(0,0,0,.22);
+      box-shadow: 0 18px 34px rgba(0,0,0,.26);
     }
     .tile:active{transform: translateY(1px)}
     .tile img{
@@ -357,8 +438,6 @@
       display:block;
       transform: scale(1.01);
     }
-
-    /* tiny corner “zoom” glyph (pro polish, but subtle) */
     .tile::after{
       content:"↗";
       position:absolute;
@@ -380,7 +459,7 @@
     footer{
       margin-top: 20px;
       text-align:center;
-      color: rgba(255,255,255,.90);
+      color: rgba(255,255,255,.92);
       font-size: 12px;
       font-weight: 950;
       text-shadow: 0 1px 2px rgba(0,0,0,.35);
@@ -398,7 +477,7 @@
       max-width: 980px;width:100%;
       border-radius:18px;overflow:hidden;
       background:#111;
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      box-shadow: var(--shadow3);
       position:relative;
     }
     .modalCard img{width:100%;height:auto;display:block}
@@ -407,15 +486,15 @@
       border:0;cursor:pointer;border-radius:999px;
       padding:10px 12px;font-weight:1000;
       background: rgba(255,255,255,.92);
-      box-shadow: var(--softShadow);
+      box-shadow: var(--shadow1);
     }
 
-    /* Sticky bottom CTA (mobile conversion boost) */
+    /* Sticky bottom CTA (mobile) */
     .stickyCta{
       position: fixed;
       left: 0; right: 0; bottom: 0;
       padding: 10px 12px;
-      background: rgba(14,17,22,.70);
+      background: rgba(12,16,21,.72);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-top: 1px solid rgba(255,255,255,.12);
@@ -430,21 +509,21 @@
       justify-content:center;
       flex-wrap:wrap;
     }
-    .stickyRow .btn{box-shadow: 0 10px 24px rgba(0,0,0,.35)}
-    @media (max-width: 680px){
-      .stickyCta{display:block}
-      .wrap{padding-bottom: 120px}
-    }
+    .stickyRow .btn{box-shadow: 0 12px 28px rgba(0,0,0,.38)}
 
     @media (max-width: 980px){
       .photoGrid{grid-template-columns:repeat(3,1fr)}
+      .facts{grid-template-columns: 1fr 1fr}
     }
     @media (max-width: 680px){
       .topbar{flex-direction:column;align-items:flex-start}
-      .logoWrap{width: 220px;height: 128px;}
+      .logoWrap{width: 230px;height: 134px;}
       .grid2{grid-template-columns:1fr}
       .photoGrid{grid-template-columns:repeat(2,1fr)}
       .photosHint{white-space:normal}
+      .facts{grid-template-columns: 1fr}
+      .stickyCta{display:block}
+      .wrap{padding-bottom: 130px}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -458,19 +537,16 @@
     <header class="topbar">
       <div class="brand">
         <div class="logoWrap">
-          <img src="tinoco_logo_transparent.png?v=902" alt="Tinoco Hybrids logo" loading="eager" decoding="async" />
+          <img src="tinoco_logo_transparent.png?v=903" alt="Tinoco Hybrids logo" loading="eager" decoding="async" />
         </div>
         <div class="brandText">
           <div class="brandName" data-i18n="brandName">Tinoco Hybrids</div>
           <div class="brandTag" data-i18n="brandTag">Hybrid, EV & Gas Vehicle Mechanic • Tijuana</div>
 
-          <!-- Professional micro trust line -->
-          <div class="trustRow" aria-label="Trust highlights">
-            <span><span class="trustDot"></span><span data-i18n="trust1">Real diagnostics</span></span>
-            <span>•</span>
-            <span data-i18n="trust2">Border-friendly</span>
-            <span>•</span>
-            <span data-i18n="trust3">Shop photos</span>
+          <div class="trust" aria-label="Trust highlights">
+            <span class="pill"><span class="dot" aria-hidden="true"></span><span data-i18n="trust1">Honest diagnostics</span></span>
+            <span class="pill">⚡ <span data-i18n="trust2">Hybrid / EV specialist</span></span>
+            <span class="pill">📷 <span data-i18n="trust3">Real shop photos</span></span>
           </div>
         </div>
       </div>
@@ -497,8 +573,9 @@
       <div class="ctaRow">
         <a class="btn btnCall" href="tel:+526642705566" aria-label="Call Tinoco Hybrids">📞 <span data-i18n="call">Call</span></a>
         <a class="btn btnWA" href="https://wa.me/526642705566" target="_blank" rel="noopener" aria-label="WhatsApp Tinoco Hybrids">💬 WhatsApp</a>
-        <!-- Replace with exact maps pin/share link whenever you have it -->
-        <a class="btn btnDir" href="https://www.google.com/maps?q=Tinoco%20Hybrids%20Tijuana" target="_blank" rel="noopener" aria-label="Get directions to Tinoco Hybrids">📍 <span data-i18n="directions">Directions</span></a>
+        <!-- Replace with your exact Google Maps share link if you have it -->
+        <a class="btn btnDir" href="https://www.google.com/maps?q=Tinoco%20Hybrids%20Tijuana" target="_blank" rel="noopener" aria-label="Get directions">📍 <span data-i18n="directions">Directions</span></a>
+        <a class="btn btnGhost" href="#photos" aria-label="Jump to shop photos">🖼️ <span data-i18n="viewPhotos">View Photos</span></a>
       </div>
 
       <div class="chips" aria-label="Highlights">
@@ -530,6 +607,22 @@
           </p>
         </div>
       </div>
+
+      <!-- Professional “quick facts” block (looks legit + boosts trust) -->
+      <div class="facts" aria-label="Quick facts">
+        <div class="fact">
+          <div class="factLabel" data-i18n="fact1Label">Specialty</div>
+          <div class="factValue" data-i18n="fact1Value">Hybrid & EV diagnostics</div>
+        </div>
+        <div class="fact">
+          <div class="factLabel" data-i18n="fact2Label">Approach</div>
+          <div class="factValue" data-i18n="fact2Value">Fix the cause — not guesses</div>
+        </div>
+        <div class="fact">
+          <div class="factLabel" data-i18n="fact3Label">Border-friendly</div>
+          <div class="factValue" data-i18n="fact3Value">Call or WhatsApp for scheduling</div>
+        </div>
+      </div>
     </section>
 
     <section class="card">
@@ -540,6 +633,13 @@
         <li data-i18n="why3">Fair pricing vs. U.S. shops</li>
         <li data-i18n="why4">Real photos of real work</li>
       </ul>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <!-- Optional: add a short “process” line (professional tone) -->
+      <p class="desc" style="margin:0" data-i18n="processLine">
+        Simple process: diagnosis → clear explanation → repair approval → quality check.
+      </p>
     </section>
 
     <section class="card" id="photos">
@@ -549,20 +649,20 @@
       </div>
 
       <div class="photoGrid" aria-label="Shop photo gallery">
-        <div class="tile" role="button" tabindex="0" data-full="1.jpg?v=902"><img src="1.jpg?v=902" alt="Shop photo 1" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="2.jpg?v=902"><img src="2.jpg?v=902" alt="Shop photo 2" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="3.jpg?v=902"><img src="3.jpg?v=902" alt="Shop photo 3" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="4.jpg?v=902"><img src="4.jpg?v=902" alt="Shop photo 4" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="1.jpg?v=903"><img src="1.jpg?v=903" alt="Shop photo 1" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="2.jpg?v=903"><img src="2.jpg?v=903" alt="Shop photo 2" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="3.jpg?v=903"><img src="3.jpg?v=903" alt="Shop photo 3" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="4.jpg?v=903"><img src="4.jpg?v=903" alt="Shop photo 4" loading="lazy" decoding="async"></div>
 
-        <div class="tile" role="button" tabindex="0" data-full="5.jpg?v=902"><img src="5.jpg?v=902" alt="Shop photo 5" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="6.jpg?v=902"><img src="6.jpg?v=902" alt="Shop photo 6" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="7.jpg?v=902"><img src="7.jpg?v=902" alt="Shop photo 7" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="8.jpg?v=902"><img src="8.jpg?v=902" alt="Shop photo 8" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="5.jpg?v=903"><img src="5.jpg?v=903" alt="Shop photo 5" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="6.jpg?v=903"><img src="6.jpg?v=903" alt="Shop photo 6" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="7.jpg?v=903"><img src="7.jpg?v=903" alt="Shop photo 7" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="8.jpg?v=903"><img src="8.jpg?v=903" alt="Shop photo 8" loading="lazy" decoding="async"></div>
 
-        <div class="tile" role="button" tabindex="0" data-full="9.jpg?v=902"><img src="9.jpg?v=902" alt="Shop photo 9" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="10.jpg?v=902"><img src="10.jpg?v=902" alt="Shop photo 10" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="11.jpg?v=902"><img src="11.jpg?v=902" alt="Shop photo 11" loading="lazy" decoding="async"></div>
-        <div class="tile" role="button" tabindex="0" data-full="12.jpg?v=902"><img src="12.jpg?v=902" alt="Shop photo 12" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="9.jpg?v=903"><img src="9.jpg?v=903" alt="Shop photo 9" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="10.jpg?v=903"><img src="10.jpg?v=903" alt="Shop photo 10" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="11.jpg?v=903"><img src="11.jpg?v=903" alt="Shop photo 11" loading="lazy" decoding="async"></div>
+        <div class="tile" role="button" tabindex="0" data-full="12.jpg?v=903"><img src="12.jpg?v=903" alt="Shop photo 12" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
@@ -592,14 +692,15 @@
       en: {
         brandName: "Tinoco Hybrids",
         brandTag: "Hybrid, EV & Gas Vehicle Mechanic • Tijuana",
-        trust1: "Real diagnostics",
-        trust2: "Border-friendly",
-        trust3: "Shop photos",
+        trust1: "Honest diagnostics",
+        trust2: "Hybrid / EV specialist",
+        trust3: "Real shop photos",
         heroTitle: 'Professional Automotive Repair in <span class="city">Tijuana</span>',
         tagline: "Hybrid, EV & Gas — diagnosed right the first time.",
         heroDesc: "Specialized in hybrid and electric vehicles, with full service for gasoline cars. Honest diagnostics, modern tools, and high-quality workmanship.",
         call: "Call",
         directions: "Directions",
+        viewPhotos: "View Photos",
         chip1: "⚡ Hybrid / EV Specialist",
         chip2: "🔎 Advanced Diagnostics",
         chip3: "📷 Real Shop Photos",
@@ -617,11 +718,18 @@
         closed: "Closed",
         closed2: "Closed",
         phoneLabel: "Phone / WhatsApp:",
+        fact1Label: "Specialty",
+        fact1Value: "Hybrid & EV diagnostics",
+        fact2Label: "Approach",
+        fact2Value: "Fix the cause — not guesses",
+        fact3Label: "Border-friendly",
+        fact3Value: "Call or WhatsApp for scheduling",
         whyTitle: "Why customers choose this shop",
         why1: "Honest diagnostics — no guessing, no upselling",
         why2: "Hybrid & EV specialist — not trial-and-error",
         why3: "Fair pricing vs. U.S. shops",
         why4: "Real photos of real work",
+        processLine: "Simple process: diagnosis → clear explanation → repair approval → quality check.",
         photosTitle: "Shop Photos",
         photosHint: "Tap any photo to enlarge.",
         footer: "© Tinoco Hybrids • Hybrid, EV & Gas Vehicle Mechanic • Tijuana"
@@ -629,14 +737,15 @@
       es: {
         brandName: "Tinoco Hybrids",
         brandTag: "Mecánico de Híbridos, Eléctricos y Gasolina • Tijuana",
-        trust1: "Diagnóstico real",
-        trust2: "Servicio frontera",
-        trust3: "Fotos del taller",
+        trust1: "Diagnóstico honesto",
+        trust2: "Especialista Híbrido / EV",
+        trust3: "Fotos reales",
         heroTitle: 'Reparación Automotriz Profesional en <span class="city">Tijuana</span>',
         tagline: "Híbrido, EV y Gas — diagnóstico correcto a la primera.",
         heroDesc: "Especialistas en vehículos híbridos y eléctricos, con servicio completo para autos de gasolina. Diagnóstico honesto, herramientas modernas y trabajo de alta calidad.",
         call: "Llamar",
         directions: "Cómo llegar",
+        viewPhotos: "Ver fotos",
         chip1: "⚡ Especialista Híbrido / EV",
         chip2: "🔎 Diagnóstico Avanzado",
         chip3: "📷 Fotos Reales del Taller",
@@ -654,11 +763,18 @@
         closed: "Cerrado",
         closed2: "Cerrado",
         phoneLabel: "Teléfono / WhatsApp:",
+        fact1Label: "Especialidad",
+        fact1Value: "Diagnóstico híbrido y EV",
+        fact2Label: "Método",
+        fact2Value: "Arreglar la causa — sin adivinar",
+        fact3Label: "Frontera",
+        fact3Value: "Llama o WhatsApp para agendar",
         whyTitle: "Por qué eligen este taller",
         why1: "Diagnóstico honesto — sin adivinar, sin ventas extra",
         why2: "Especialista en híbridos y EV — sin prueba y error",
         why3: "Precio justo comparado con talleres en EE. UU.",
         why4: "Fotos reales de trabajos reales",
+        processLine: "Proceso simple: diagnóstico → explicación clara → aprobación → verificación de calidad.",
         photosTitle: "Fotos del Taller",
         photosHint: "Toca cualquier foto para ampliarla.",
         footer: "© Tinoco Hybrids • Mecánico de Híbridos, Eléctricos y Gasolina • Tijuana"
@@ -706,7 +822,6 @@
       modal.classList.remove("open");
       modalImg.src = "";
     }
-
     function tileActivate(tile){
       openModal(tile.getAttribute("data-full"));
     }
